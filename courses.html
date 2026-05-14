@@ -175,7 +175,7 @@
           <div class="strike">Was $130</div>
           <div class="price"><sup>$</sup>97</div>
           <div class="once">One-time payment</div>
-          <a href="#" class="btn btn-yellow" onclick="showToast('🎉 Redirecting to checkout…');return false;">Enrol Now</a>
+          <a href="#" class="btn btn-yellow" data-enroll data-product-id="course-beginners" data-product-name="Beginners Thai" data-product-price="97" data-product-type="course">🔒 Enrol Now</a>
           <div class="guarantee">🔒 30-day money-back guarantee</div>
         </div>
       </div>
@@ -226,7 +226,7 @@
           <div class="strike">Was $195</div>
           <div class="price"><sup>$</sup>147</div>
           <div class="once">One-time payment</div>
-          <a href="#" class="btn btn-yellow" onclick="showToast('🎉 Redirecting to checkout…');return false;">Enrol Now</a>
+          <a href="#" class="btn btn-yellow" data-enroll data-product-id="course-reading-writing" data-product-name="Thai Reading &amp; Writing" data-product-price="147" data-product-type="course">🔒 Enrol Now</a>
           <div class="guarantee">🔒 30-day money-back guarantee</div>
         </div>
       </div>
@@ -276,7 +276,7 @@
           <div class="strike">Was $165</div>
           <div class="price"><sup>$</sup>127</div>
           <div class="once">One-time payment</div>
-          <a href="#" class="btn btn-yellow" onclick="showToast('🎉 Redirecting to checkout…');return false;">Enrol Now</a>
+          <a href="#" class="btn btn-yellow" data-enroll data-product-id="course-intermediate" data-product-name="Intermediate Thai" data-product-price="127" data-product-type="course">🔒 Enrol Now</a>
           <div class="guarantee">🔒 30-day money-back guarantee</div>
         </div>
       </div>
@@ -326,7 +326,7 @@
           <div class="strike">Was $250</div>
           <div class="price"><sup>$</sup>197</div>
           <div class="once">One-time payment</div>
-          <a href="#" class="btn btn-yellow" onclick="showToast('🎉 Redirecting to checkout…');return false;">Enrol Now</a>
+          <a href="#" class="btn btn-yellow" data-enroll data-product-id="course-business" data-product-name="Business &amp; Formal Thai" data-product-price="197" data-product-type="course">🔒 Enrol Now</a>
           <div class="guarantee">🔒 30-day money-back guarantee</div>
         </div>
       </div>
@@ -377,7 +377,7 @@
           <div class="strike" style="color:rgba(255,255,255,.5);">Was $568</div>
           <div class="price" style="color:var(--yellow);"><sup style="color:var(--yellow);">$</sup>397</div>
           <div class="once" style="color:rgba(255,255,255,.5);">One-time payment · Save $171</div>
-          <a href="#" class="btn btn-yellow" onclick="showToast('🎉 Redirecting to checkout…');return false;">Get the Bundle</a>
+          <a href="#" class="btn btn-yellow" data-enroll data-product-id="course-bundle" data-product-name="Complete Course Bundle" data-product-price="397" data-product-type="course">🔒 Get the Bundle</a>
           <div class="guarantee" style="color:rgba(255,255,255,.4);">🔒 30-day money-back guarantee</div>
         </div>
       </div>
@@ -495,6 +495,8 @@
 
 <div class="toast"></div>
 <script src="js/main.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/auth.js"></script>
 <script>
 function toggleFaq(btn) {
   const answer = btn.nextElementSibling;
