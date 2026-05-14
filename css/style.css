@@ -1011,18 +1011,6 @@ body.modal-open { overflow: hidden; }
     linear-gradient(to bottom, rgba(6,12,34,.25) 0%, transparent 35%, transparent 65%, rgba(6,12,34,.25) 100%);
 }
 
-/* ── Faint Thai watermark glyph ── */
-.thai-banner-wm {
-  position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: 'Noto Sans Thai', sans-serif;
-  font-size: 340px; font-weight: 800; line-height: 1;
-  color: rgba(255,255,255,.035);
-  white-space: nowrap;
-  pointer-events: none; user-select: none;
-  z-index: 1;
-}
-
 /* ── Content wrapper ── */
 .thai-banner-inner {
   position: relative;
