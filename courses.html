@@ -7,6 +7,7 @@
   <meta name="description" content="Premium Thai language courses for all levels. From absolute beginner to advanced fluency — all taught by Kru Mind with 10+ years of experience." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <style>
     .course-detail-card {
@@ -19,7 +20,7 @@
       transition: box-shadow .3s;
     }
     .course-detail-card:hover { box-shadow: var(--shadow-lg); }
-    .course-detail-card.featured-card { border-color: var(--gold); box-shadow: 0 0 0 2px var(--gold); }
+    .course-detail-card.featured-card { border-color: var(--yellow); box-shadow: 0 0 0 2px var(--yellow); }
 
     .cdc-header {
       display: grid;
@@ -36,7 +37,7 @@
     .cdc-sub { font-size: 16px; color: var(--mid); line-height: 1.7; max-width: 640px; }
 
     .cdc-price-box {
-      background: var(--cream);
+      background: var(--bg);
       border: 1px solid var(--border);
       border-radius: 16px;
       padding: 28px 32px;
@@ -44,7 +45,7 @@
       min-width: 200px;
     }
     .cdc-price-box .strike { font-size: 16px; color: var(--muted); text-decoration: line-through; margin-bottom: 4px; }
-    .cdc-price-box .price { font-family: 'Playfair Display', serif; font-size: 48px; font-weight: 700; color: var(--navy); line-height: 1; }
+    .cdc-price-box .price { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 48px; font-weight: 800; color: var(--dark); line-height: 1; }
     .cdc-price-box .price sup { font-size: 22px; vertical-align: super; }
     .cdc-price-box .once { font-size: 13px; color: var(--muted); margin-top: 4px; }
     .cdc-price-box .btn { width: 100%; margin-top: 16px; justify-content: center; }
@@ -76,10 +77,10 @@
     .curriculum-list { display: flex; flex-direction: column; gap: 8px; }
     .curriculum-item {
       display: flex; align-items: center; justify-content: space-between;
-      padding: 12px 16px; border-radius: 8px; background: var(--cream);
+      padding: 12px 16px; border-radius: 8px; background: var(--bg);
       font-size: 14px; color: var(--mid);
     }
-    .curriculum-item .lesson-icon { color: var(--gold); margin-right: 10px; }
+    .curriculum-item .lesson-icon { color: var(--yellow); margin-right: 10px; }
 
     .faq-section { margin-top: 80px; }
     .faq-item {
@@ -91,12 +92,12 @@
     .faq-question {
       width: 100%; text-align: left; padding: 20px 24px;
       background: var(--white); border: none; cursor: pointer;
-      font-family: 'Inter', sans-serif; font-size: 16px; font-weight: 600;
-      color: var(--navy); display: flex; justify-content: space-between; align-items: center;
+      font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 600;
+      color: var(--dark); display: flex; justify-content: space-between; align-items: center;
       transition: background .2s;
     }
-    .faq-question:hover { background: var(--cream); }
-    .faq-question .arrow { font-size: 20px; transition: transform .3s; color: var(--gold); }
+    .faq-question:hover { background: var(--bg); }
+    .faq-question .arrow { font-size: 20px; transition: transform .3s; color: var(--yellow); }
     .faq-question.open .arrow { transform: rotate(180deg); }
     .faq-answer {
       display: none; padding: 0 24px 20px;
@@ -113,7 +114,7 @@
     .lvl-beginner { background: #e8f4fd; color: #1a5f8a; }
     .lvl-intermediate { background: #fff3cd; color: #7a5c00; }
     .lvl-advanced { background: #f3e8ff; color: #6b21a8; }
-    .lvl-all { background: var(--gold3); color: #7a5c00; }
+    .lvl-all { background: var(--yellow-lt); color: #7a5c00; }
   </style>
 </head>
 <body>
@@ -122,7 +123,8 @@
 <nav class="nav" id="nav">
   <div class="container nav-inner">
     <a href="index.html" class="nav-logo">
-      <div class="nav-logo-emblem">M</div>
+      <img src="https://uploads.teachablecdn.com/attachments/CjbMn4BTQKi1mENzZUhb_778d8eb8-2299-40f0-a3f7-1bd616be27eb.png" alt="Learn Thai with Mind logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+      <div class="nav-logo-emblem" style="display:none;">M</div>
       <div class="nav-logo-text">
         <span>Learn Thai with Mind</span>
         <span>ภาษาไทยกับมายด์</span>
@@ -134,6 +136,7 @@
       <li><a href="books.html">Books</a></li>
       <li><a href="flashcard.html">Flashcards</a></li>
       <li><a href="private-class.html">Private Class</a></li>
+      <li><a href="contact.html">Contact</a></li>
       <li><a href="private-class.html" class="nav-cta">Book a Class</a></li>
     </ul>
     <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
@@ -145,7 +148,7 @@
   <div class="container text-center">
     <p class="eyebrow" style="margin-bottom:12px;">Online Courses</p>
     <h1 style="color:var(--white);font-size:clamp(36px,5vw,58px);margin-bottom:16px;">Master Thai at Your Own Pace</h1>
-    <div class="gold-line"></div>
+    <div class="accent-bar center" style="margin-top:20px;"><span class="accent-line"></span><span class="accent-dot"></span></div>
     <p style="color:rgba(255,255,255,.65);font-size:18px;max-width:580px;margin:24px auto 0;line-height:1.7;">
       Premium video courses crafted for real results. Choose your level, invest in yourself, and start speaking Thai with confidence — from anywhere in the world.
     </p>
@@ -153,7 +156,7 @@
 </section>
 
 <!-- ══════════ COURSES ══════════ -->
-<section class="section-pad bg-cream">
+<section class="section-pad bg-white">
   <div class="container">
 
     <!-- Course 1: Beginners -->
@@ -161,7 +164,7 @@
       <div class="cdc-header">
         <div>
           <div class="cdc-meta">
-            <span class="course-badge badge-bestseller">⭐ Bestseller</span>
+            <span class="badge badge-yellow">⭐ Bestseller</span>
             <span class="level-badge lvl-beginner">Absolute Beginner</span>
             <span style="font-size:13px;color:var(--muted);">40+ lessons · Self-paced · Lifetime access</span>
           </div>
@@ -172,7 +175,7 @@
           <div class="strike">Was $130</div>
           <div class="price"><sup>$</sup>97</div>
           <div class="once">One-time payment</div>
-          <a href="#" class="btn btn-gold" onclick="showToast('🎉 Redirecting to checkout…');return false;">Enrol Now</a>
+          <a href="#" class="btn btn-yellow" onclick="showToast('🎉 Redirecting to checkout…');return false;">Enrol Now</a>
           <div class="guarantee">🔒 30-day money-back guarantee</div>
         </div>
       </div>
@@ -200,7 +203,7 @@
             <div class="curriculum-item"><span><span class="lesson-icon">▶</span>Ordering Food Like a Local</span><span style="font-size:12px;color:var(--muted);">31 min</span></div>
             <div class="curriculum-item"><span><span class="lesson-icon">▶</span>Thai Consonants (Class 1–3)</span><span style="font-size:12px;color:var(--muted);">45 min</span></div>
             <div class="curriculum-item"><span><span class="lesson-icon">▶</span>Navigating Bangkok by Tuk-tuk</span><span style="font-size:12px;color:var(--muted);">20 min</span></div>
-            <div class="curriculum-item" style="background:var(--gold3);color:#7a5c00;font-weight:600;"><span>+ 33 more lessons</span></div>
+            <div class="curriculum-item" style="background:var(--yellow-lt);color:#7a5c00;font-weight:600;"><span>+ 33 more lessons</span></div>
           </div>
         </div>
       </div>
@@ -208,22 +211,22 @@
 
     <!-- Course 2: Conversational -->
     <div class="course-detail-card featured-card fade-in">
-      <div style="background:linear-gradient(90deg,var(--gold),var(--gold2));height:6px;"></div>
+      <div style="background:linear-gradient(90deg,var(--yellow),var(--yellow-dk));height:6px;"></div>
       <div class="cdc-header">
         <div>
           <div class="cdc-meta">
-            <span class="course-badge badge-popular">🔥 Most Popular</span>
+            <span class="badge badge-blue">🔥 Most Popular</span>
             <span class="level-badge lvl-intermediate">Intermediate</span>
             <span style="font-size:13px;color:var(--muted);">60+ lessons · Self-paced · Monthly live Q&amp;A</span>
           </div>
           <h2 class="cdc-title">Conversational Thai Mastery</h2>
           <p class="cdc-sub">The course that students describe as "life-changing." If you've got the basics and want to break through to real fluency — this is it. You'll cover the everyday topics Thais actually talk about, learn natural slang, understand cultural nuances, and develop the instinct to express yourself freely without mentally translating every word.</p>
         </div>
-        <div class="cdc-price-box" style="border-color:var(--gold);">
+        <div class="cdc-price-box" style="border-color:var(--yellow);">
           <div class="strike">Was $195</div>
           <div class="price"><sup>$</sup>147</div>
           <div class="once">One-time payment</div>
-          <a href="#" class="btn btn-gold" onclick="showToast('🎉 Redirecting to checkout…');return false;">Enrol Now</a>
+          <a href="#" class="btn btn-yellow" onclick="showToast('🎉 Redirecting to checkout…');return false;">Enrol Now</a>
           <div class="guarantee">🔒 30-day money-back guarantee</div>
         </div>
       </div>
@@ -251,7 +254,7 @@
             <div class="curriculum-item"><span><span class="lesson-icon">▶</span>Thai Humour &amp; Sanook Culture</span><span style="font-size:12px;color:var(--muted);">26 min</span></div>
             <div class="curriculum-item"><span><span class="lesson-icon">▶</span>Bargaining at Chatuchak Market</span><span style="font-size:12px;color:var(--muted);">32 min</span></div>
             <div class="curriculum-item"><span><span class="lesson-icon">▶</span>Thai Relationship Language</span><span style="font-size:12px;color:var(--muted);">38 min</span></div>
-            <div class="curriculum-item" style="background:var(--gold3);color:#7a5c00;font-weight:600;"><span>+ 53 more lessons</span></div>
+            <div class="curriculum-item" style="background:var(--yellow-lt);color:#7a5c00;font-weight:600;"><span>+ 53 more lessons</span></div>
           </div>
         </div>
       </div>
@@ -262,7 +265,7 @@
       <div class="cdc-header">
         <div>
           <div class="cdc-meta">
-            <span class="course-badge badge-new">✨ New</span>
+            <span class="badge badge-green">✨ New</span>
             <span class="level-badge lvl-beginner">Beginner – Intermediate</span>
             <span style="font-size:13px;color:var(--muted);">50+ lessons · Self-paced · Lifetime access</span>
           </div>
@@ -273,7 +276,7 @@
           <div class="strike">Was $165</div>
           <div class="price"><sup>$</sup>127</div>
           <div class="once">One-time payment</div>
-          <a href="#" class="btn btn-gold" onclick="showToast('🎉 Redirecting to checkout…');return false;">Enrol Now</a>
+          <a href="#" class="btn btn-yellow" onclick="showToast('🎉 Redirecting to checkout…');return false;">Enrol Now</a>
           <div class="guarantee">🔒 30-day money-back guarantee</div>
         </div>
       </div>
@@ -301,7 +304,7 @@
             <div class="curriculum-item"><span><span class="lesson-icon">▶</span>Short &amp; Long Vowels</span><span style="font-size:12px;color:var(--muted);">42 min</span></div>
             <div class="curriculum-item"><span><span class="lesson-icon">▶</span>Reading Your First Real Signs</span><span style="font-size:12px;color:var(--muted);">25 min</span></div>
             <div class="curriculum-item"><span><span class="lesson-icon">▶</span>Writing Practice: Stroke Order</span><span style="font-size:12px;color:var(--muted);">50 min</span></div>
-            <div class="curriculum-item" style="background:var(--gold3);color:#7a5c00;font-weight:600;"><span>+ 43 more lessons</span></div>
+            <div class="curriculum-item" style="background:var(--yellow-lt);color:#7a5c00;font-weight:600;"><span>+ 43 more lessons</span></div>
           </div>
         </div>
       </div>
@@ -312,7 +315,7 @@
       <div class="cdc-header">
         <div>
           <div class="cdc-meta">
-            <span class="course-badge badge-advanced">💎 Advanced</span>
+            <span class="badge badge-purple">💎 Advanced</span>
             <span class="level-badge lvl-advanced">Upper Intermediate – Advanced</span>
             <span style="font-size:13px;color:var(--muted);">70+ lessons · Self-paced · Lifetime access</span>
           </div>
@@ -323,7 +326,7 @@
           <div class="strike">Was $250</div>
           <div class="price"><sup>$</sup>197</div>
           <div class="once">One-time payment</div>
-          <a href="#" class="btn btn-gold" onclick="showToast('🎉 Redirecting to checkout…');return false;">Enrol Now</a>
+          <a href="#" class="btn btn-yellow" onclick="showToast('🎉 Redirecting to checkout…');return false;">Enrol Now</a>
           <div class="guarantee">🔒 30-day money-back guarantee</div>
         </div>
       </div>
@@ -351,52 +354,52 @@
             <div class="curriculum-item"><span><span class="lesson-icon">▶</span>Business Thai Essentials</span><span style="font-size:12px;color:var(--muted);">50 min</span></div>
             <div class="curriculum-item"><span><span class="lesson-icon">▶</span>Intro to Northern Thai (Kham Mueang)</span><span style="font-size:12px;color:var(--muted);">30 min</span></div>
             <div class="curriculum-item"><span><span class="lesson-icon">▶</span>Decoding Thai TV &amp; Music</span><span style="font-size:12px;color:var(--muted);">45 min</span></div>
-            <div class="curriculum-item" style="background:var(--gold3);color:#7a5c00;font-weight:600;"><span>+ 63 more lessons</span></div>
+            <div class="curriculum-item" style="background:var(--yellow-lt);color:#7a5c00;font-weight:600;"><span>+ 63 more lessons</span></div>
           </div>
         </div>
       </div>
     </div>
 
     <!-- Course 5: Bundle -->
-    <div class="course-detail-card fade-in" style="background:linear-gradient(160deg,var(--navy) 0%,#1e3a5f 100%);border-color:var(--gold);">
-      <div style="background:linear-gradient(90deg,var(--gold),var(--gold2),var(--gold));height:6px;"></div>
+    <div class="course-detail-card fade-in" style="background:linear-gradient(160deg,var(--dark) 0%,#1e3a5f 100%);border-color:var(--yellow);">
+      <div style="background:linear-gradient(90deg,var(--yellow),var(--yellow-dk),var(--yellow));height:6px;"></div>
       <div class="cdc-header" style="border-bottom-color:rgba(255,255,255,.1);">
         <div>
           <div class="cdc-meta">
-            <span class="course-badge badge-bundle">✦ Best Value</span>
-            <span class="level-badge" style="background:rgba(201,161,48,.2);color:var(--gold2);">All Levels</span>
+            <span class="badge badge-bundle">✦ Best Value</span>
+            <span class="level-badge" style="background:rgba(251,191,36,.2);color:var(--yellow-dk);">All Levels</span>
             <span style="font-size:13px;color:rgba(255,255,255,.5);">All 4 courses · 220+ lessons · Save $171</span>
           </div>
           <h2 class="cdc-title" style="color:var(--white);">The Complete Thai Mastery Bundle</h2>
           <p class="cdc-sub" style="color:rgba(255,255,255,.7);">The ultimate investment for anyone serious about Thai. Get all four courses — Beginners, Conversational, Reading &amp; Writing, and Advanced — at a significant saving. This is the complete roadmap from zero to fluency. Everything you need. One payment. Forever yours.</p>
         </div>
-        <div class="cdc-price-box" style="background:rgba(255,255,255,.06);border-color:var(--gold);">
+        <div class="cdc-price-box" style="background:rgba(255,255,255,.06);border-color:var(--yellow);">
           <div class="strike" style="color:rgba(255,255,255,.5);">Was $568</div>
-          <div class="price" style="color:var(--gold2);"><sup style="color:var(--gold2);">$</sup>397</div>
+          <div class="price" style="color:var(--yellow);"><sup style="color:var(--yellow);">$</sup>397</div>
           <div class="once" style="color:rgba(255,255,255,.5);">One-time payment · Save $171</div>
-          <a href="#" class="btn btn-gold" onclick="showToast('🎉 Redirecting to checkout…');return false;">Get the Bundle</a>
+          <a href="#" class="btn btn-yellow" onclick="showToast('🎉 Redirecting to checkout…');return false;">Get the Bundle</a>
           <div class="guarantee" style="color:rgba(255,255,255,.4);">🔒 30-day money-back guarantee</div>
         </div>
       </div>
       <div style="padding:40px 48px;">
         <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:16px;">
-          <div style="background:rgba(255,255,255,.06);border:1px solid rgba(201,161,48,.2);border-radius:12px;padding:20px;">
-            <div style="font-size:13px;color:var(--gold);font-weight:700;margin-bottom:6px;">INCLUDED</div>
+          <div style="background:rgba(255,255,255,.06);border:1px solid rgba(251,191,36,.2);border-radius:12px;padding:20px;">
+            <div style="font-size:13px;color:var(--yellow);font-weight:700;margin-bottom:6px;">INCLUDED</div>
             <div style="font-size:16px;font-weight:600;color:var(--white);margin-bottom:4px;">Thai for Complete Beginners</div>
             <div style="font-size:13px;color:rgba(255,255,255,.5);">40+ lessons · Beginner</div>
           </div>
-          <div style="background:rgba(255,255,255,.06);border:1px solid rgba(201,161,48,.2);border-radius:12px;padding:20px;">
-            <div style="font-size:13px;color:var(--gold);font-weight:700;margin-bottom:6px;">INCLUDED</div>
+          <div style="background:rgba(255,255,255,.06);border:1px solid rgba(251,191,36,.2);border-radius:12px;padding:20px;">
+            <div style="font-size:13px;color:var(--yellow);font-weight:700;margin-bottom:6px;">INCLUDED</div>
             <div style="font-size:16px;font-weight:600;color:var(--white);margin-bottom:4px;">Conversational Thai Mastery</div>
             <div style="font-size:13px;color:rgba(255,255,255,.5);">60+ lessons · Intermediate</div>
           </div>
-          <div style="background:rgba(255,255,255,.06);border:1px solid rgba(201,161,48,.2);border-radius:12px;padding:20px;">
-            <div style="font-size:13px;color:var(--gold);font-weight:700;margin-bottom:6px;">INCLUDED</div>
+          <div style="background:rgba(255,255,255,.06);border:1px solid rgba(251,191,36,.2);border-radius:12px;padding:20px;">
+            <div style="font-size:13px;color:var(--yellow);font-weight:700;margin-bottom:6px;">INCLUDED</div>
             <div style="font-size:16px;font-weight:600;color:var(--white);margin-bottom:4px;">Thai Reading &amp; Writing</div>
             <div style="font-size:13px;color:rgba(255,255,255,.5);">50+ lessons · Beginner – Int.</div>
           </div>
-          <div style="background:rgba(255,255,255,.06);border:1px solid rgba(201,161,48,.2);border-radius:12px;padding:20px;">
-            <div style="font-size:13px;color:var(--gold);font-weight:700;margin-bottom:6px;">INCLUDED</div>
+          <div style="background:rgba(255,255,255,.06);border:1px solid rgba(251,191,36,.2);border-radius:12px;padding:20px;">
+            <div style="font-size:13px;color:var(--yellow);font-weight:700;margin-bottom:6px;">INCLUDED</div>
             <div style="font-size:16px;font-weight:600;color:var(--white);margin-bottom:4px;">Advanced Thai Fluency</div>
             <div style="font-size:13px;color:rgba(255,255,255,.5);">70+ lessons · Advanced</div>
           </div>
@@ -409,7 +412,7 @@
       <div class="text-center fade-in" style="margin-bottom:48px;">
         <p class="eyebrow">Common Questions</p>
         <h2 class="section-title">Frequently Asked Questions</h2>
-        <div class="gold-line"></div>
+        <div class="accent-bar center"><span class="accent-line"></span><span class="accent-dot"></span></div>
       </div>
       <div style="max-width:760px;margin:0 auto;">
         <div class="faq-item fade-in">
@@ -443,13 +446,13 @@
 </section>
 
 <!-- ══════════ CTA ══════════ -->
-<section class="section-pad cta-section">
+<section class="section-pad bg-blue-gradient">
   <div class="container text-center cta-content fade-in">
-    <p class="eyebrow" style="color:var(--gold2);">Not Sure Which to Choose?</p>
+    <p class="eyebrow" style="color:var(--yellow);">Not Sure Which to Choose?</p>
     <h2 class="section-title" style="color:var(--white);margin-bottom:16px;">Book a Free Discovery Call</h2>
     <p style="font-size:17px;color:rgba(255,255,255,.7);max-width:520px;margin:0 auto 36px;line-height:1.7;">Not sure which course fits your level? Book a short 20-minute call with Mind — she'll assess your Thai, answer your questions, and point you in the right direction. No obligation.</p>
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-      <a href="private-class.html" class="btn btn-gold btn-lg">Book a Discovery Call</a>
+      <a href="private-class.html" class="btn btn-yellow btn-lg">Book a Discovery Call</a>
       <a href="index.html#about" class="btn btn-outline-white btn-lg">Meet Kru Mind</a>
     </div>
   </div>
@@ -460,7 +463,11 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="nav-logo"><div class="nav-logo-emblem">M</div><div class="nav-logo-text"><span>Learn Thai with Mind</span><span>ภาษาไทยกับมายด์</span></div></div>
+        <div class="nav-logo">
+          <img src="https://uploads.teachablecdn.com/attachments/CjbMn4BTQKi1mENzZUhb_778d8eb8-2299-40f0-a3f7-1bd616be27eb.png" alt="Learn Thai with Mind logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <div class="nav-logo-emblem" style="display:none;">M</div>
+          <div class="nav-logo-text"><span>Learn Thai with Mind</span><span>ภาษาไทยกับมายด์</span></div>
+        </div>
         <p>Premium Thai language education for serious learners worldwide. Taught by Kru Mind — 10+ years, all skills, all levels.</p>
         <div class="footer-social">
           <a href="https://www.instagram.com/learnthaiwithmind/" target="_blank" rel="noopener" class="social-btn" title="Instagram">
@@ -476,7 +483,7 @@
       </div>
       <div class="footer-col"><h4>Learn</h4><ul><li><a href="courses.html">All Courses</a></li><li><a href="books.html">Books</a></li><li><a href="flashcard.html">Flashcards</a></li><li><a href="private-class.html">Private Classes</a></li></ul></div>
       <div class="footer-col"><h4>About</h4><ul><li><a href="index.html#about">About Mind</a></li><li><a href="https://www.facebook.com/learnthaiwithmind/" target="_blank">Facebook</a></li><li><a href="https://www.instagram.com/learnthaiwithmind/" target="_blank">Instagram</a></li></ul></div>
-      <div class="footer-col"><h4>Contact</h4><ul><li><a href="private-class.html">Book a Class</a></li><li><a href="https://www.facebook.com/learnthaiwithmind/" target="_blank">Message on Facebook</a></li><li><a href="https://www.instagram.com/learnthaiwithmind/" target="_blank">DM on Instagram</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul><li><a href="contact.html">Contact Page</a></li><li><a href="mailto:learnthaiwithmind@gmail.com">learnthaiwithmind@gmail.com</a></li><li><a href="private-class.html">Book a Class</a></li></ul></div>
     </div>
     <div class="footer-bottom">
       <span class="footer-logo-text">Learn Thai with Mind</span>

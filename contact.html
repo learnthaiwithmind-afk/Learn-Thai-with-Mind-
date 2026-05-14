@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Learn Thai with Mind</title>
+  <meta name="description" content="Get in touch with Kru Mind. Ask questions about Thai lessons, courses, or just say hello. Email, Instagram, Facebook — pick what works for you." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── Contact page layout ── */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1.3fr;
+      gap: 64px;
+      align-items: start;
+    }
+    @media(max-width:900px){ .contact-grid { grid-template-columns: 1fr; gap: 40px; } }
+
+    /* ── Contact info card ── */
+    .contact-info-card {
+      background: var(--dark);
+      border-radius: var(--r-xl);
+      padding: 48px;
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+    .contact-info-card::before {
+      content: '';
+      position: absolute;
+      top: -80px; right: -80px;
+      width: 300px; height: 300px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(251,191,36,.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+    .contact-info-card::after {
+      content: '';
+      position: absolute;
+      bottom: -60px; left: -60px;
+      width: 220px; height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(37,99,235,.20) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .contact-avatar {
+      width: 80px; height: 80px;
+      background: linear-gradient(135deg, var(--yellow), var(--blue));
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 36px; font-weight: 800;
+      color: var(--white);
+      margin-bottom: 20px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      position: relative; z-index: 1;
+    }
+
+    .contact-info-title {
+      font-size: 26px; font-weight: 800;
+      color: var(--white); margin-bottom: 8px;
+      position: relative; z-index: 1;
+    }
+    .contact-info-sub {
+      font-size: 15px; color: rgba(255,255,255,.6);
+      line-height: 1.7; margin-bottom: 36px;
+      position: relative; z-index: 1;
+    }
+
+    .contact-method {
+      display: flex; align-items: center; gap: 16px;
+      padding: 18px 20px;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: var(--r);
+      margin-bottom: 12px;
+      text-decoration: none;
+      color: var(--white);
+      transition: all .25s;
+      position: relative; z-index: 1;
+    }
+    .contact-method:hover {
+      background: rgba(255,255,255,.12);
+      border-color: rgba(251,191,36,.35);
+      transform: translateX(4px);
+    }
+    .contact-method-icon {
+      width: 44px; height: 44px;
+      border-radius: var(--r-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px; flex-shrink: 0;
+    }
+    .contact-method-icon.email { background: rgba(251,191,36,.2); }
+    .contact-method-icon.instagram { background: rgba(225,48,108,.2); }
+    .contact-method-icon.facebook  { background: rgba(24,119,242,.2); }
+    .contact-method-icon.youtube   { background: rgba(255,0,0,.2); }
+
+    .contact-method-text strong { display: block; font-size: 15px; font-weight: 600; }
+    .contact-method-text span   { font-size: 13px; color: rgba(255,255,255,.55); }
+
+    .contact-response-note {
+      margin-top: 28px;
+      padding: 16px 20px;
+      background: rgba(251,191,36,.1);
+      border: 1px solid rgba(251,191,36,.25);
+      border-radius: var(--r);
+      font-size: 14px; color: rgba(255,255,255,.75);
+      line-height: 1.6;
+      position: relative; z-index: 1;
+    }
+    .contact-response-note strong { color: var(--yellow); }
+
+    /* ── Contact form ── */
+    .contact-form-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--r-xl);
+      box-shadow: var(--shadow-lg);
+      padding: 48px;
+    }
+    @media(max-width:600px){ .contact-form-card { padding: 28px; } }
+
+    .contact-form-card h2 {
+      font-size: 26px; margin-bottom: 8px;
+    }
+    .contact-form-card .form-sub {
+      font-size: 15px; color: var(--muted);
+      margin-bottom: 32px; line-height: 1.6;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block; font-size: 13px; font-weight: 600;
+      color: var(--dark); margin-bottom: 6px;
+      letter-spacing: .3px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--r);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      color: var(--dark);
+      background: var(--white);
+      transition: border-color .2s, box-shadow .2s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--blue);
+      box-shadow: 0 0 0 3px rgba(37,99,235,.12);
+    }
+    .form-group textarea { resize: vertical; min-height: 140px; }
+
+    .form-row-2 {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+    }
+    @media(max-width:560px){ .form-row-2 { grid-template-columns: 1fr; } }
+
+    .form-submit-btn {
+      width: 100%; display: flex; align-items: center; justify-content: center;
+      gap: 10px; padding: 15px 28px;
+      font-size: 16px; font-weight: 700;
+      background: var(--blue); color: var(--white);
+      border: none; border-radius: var(--r);
+      cursor: pointer; font-family: 'Plus Jakarta Sans', sans-serif;
+      transition: all .25s;
+      box-shadow: 0 4px 16px rgba(37,99,235,.30);
+    }
+    .form-submit-btn:hover {
+      background: var(--blue-dk); transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(37,99,235,.38);
+    }
+
+    .form-note {
+      font-size: 13px; color: var(--muted);
+      text-align: center; margin-top: 16px;
+      line-height: 1.6;
+    }
+
+    /* Success state */
+    .form-success {
+      display: none;
+      text-align: center; padding: 48px 24px;
+    }
+    .form-success.show { display: block; }
+    .form-success-icon {
+      width: 72px; height: 72px;
+      background: var(--success-lt);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 32px; margin: 0 auto 20px;
+    }
+    .form-success h3 { font-size: 22px; margin-bottom: 10px; color: var(--dark); }
+    .form-success p  { font-size: 15px; color: var(--muted); max-width: 380px; margin: 0 auto; line-height: 1.7; }
+
+    /* ── FAQ mini ── */
+    .contact-faq {
+      margin-top: 80px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    }
+    @media(max-width:700px){ .contact-faq { grid-template-columns: 1fr; } }
+
+    .contact-faq-item {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 24px;
+    }
+    .contact-faq-item h4 { font-size: 15px; font-weight: 700; margin-bottom: 8px; color: var(--dark); }
+    .contact-faq-item p  { font-size: 14px; color: var(--muted); line-height: 1.65; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="https://uploads.teachablecdn.com/attachments/CjbMn4BTQKi1mENzZUhb_778d8eb8-2299-40f0-a3f7-1bd616be27eb.png" alt="Learn Thai with Mind logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+      <div class="nav-logo-emblem" style="display:none;">M</div>
+      <div class="nav-logo-text">
+        <span>Learn Thai with Mind</span>
+        <span>ภาษาไทยกับมายด์</span>
+      </div>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="books.html">Books</a></li>
+      <li><a href="flashcard.html">Flashcards</a></li>
+      <li><a href="private-class.html">Private Class</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+      <li><a href="private-class.html" class="nav-cta">Book a Class</a></li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- ══════════ PAGE HERO ══════════ -->
+<section class="page-hero">
+  <div class="container text-center">
+    <p class="eyebrow" style="margin-bottom:12px;">Get in Touch</p>
+    <h1 style="color:var(--white);font-size:clamp(36px,5vw,58px);margin-bottom:16px;">Say สวัสดี to Mind</h1>
+    <div class="accent-bar center" style="margin-top:20px;"><span class="accent-line"></span><span class="accent-dot"></span></div>
+    <p style="color:rgba(255,255,255,.65);font-size:18px;max-width:520px;margin:24px auto 0;line-height:1.7;">
+      Questions about courses, private lessons, or just curious if Thai is right for you? Mind reads every message personally and responds within 24 hours.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════ CONTACT SECTION ══════════ -->
+<section class="section-pad bg-white">
+  <div class="container">
+
+    <div class="contact-grid">
+
+      <!-- Left: Info card -->
+      <div class="contact-info-card fade-in">
+        <div class="contact-avatar">M</div>
+        <div class="contact-info-title">Kru Mind</div>
+        <p class="contact-info-sub">
+          Thai teacher with 10 years of experience. Based in Chiang Mai, teaching worldwide via Zoom. Real Thai, not textbook Thai — and always happy to chat.
+        </p>
+
+        <!-- Email -->
+        <a href="mailto:learnthaiwithmind@gmail.com?subject=Hello%20Kru%20Mind%20%E2%80%94%20I'd%20like%20to%20learn%20Thai" class="contact-method">
+          <div class="contact-method-icon email">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color:#FBBF24">
+              <rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+            </svg>
+          </div>
+          <div class="contact-method-text">
+            <strong>Email</strong>
+            <span>learnthaiwithmind@gmail.com</span>
+          </div>
+        </a>
+
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/learnthaiwithmind/" target="_blank" rel="noopener" class="contact-method">
+          <div class="contact-method-icon instagram">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="color:#E1306C">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/>
+            </svg>
+          </div>
+          <div class="contact-method-text">
+            <strong>Instagram</strong>
+            <span>@learnthaiwithmind · DM anytime</span>
+          </div>
+        </a>
+
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/learnthaiwithmind/" target="_blank" rel="noopener" class="contact-method">
+          <div class="contact-method-icon facebook">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="color:#1877F2">
+              <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+            </svg>
+          </div>
+          <div class="contact-method-text">
+            <strong>Facebook</strong>
+            <span>learnthaiwithmind · Message on Facebook</span>
+          </div>
+        </a>
+
+        <!-- YouTube -->
+        <a href="https://www.youtube.com/channel/UCC2l2QhjI3CubcFvxBKPYdg" target="_blank" rel="noopener" class="contact-method">
+          <div class="contact-method-icon youtube">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" style="color:#FF0000">
+              <path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+            </svg>
+          </div>
+          <div class="contact-method-text">
+            <strong>YouTube</strong>
+            <span>Learn Thai with Mind · Videos &amp; Shorts</span>
+          </div>
+        </a>
+
+        <div class="contact-response-note">
+          ⏱ <strong>Response time:</strong> Mind personally replies to all messages within 24 hours (usually much faster). She reads every message herself — no bots, no assistants.
+        </div>
+      </div>
+
+      <!-- Right: Form -->
+      <div class="contact-form-card fade-in">
+        <h2>Send Mind a Message</h2>
+        <p class="form-sub">Fill in the form below and it goes directly to Mind's inbox at <strong>learnthaiwithmind@gmail.com</strong>. Whether you have questions, want to say hello, or are ready to start — she'd love to hear from you.</p>
+
+        <form id="contact-form" novalidate>
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="contact-name">Your Name *</label>
+              <input type="text" id="contact-name" name="name" placeholder="Jane Smith" required />
+            </div>
+            <div class="form-group">
+              <label for="contact-email">Email Address *</label>
+              <input type="email" id="contact-email" name="email" placeholder="jane@email.com" required />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="contact-subject">What's this about?</label>
+            <select id="contact-subject" name="subject">
+              <option value="">Choose a topic…</option>
+              <option>Private Thai classes</option>
+              <option>Online courses &amp; pricing</option>
+              <option>Books &amp; study materials</option>
+              <option>General Thai learning advice</option>
+              <option>Collaboration or partnership</option>
+              <option>Something else</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="contact-level">Your current Thai level</label>
+            <select id="contact-level" name="level">
+              <option value="">Select your level (optional)</option>
+              <option>Complete Beginner (no Thai at all)</option>
+              <option>Beginner (a few words/phrases)</option>
+              <option>Elementary (basic conversations)</option>
+              <option>Intermediate (can hold conversations)</option>
+              <option>Upper Intermediate or Advanced</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label for="contact-message">Your Message *</label>
+            <textarea id="contact-message" name="message" placeholder="Hi Mind! I've always wanted to learn Thai and…" required></textarea>
+          </div>
+
+          <button type="submit" class="form-submit-btn">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+            Send Message
+          </button>
+          <p class="form-note">🔒 Your details are only used to reply to your message. No spam, ever.</p>
+        </form>
+
+        <!-- Success state -->
+        <div class="form-success" id="contact-success">
+          <div class="form-success-icon">✅</div>
+          <h3>Message Sent!</h3>
+          <p>Thanks for reaching out. Mind will reply to <strong id="success-email-display">your email</strong> within 24 hours. In the meantime, feel free to explore the site or browse her latest videos on YouTube.</p>
+          <div style="margin-top:28px;display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+            <a href="courses.html" class="btn btn-primary">Explore Courses</a>
+            <a href="private-class.html" class="btn btn-outline">Book a Class</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Mini FAQ -->
+    <div class="text-center fade-in" style="margin-top:80px;margin-bottom:40px;">
+      <p class="eyebrow">Before You Write</p>
+      <h2 class="section-title">Quick Answers</h2>
+      <div class="accent-bar center"><span class="accent-line"></span><span class="accent-dot"></span></div>
+    </div>
+
+    <div class="contact-faq">
+      <div class="contact-faq-item fade-in">
+        <h4>🕐 What are Mind's teaching hours?</h4>
+        <p>Mind teaches Monday to Friday, 10:00–20:00 Thailand time (ICT, UTC+7). All sessions are online via Zoom or Google Meet — students join from all over the world.</p>
+      </div>
+      <div class="contact-faq-item fade-in">
+        <h4>🌍 Can I book from outside Thailand?</h4>
+        <p>Yes! Mind teaches students worldwide — Europe, USA, Australia, Japan, and everywhere in between. Sessions run online so your location doesn't matter at all.</p>
+      </div>
+      <div class="contact-faq-item fade-in">
+        <h4>📚 I'm a complete beginner. Is that okay?</h4>
+        <p>Absolutely. Most students start with zero Thai. Mind's teaching style is patient, clear, and encouraging — you'll be speaking Thai from the very first lesson.</p>
+      </div>
+      <div class="contact-faq-item fade-in">
+        <h4>💬 What if I just want to ask a quick question?</h4>
+        <p>No problem at all. Drop a message via Facebook or Instagram if you prefer a faster response. For anything more detailed, the email form above goes straight to Mind's inbox.</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════ CTA ══════════ -->
+<section class="section-pad bg-blue-gradient">
+  <div class="container text-center cta-content fade-in">
+    <p class="eyebrow" style="color:var(--yellow);">Ready to Start?</p>
+    <h2 class="section-title" style="color:var(--white);margin-bottom:16px;">Book a Private Class with Mind</h2>
+    <p style="font-size:17px;color:rgba(255,255,255,.7);max-width:520px;margin:0 auto 36px;line-height:1.7;">Skip the back-and-forth — head straight to the booking calendar, pick your slot, and start your Thai learning journey today.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+      <a href="private-class.html#booking" class="btn btn-yellow btn-lg">See Available Times</a>
+      <a href="courses.html" class="btn btn-outline-white btn-lg">Browse Courses</a>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <img src="https://uploads.teachablecdn.com/attachments/CjbMn4BTQKi1mENzZUhb_778d8eb8-2299-40f0-a3f7-1bd616be27eb.png" alt="Learn Thai with Mind logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <div class="nav-logo-emblem" style="display:none;">M</div>
+          <div class="nav-logo-text"><span>Learn Thai with Mind</span><span>ภาษาไทยกับมายด์</span></div>
+        </div>
+        <p>Premium Thai language education for serious learners worldwide. Taught by Kru Mind — 10+ years, all skills, all levels.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/learnthaiwithmind/" target="_blank" rel="noopener" class="social-btn" title="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/learnthaiwithmind/" target="_blank" rel="noopener" class="social-btn" title="Facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/channel/UCC2l2QhjI3CubcFvxBKPYdg" target="_blank" rel="noopener" class="social-btn" title="YouTube">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Learn</h4><ul><li><a href="courses.html">All Courses</a></li><li><a href="books.html">Books</a></li><li><a href="flashcard.html">Flashcards</a></li><li><a href="private-class.html">Private Classes</a></li></ul></div>
+      <div class="footer-col"><h4>About</h4><ul><li><a href="index.html#about">About Mind</a></li><li><a href="https://www.facebook.com/learnthaiwithmind/" target="_blank">Facebook</a></li><li><a href="https://www.instagram.com/learnthaiwithmind/" target="_blank">Instagram</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul><li><a href="contact.html">Contact Page</a></li><li><a href="mailto:learnthaiwithmind@gmail.com">learnthaiwithmind@gmail.com</a></li><li><a href="private-class.html">Book a Class</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-logo-text">Learn Thai with Mind</span>
+      <span>© 2026 · All rights reserved</span>
+      <span style="color:var(--yellow);font-size:16px;">ภาษาไทยกับมายด์</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast"></div>
+<script src="js/main.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const form    = document.getElementById('contact-form');
+  const success = document.getElementById('contact-success');
+
+  if (!form) return;
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name    = document.getElementById('contact-name').value.trim();
+    const email   = document.getElementById('contact-email').value.trim();
+    const subject = document.getElementById('contact-subject').value;
+    const level   = document.getElementById('contact-level').value;
+    const message = document.getElementById('contact-message').value.trim();
+
+    if (!name || !email || !message) {
+      showToast('⚠ Please fill in your name, email, and message.');
+      return;
+    }
+
+    // Build mailto link and trigger it (sends to Mind's inbox)
+    const subjectLine = encodeURIComponent(
+      (subject || 'Message from website') + ' — ' + name
+    );
+    const body = encodeURIComponent(
+      `Hi Mind,\n\nMy name is ${name}.\n` +
+      (level ? `My Thai level: ${level}\n` : '') +
+      `\n${message}\n\n` +
+      `Best,\n${name}\n${email}`
+    );
+    const mailto = `mailto:learnthaiwithmind@gmail.com?subject=${subjectLine}&body=${body}`;
+
+    // Open the user's email client pre-filled
+    window.location.href = mailto;
+
+    // Show success state
+    document.getElementById('success-email-display').textContent = email;
+    form.style.display = 'none';
+    success.classList.add('show');
+  });
+});
+</script>
+</body>
+</html>

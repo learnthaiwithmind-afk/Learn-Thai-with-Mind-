@@ -4,8 +4,78 @@
 
 const AVAILABLE_DAYS = [1, 2, 3, 4, 5]; // Mon-Fri
 const BOOKED_DATES   = ['2026-05-15', '2026-05-20', '2026-05-27', '2026-06-03'];
-const TIME_SLOTS     = ['09:00', '10:00', '11:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
-const TAKEN_TIMES    = { '2026-05-19': ['09:00', '10:00'], '2026-05-21': ['14:00', '15:00'] };
+const TIME_SLOTS     = ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00', '18:00', '19:00'];
+const TAKEN_TIMES    = { '2026-05-19': ['10:00', '11:00'], '2026-05-21': ['14:00', '15:00'] };
+
+/* ── Google Calendar FreeBusy Integration ──────────────────────────────────
+ *
+ *  To enable real-time availability from your Google Calendar:
+ *
+ *  1. Go to https://console.cloud.google.com/ → create a project
+ *  2. Enable "Google Calendar API"
+ *  3. Create an API key (APIs & Services → Credentials → Create Credentials)
+ *  4. Restrict the key to "Google Calendar API" and your domain
+ *  5. In Google Calendar settings for learnthaiwithmind@gmail.com:
+ *       → Share with specific people → make it "See only free/busy" (no names)
+ *       → OR: Settings → Access permissions → "See only free/busy information"
+ *  6. Paste your API key below:
+ *
+ * ─────────────────────────────────────────────────────────────────────────── */
+const GOOGLE_CALENDAR_API_KEY  = '';          // ← paste your API key here
+const GOOGLE_CALENDAR_ID       = 'learnthaiwithmind@gmail.com';
+const CALENDAR_TIMEZONE        = 'Asia/Bangkok';
+
+/**
+ * Fetch busy slots from Google Calendar FreeBusy API for a given month.
+ * Returns a Map<dateKey, Set<'HH:MM'>> of busy time strings.
+ * If API key is empty, returns an empty Map (falls back to local TAKEN_TIMES).
+ */
+async function fetchGoogleBusy(year, month) {
+  if (!GOOGLE_CALENDAR_API_KEY) return new Map();
+
+  const firstDay = new Date(year, month, 1);
+  const lastDay  = new Date(year, month + 1, 0, 23, 59, 59);
+
+  const body = JSON.stringify({
+    timeMin: firstDay.toISOString(),
+    timeMax: lastDay.toISOString(),
+    timeZone: CALENDAR_TIMEZONE,
+    items: [{ id: GOOGLE_CALENDAR_ID }]
+  });
+
+  try {
+    const res  = await fetch(
+      `https://www.googleapis.com/calendar/v3/freeBusy?key=${GOOGLE_CALENDAR_API_KEY}`,
+      { method: 'POST', headers: { 'Content-Type': 'application/json' }, body }
+    );
+    const data = await res.json();
+    const busy = data.calendars?.[GOOGLE_CALENDAR_ID]?.busy || [];
+
+    const busyMap = new Map();
+    busy.forEach(({ start, end }) => {
+      // Convert to Bangkok time and mark every slot hour that overlaps
+      const s = new Date(start);
+      const e = new Date(end);
+      // Iterate hour by hour in Bangkok time (UTC+7)
+      const cur = new Date(s);
+      while (cur < e) {
+        const bkk   = new Date(cur.toLocaleString('en-US', { timeZone: CALENDAR_TIMEZONE }));
+        const dk    = `${bkk.getFullYear()}-${pad(bkk.getMonth()+1)}-${pad(bkk.getDate())}`;
+        const hhmm  = `${pad(bkk.getHours())}:00`;
+        if (!busyMap.has(dk)) busyMap.set(dk, new Set());
+        busyMap.get(dk).add(hhmm);
+        cur.setHours(cur.getHours() + 1);
+      }
+    });
+    return busyMap;
+  } catch (err) {
+    console.warn('Google Calendar fetch failed, using local data only.', err);
+    return new Map();
+  }
+}
+
+// Merged busy cache (refreshed when month changes)
+let googleBusyCache = new Map();
 
 let viewYear    = 2026;
 let viewMonth   = 4; // 0-indexed, so 4 = May
@@ -35,6 +105,11 @@ function isAvailable(y, m, d) {
 function isPast(y, m, d) {
   const today = new Date(); today.setHours(0,0,0,0);
   return new Date(y, m, d) < today;
+}
+
+async function refreshAndRender() {
+  googleBusyCache = await fetchGoogleBusy(viewYear, viewMonth);
+  renderCalendar();
 }
 
 function renderCalendar() {
@@ -91,7 +166,12 @@ function renderTimeSlots() {
   const slotsGrid = document.getElementById('slots-grid');
   if (!slotsGrid) return;
   slotsGrid.innerHTML = '';
-  const takenForDay = (TAKEN_TIMES[selectedDate] || []);
+  // Merge local TAKEN_TIMES with Google Calendar busy slots
+  const localTaken  = TAKEN_TIMES[selectedDate] || [];
+  const googleTaken = googleBusyCache.has(selectedDate)
+    ? [...googleBusyCache.get(selectedDate)]
+    : [];
+  const takenForDay = [...new Set([...localTaken, ...googleTaken])];
 
   TIME_SLOTS.forEach(time => {
     const el = document.createElement('div');
@@ -114,13 +194,13 @@ function renderTimeSlots() {
 function prevMonth() {
   viewMonth--;
   if (viewMonth < 0) { viewMonth = 11; viewYear--; }
-  renderCalendar();
+  refreshAndRender();
 }
 
 function nextMonth() {
   viewMonth++;
   if (viewMonth > 11) { viewMonth = 0; viewYear++; }
-  renderCalendar();
+  refreshAndRender();
 }
 
 // ── Booking form submit ──
@@ -147,7 +227,7 @@ function handleBookingSubmit(e) {
 
 // ── Init ──
 document.addEventListener('DOMContentLoaded', () => {
-  renderCalendar();
+  refreshAndRender(); // fetch Google busy slots then draw calendar
 
   document.getElementById('cal-prev')?.addEventListener('click', prevMonth);
   document.getElementById('cal-next')?.addEventListener('click', nextMonth);
