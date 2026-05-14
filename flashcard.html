@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Thai Flashcards — Learn Thai with Mind</title>
+  <meta name="description" content="Practice Thai vocabulary for free with interactive flashcards. Greetings, numbers, food, travel and tone practice — no sign-up required." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    .fc-stats-bar {
+      display: flex;
+      gap: 32px;
+      justify-content: center;
+      margin-bottom: 48px;
+      flex-wrap: wrap;
+    }
+    .fc-stat {
+      text-align: center;
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 16px 28px;
+    }
+    .fc-stat-val {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--navy);
+      line-height: 1;
+    }
+    .fc-stat-lbl {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 4px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .tips-box {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 28px 32px;
+      margin-top: 40px;
+      max-width: 760px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .tips-box h3 {
+      font-size: 16px;
+      margin-bottom: 12px;
+      color: var(--navy);
+    }
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    @media(max-width:600px){ .tips-grid { grid-template-columns: 1fr 1fr; } }
+    .tip {
+      background: var(--cream);
+      border-radius: 10px;
+      padding: 12px;
+      text-align: center;
+      font-size: 13px;
+      color: var(--mid);
+    }
+    .tip kbd {
+      display: inline-block;
+      background: var(--navy);
+      color: var(--white);
+      border-radius: 5px;
+      padding: 2px 8px;
+      font-size: 12px;
+      font-family: monospace;
+      margin-bottom: 4px;
+    }
+
+    .progress-bar-wrap {
+      max-width: 540px;
+      margin: 20px auto 0;
+    }
+    .progress-bar-bg {
+      background: var(--border);
+      border-radius: 100px;
+      height: 6px;
+      overflow: hidden;
+    }
+    .progress-bar-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
+      border-radius: 100px;
+      transition: width .4s ease;
+    }
+
+    .fc-known-count-label {
+      text-align: center;
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    .category-label {
+      text-align: center;
+      margin-bottom: 16px;
+    }
+    .category-label span {
+      background: var(--gold3);
+      color: #7a5c00;
+      border-radius: 100px;
+      padding: 6px 18px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .fc-action-row {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+
+    .fc-action-btn {
+      padding: 12px 24px;
+      border-radius: 100px;
+      border: 2px solid;
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all .2s;
+      font-family: 'Inter', sans-serif;
+    }
+    .fc-known-action {
+      border-color: var(--success);
+      background: #e8faf0;
+      color: var(--success);
+    }
+    .fc-known-action:hover {
+      background: var(--success);
+      color: var(--white);
+    }
+    .fc-again-action {
+      border-color: var(--border);
+      background: var(--white);
+      color: var(--mid);
+    }
+    .fc-again-action:hover {
+      border-color: #e74c3c;
+      background: #fdeaea;
+      color: #c0392b;
+    }
+
+    .cta-learn-more {
+      background: linear-gradient(135deg, var(--navy), #1e3a5f);
+      border-radius: 20px;
+      padding: 56px;
+      margin-top: 80px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-learn-more::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 50%, rgba(201,161,48,.08) 0%, transparent 70%);
+    }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">
+      <div class="nav-logo-emblem">M</div>
+      <div class="nav-logo-text">
+        <span>Learn Thai with Mind</span>
+        <span>ภาษาไทยกับมายด์</span>
+      </div>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="books.html">Books</a></li>
+      <li><a href="flashcard.html" class="active">Flashcards</a></li>
+      <li><a href="private-class.html">Private Class</a></li>
+      <li><a href="private-class.html" class="nav-cta">Book a Class</a></li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- ══════════ PAGE HERO ══════════ -->
+<section class="page-hero">
+  <div class="container text-center">
+    <p class="eyebrow" style="margin-bottom:12px;">Free Tool · No Sign-up Required</p>
+    <h1 style="color:var(--white);font-size:clamp(36px,5vw,58px);margin-bottom:16px;">Thai Vocabulary Flashcards</h1>
+    <div class="gold-line"></div>
+    <p style="color:rgba(255,255,255,.65);font-size:18px;max-width:560px;margin:24px auto 0;line-height:1.7;">
+      Practice Thai words and phrases across five categories. Click to flip, use arrow keys to navigate, and track what you know. Completely free — our gift to every Thai learner.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════ FLASHCARD APP ══════════ -->
+<section class="section-pad bg-cream">
+  <div class="container">
+
+    <div class="fc-stats-bar">
+      <div class="fc-stat">
+        <div class="fc-stat-val">5</div>
+        <div class="fc-stat-lbl">Categories</div>
+      </div>
+      <div class="fc-stat">
+        <div class="fc-stat-val">42</div>
+        <div class="fc-stat-lbl">Total Cards</div>
+      </div>
+      <div class="fc-stat">
+        <div class="fc-stat-val" id="fc-known-total">0</div>
+        <div class="fc-stat-lbl">Cards Known</div>
+      </div>
+    </div>
+
+    <div class="flashcard-app">
+
+      <!-- Category Selector -->
+      <div class="flashcard-controls">
+        <button class="category-btn active" data-cat="greetings">👋 Greetings</button>
+        <button class="category-btn" data-cat="numbers">🔢 Numbers</button>
+        <button class="category-btn" data-cat="food">🍜 Food</button>
+        <button class="category-btn" data-cat="tones">🎵 Tones</button>
+        <button class="category-btn" data-cat="travel">✈️ Travel</button>
+      </div>
+
+      <div class="category-label">
+        <span id="category-display">👋 Greetings (8 cards)</span>
+      </div>
+
+      <!-- Flashcard -->
+      <div class="flashcard-scene">
+        <div class="flashcard" id="flashcard">
+          <div class="flashcard-face flashcard-front">
+            <div class="fc-thai" id="fc-thai">สวัสดี</div>
+            <div class="fc-romanize" id="fc-roman">Sawasdee</div>
+            <div class="fc-hint">
+              <span>👆</span> Click card or press <kbd style="background:rgba(255,255,255,.15);color:var(--white);border-radius:4px;padding:2px 6px;font-size:11px;">Space</kbd> to reveal
+            </div>
+          </div>
+          <div class="flashcard-face flashcard-back">
+            <div class="fc-english" id="fc-english">Hello / Goodbye</div>
+            <div class="fc-romanize" id="fc-roman-back" style="color:var(--gold2);font-size:18px;"></div>
+            <div class="fc-example" id="fc-example">สวัสดีครับ / ค่ะ — polite hello</div>
+            <div class="fc-hint">
+              <span>✓</span> Mark below or press <kbd style="background:rgba(255,255,255,.15);color:var(--white);border-radius:4px;padding:2px 6px;font-size:11px;">Enter</kbd> if you know it
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Progress Bar -->
+      <div class="progress-bar-wrap">
+        <div class="progress-bar-bg">
+          <div class="progress-bar-fill" id="fc-progress-bar" style="width:0%"></div>
+        </div>
+        <div class="fc-known-count-label" id="fc-known-count">0 of 8 known in this deck</div>
+      </div>
+
+      <!-- Navigation -->
+      <div class="flashcard-nav">
+        <button class="fc-btn" id="fc-prev" title="Previous (←)">←</button>
+        <div class="fc-progress" id="fc-progress">1 / 8</div>
+        <button class="fc-btn" id="fc-next" title="Next (→)">→</button>
+      </div>
+
+      <!-- Action buttons -->
+      <div class="fc-action-row">
+        <button class="fc-action-btn fc-again-action" id="fc-again">✗ Still learning</button>
+        <button class="fc-action-btn fc-known-action" id="fc-known">✓ I know this!</button>
+      </div>
+
+    </div>
+
+    <!-- Keyboard shortcuts -->
+    <div class="tips-box fade-in">
+      <h3>⌨️ Keyboard Shortcuts</h3>
+      <div class="tips-grid">
+        <div class="tip"><kbd>Space</kbd><br>Flip card</div>
+        <div class="tip"><kbd>→</kbd><br>Next card</div>
+        <div class="tip"><kbd>←</kbd><br>Previous</div>
+        <div class="tip"><kbd>Enter</kbd><br>Mark known</div>
+      </div>
+      <p style="font-size:13px;color:var(--muted);margin-top:12px;text-align:center;">On mobile: tap the card to flip, swipe left/right to navigate between cards.</p>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-learn-more fade-in">
+      <div style="position:relative;z-index:1;">
+        <p class="eyebrow" style="color:var(--gold2);">Want to Go Deeper?</p>
+        <h2 style="color:var(--white);font-size:32px;margin-bottom:16px;">These flashcards are just the beginning</h2>
+        <p style="color:rgba(255,255,255,.7);font-size:16px;max-width:560px;margin:0 auto 32px;line-height:1.7;">Mind's full courses take you from these building blocks to real fluency — with structured lessons, grammar, cultural context, and thousands more vocabulary words taught in context, not just lists.</p>
+        <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+          <a href="courses.html" class="btn btn-gold btn-lg">Explore Full Courses</a>
+          <a href="private-class.html" class="btn btn-outline-white btn-lg">Book Private Class</a>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════ MINI TESTIMONIAL ══════════ -->
+<section class="section-pad-sm bg-white">
+  <div class="container" style="max-width:800px;">
+    <div class="text-center fade-in" style="margin-bottom:40px;">
+      <p class="eyebrow">From Students Who Started With Free Tools</p>
+      <h2 class="section-title" style="font-size:28px;">Then Went All In</h2>
+      <div class="gold-line"></div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;" class="fade-in">
+      <div style="background:var(--cream);border-radius:16px;padding:28px;border:1px solid var(--border);">
+        <div style="color:var(--gold);margin-bottom:12px;font-size:16px;">★★★★★</div>
+        <p style="font-style:italic;color:var(--mid);font-size:15px;line-height:1.7;margin-bottom:16px;">"I started with the free flashcards and was hooked. Enrolled in the beginners course the same week. Best decision I ever made for my Thai journey."</p>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#a8832a);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:14px;">MK</div>
+          <div><div style="font-weight:600;font-size:14px;">Michael K.</div><div style="font-size:12px;color:var(--muted);">🇩🇪 Germany</div></div>
+        </div>
+      </div>
+      <div style="background:var(--cream);border-radius:16px;padding:28px;border:1px solid var(--border);">
+        <div style="color:var(--gold);margin-bottom:12px;font-size:16px;">★★★★★</div>
+        <p style="font-style:italic;color:var(--mid);font-size:15px;line-height:1.7;margin-bottom:16px;">"The flashcard app taught me the tones concept in a way that finally made sense. Once I understood that, the course clicked immediately. Brilliant free resource."</p>
+        <div style="display:flex;align-items:center;gap:10px;">
+          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#a8832a);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:14px;">LB</div>
+          <div><div style="font-weight:600;font-size:14px;">Louise B.</div><div style="font-size:12px;color:var(--muted);">🇫🇷 France</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo"><div class="nav-logo-emblem">M</div><div class="nav-logo-text"><span>Learn Thai with Mind</span><span>ภาษาไทยกับมายด์</span></div></div>
+        <p>Premium Thai language education for serious learners worldwide. Taught by Kru Mind — 10+ years, all skills, all levels.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/learnthaiwithmind/" target="_blank" rel="noopener" class="social-btn" title="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/learnthaiwithmind/" target="_blank" rel="noopener" class="social-btn" title="Facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/channel/UCC2l2QhjI3CubcFvxBKPYdg" target="_blank" rel="noopener" class="social-btn" title="YouTube">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Learn</h4><ul><li><a href="courses.html">All Courses</a></li><li><a href="books.html">Books</a></li><li><a href="flashcard.html">Flashcards</a></li><li><a href="private-class.html">Private Classes</a></li></ul></div>
+      <div class="footer-col"><h4>About</h4><ul><li><a href="index.html#about">About Mind</a></li><li><a href="https://www.facebook.com/learnthaiwithmind/" target="_blank">Facebook</a></li><li><a href="https://www.instagram.com/learnthaiwithmind/" target="_blank">Instagram</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul><li><a href="private-class.html">Book a Class</a></li><li><a href="https://www.facebook.com/learnthaiwithmind/" target="_blank">Message on Facebook</a></li><li><a href="https://www.instagram.com/learnthaiwithmind/" target="_blank">DM on Instagram</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-logo-text">Learn Thai with Mind</span>
+      <span>© 2026 · All rights reserved</span>
+      <span style="color:var(--gold);font-size:16px;">ภาษาไทยกับมายด์</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast"></div>
+<script src="js/main.js"></script>
+<script src="js/flashcard.js"></script>
+<!-- flashcard.js handles all card state, progress bar, labels and sync -->
+</body>
+</html>
