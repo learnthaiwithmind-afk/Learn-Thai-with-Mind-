@@ -7,6 +7,7 @@
   <meta name="description" content="Book a private one-on-one Thai lesson with Kru Mind. Select your date, time, and focus area — completely personalised to your goals." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <style>
     .hidden { display: none !important; }
@@ -35,10 +36,10 @@
       border-radius: 14px;
       transition: all .25s;
     }
-    .perk:hover { border-color: var(--gold); box-shadow: var(--shadow); }
+    .perk:hover { border-color: var(--yellow); box-shadow: var(--shadow); }
     .perk-icon {
       width: 48px; height: 48px;
-      background: var(--gold3);
+      background: var(--yellow-lt);
       border-radius: 12px;
       display: flex;
       align-items: center;
@@ -46,7 +47,7 @@
       font-size: 22px;
       flex-shrink: 0;
     }
-    .perk-title { font-size: 16px; font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+    .perk-title { font-size: 16px; font-weight: 700; color: var(--dark); margin-bottom: 4px; }
     .perk-desc  { font-size: 14px; color: var(--muted); line-height: 1.6; }
 
     .pricing-cards {
@@ -67,8 +68,8 @@
       position: relative;
     }
     .pricing-card.featured-pricing {
-      border-color: var(--gold);
-      box-shadow: 0 0 0 1px var(--gold), var(--shadow-lg);
+      border-color: var(--yellow);
+      box-shadow: 0 0 0 1px var(--yellow), var(--shadow-lg);
     }
     .pricing-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
 
@@ -76,7 +77,7 @@
       position: absolute;
       top: -14px; left: 50%;
       transform: translateX(-50%);
-      background: var(--gold);
+      background: var(--yellow);
       color: var(--white);
       border-radius: 100px;
       padding: 4px 18px;
@@ -96,10 +97,10 @@
       margin-bottom: 8px;
     }
     .pricing-card .plan-price {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Plus Jakarta Sans', sans-serif;
       font-size: 44px;
       font-weight: 700;
-      color: var(--navy);
+      color: var(--dark);
       line-height: 1;
     }
     .pricing-card .plan-price sup { font-size: 20px; vertical-align: super; }
@@ -129,7 +130,7 @@
     }
 
     .booking-wrapper-header {
-      background: var(--navy);
+      background: var(--dark);
       padding: 32px 40px;
       border-bottom: 1px solid rgba(201,161,48,.2);
     }
@@ -159,7 +160,7 @@
       background: var(--border);
       z-index: 0;
     }
-    .step.done:not(:last-child)::after { background: var(--gold); }
+    .step.done:not(:last-child)::after { background: var(--yellow); }
     .step-inner {
       display: flex;
       flex-direction: column;
@@ -182,7 +183,7 @@
       color: var(--muted);
       transition: all .3s;
     }
-    .step.active .step-num { border-color: var(--gold); background: var(--gold); color: var(--white); }
+    .step.active .step-num { border-color: var(--yellow); background: var(--yellow); color: var(--white); }
     .step.done .step-num   { border-color: var(--success); background: var(--success); color: var(--white); }
     .step-label {
       font-size: 12px;
@@ -192,11 +193,11 @@
       text-transform: uppercase;
       letter-spacing: .5px;
     }
-    .step.active .step-label { color: var(--gold); }
+    .step.active .step-label { color: var(--yellow); }
     .step.done .step-label   { color: var(--success); }
 
     .selected-summary {
-      background: var(--gold3);
+      background: var(--yellow-lt);
       border-radius: 10px;
       padding: 14px 20px;
       margin-bottom: 24px;
@@ -224,10 +225,10 @@
       font-size: 36px;
       margin: 0 auto 24px;
     }
-    .success-card h2 { font-size: 28px; margin-bottom: 12px; color: var(--navy); }
+    .success-card h2 { font-size: 28px; margin-bottom: 12px; color: var(--dark); }
     .success-card p  { font-size: 16px; color: var(--mid); line-height: 1.7; max-width: 480px; margin: 0 auto 24px; }
     .success-detail {
-      background: var(--cream);
+      background: var(--bg);
       border-radius: 12px;
       padding: 20px 28px;
       display: inline-block;
@@ -235,7 +236,7 @@
       margin-bottom: 32px;
     }
     .success-detail p { margin: 0; font-size: 15px; }
-    .success-detail strong { color: var(--navy); }
+    .success-detail strong { color: var(--dark); }
 
     .what-to-expect {
       display: grid;
@@ -254,7 +255,7 @@
       text-align: center;
     }
     .expect-icon { font-size: 32px; margin-bottom: 12px; }
-    .expect-title { font-size: 15px; font-weight: 700; color: var(--navy); margin-bottom: 6px; }
+    .expect-title { font-size: 15px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
     .expect-desc  { font-size: 13px; color: var(--muted); line-height: 1.6; }
   </style>
 </head>
@@ -264,7 +265,8 @@
 <nav class="nav" id="nav">
   <div class="container nav-inner">
     <a href="index.html" class="nav-logo">
-      <div class="nav-logo-emblem">M</div>
+      <img src="https://uploads.teachablecdn.com/attachments/CjbMn4BTQKi1mENzZUhb_778d8eb8-2299-40f0-a3f7-1bd616be27eb.png" alt="Learn Thai with Mind logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+      <div class="nav-logo-emblem" style="display:none;">M</div>
       <div class="nav-logo-text">
         <span>Learn Thai with Mind</span>
         <span>ภาษาไทยกับมายด์</span>
@@ -276,6 +278,7 @@
       <li><a href="books.html">Books</a></li>
       <li><a href="flashcard.html">Flashcards</a></li>
       <li><a href="private-class.html" class="active">Private Class</a></li>
+      <li><a href="contact.html">Contact</a></li>
       <li><a href="private-class.html" class="nav-cta">Book a Class</a></li>
     </ul>
     <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
@@ -287,7 +290,7 @@
   <div class="container text-center">
     <p class="eyebrow" style="margin-bottom:12px;">1-on-1 Private Lessons</p>
     <h1 style="color:var(--white);font-size:clamp(36px,5vw,58px);margin-bottom:16px;">Learn Thai at Your Pace,<br>Your Way</h1>
-    <div class="gold-line"></div>
+    <div class="accent-bar center" style="margin-top:20px;"><span class="accent-line"></span><span class="accent-dot"></span></div>
     <p style="color:rgba(255,255,255,.65);font-size:18px;max-width:580px;margin:24px auto 0;line-height:1.7;">
       One-on-one sessions with Kru Mind — completely tailored to your level, your goals, and your schedule. The fastest way to genuine Thai fluency.
     </p>
@@ -302,7 +305,7 @@
       <div class="fade-in">
         <p class="eyebrow">Why Choose Private Classes?</p>
         <h2 class="section-title">100% About You</h2>
-        <div class="gold-line left" style="margin-top:12px;margin-bottom:24px;"></div>
+        <div class="accent-bar" style="margin-top:12px;margin-bottom:24px;"><span class="accent-line"></span><span class="accent-dot"></span></div>
         <p style="color:var(--mid);font-size:17px;line-height:1.75;margin-bottom:20px;">
           Group courses teach everyone the same thing. Private classes teach <em>you</em> exactly what <em>you</em> need. Whether you want to prepare for a trip, speak with a Thai partner's family, advance in your career, or simply progress faster than any course allows — private sessions with Mind are your shortcut.
         </p>
@@ -351,7 +354,7 @@
     <div class="text-center fade-in" style="margin-bottom:40px;">
       <p class="eyebrow">Class Packages</p>
       <h2 class="section-title">Transparent Pricing</h2>
-      <div class="gold-line"></div>
+      <div class="accent-bar center"><span class="accent-line"></span><span class="accent-dot"></span></div>
       <p class="section-sub">All sessions are conducted via Zoom or Google Meet. Times are flexible across most global time zones. Scroll down to check availability and book.</p>
     </div>
 
@@ -367,7 +370,7 @@
           <li>Vocab &amp; exercise sheet</li>
           <li>Via Zoom or Google Meet</li>
         </ul>
-        <a href="#booking" class="btn btn-outline-gold">Book a Session</a>
+        <a href="#booking" class="btn btn-outline">Book a Session</a>
       </div>
 
       <div class="pricing-card featured-pricing fade-in">
@@ -382,7 +385,7 @@
           <li>Post-session notes every class</li>
           <li>WhatsApp support between sessions</li>
         </ul>
-        <a href="#booking" class="btn btn-gold">Book This Pack</a>
+        <a href="#booking" class="btn btn-yellow">Book This Pack</a>
       </div>
 
       <div class="pricing-card fade-in">
@@ -396,7 +399,7 @@
           <li>Monthly progress review call</li>
           <li>WhatsApp support between sessions</li>
         </ul>
-        <a href="#booking" class="btn btn-outline-gold">Book This Pack</a>
+        <a href="#booking" class="btn btn-outline">Book This Pack</a>
       </div>
     </div>
 
@@ -404,7 +407,7 @@
     <div class="text-center fade-in" style="margin-bottom:40px;">
       <p class="eyebrow">Your First Class</p>
       <h2 class="section-title">What to Expect</h2>
-      <div class="gold-line"></div>
+      <div class="accent-bar center"><span class="accent-line"></span><span class="accent-dot"></span></div>
     </div>
 
     <div class="what-to-expect">
@@ -440,14 +443,14 @@
     <div class="text-center fade-in" style="margin-bottom:48px;">
       <p class="eyebrow">Live Availability</p>
       <h2 class="section-title">Book Your Private Class</h2>
-      <div class="gold-line"></div>
-      <p class="section-sub">All sessions are in Bangkok time (ICT, UTC+7). Available Monday–Friday. Select a date, pick a time, and fill in your details below.</p>
+      <div class="accent-bar center"><span class="accent-line"></span><span class="accent-dot"></span></div>
+      <p class="section-sub">All sessions are in Thailand time (ICT, UTC+7). Available Monday–Friday. Select a date, pick a time, and fill in your details below.</p>
     </div>
 
     <div class="booking-wrapper fade-in">
       <div class="booking-wrapper-header">
         <h2>Schedule a Session with Kru Mind</h2>
-        <p>Bangkok Time (ICT · UTC+7) · Mon–Fri · Zoom or Google Meet</p>
+        <p>Thailand Time (ICT · UTC+7) · Mon–Fri · Zoom or Google Meet · 10:00–20:00</p>
       </div>
 
       <div class="booking-inner">
@@ -515,8 +518,8 @@
 
                 <div style="padding:0 28px 20px;">
                   <div style="display:flex;gap:12px;font-size:12px;color:var(--muted);flex-wrap:wrap;margin-top:12px;">
-                    <span style="display:flex;align-items:center;gap:6px;"><span style="width:12px;height:12px;border-radius:3px;background:var(--cream);border:1px solid var(--border);display:inline-block;"></span>Available</span>
-                    <span style="display:flex;align-items:center;gap:6px;"><span style="width:12px;height:12px;border-radius:3px;background:var(--gold);display:inline-block;"></span>Selected</span>
+                    <span style="display:flex;align-items:center;gap:6px;"><span style="width:12px;height:12px;border-radius:3px;background:var(--bg);border:1px solid var(--border);display:inline-block;"></span>Available</span>
+                    <span style="display:flex;align-items:center;gap:6px;"><span style="width:12px;height:12px;border-radius:3px;background:var(--yellow);display:inline-block;"></span>Selected</span>
                     <span style="display:flex;align-items:center;gap:6px;"><span style="width:12px;height:12px;border-radius:3px;background:#f1f1f1;display:inline-block;"></span>Unavailable</span>
                   </div>
                 </div>
@@ -601,7 +604,7 @@
                     </ul>
                   </div>
 
-                  <button type="submit" class="btn btn-gold btn-lg" style="width:100%;justify-content:center;">
+                  <button type="submit" class="btn btn-yellow btn-lg" style="width:100%;justify-content:center;">
                     Request to Book →
                   </button>
                 </form>
@@ -616,9 +619,9 @@
                     <p>🕐 <strong id="success-time">—</strong> Bangkok time (ICT · UTC+7)</p>
                     <p>📹 <strong>Via Zoom or Google Meet</strong></p>
                   </div>
-                  <p style="font-size:14px;color:var(--muted);">Can't wait? Drop Mind a message on <a href="https://www.facebook.com/learnthaiwithmind/" target="_blank" style="color:var(--gold);">Facebook</a> or <a href="https://www.instagram.com/learnthaiwithmind/" target="_blank" style="color:var(--gold);">Instagram</a> to introduce yourself.</p>
+                  <p style="font-size:14px;color:var(--muted);">Can't wait? Drop Mind a message on <a href="https://www.facebook.com/learnthaiwithmind/" target="_blank" style="color:var(--yellow);">Facebook</a> or <a href="https://www.instagram.com/learnthaiwithmind/" target="_blank" style="color:var(--yellow);">Instagram</a> to introduce yourself.</p>
                   <div style="margin-top:24px;">
-                    <a href="courses.html" class="btn btn-gold">Browse Courses While You Wait</a>
+                    <a href="courses.html" class="btn btn-yellow">Browse Courses While You Wait</a>
                   </div>
                 </div>
 
@@ -640,31 +643,31 @@
     <div class="text-center fade-in" style="margin-bottom:48px;">
       <p class="eyebrow">Private Class Students</p>
       <h2 class="section-title">They Booked. They Progressed.</h2>
-      <div class="gold-line"></div>
+      <div class="accent-bar center"><span class="accent-line"></span><span class="accent-dot"></span></div>
     </div>
 
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;" class="fade-in">
-      <div style="background:var(--cream);border-radius:16px;padding:28px;border:1px solid var(--border);">
-        <div style="color:var(--gold);font-size:16px;margin-bottom:12px;">★★★★★</div>
+      <div style="background:var(--bg);border-radius:16px;padding:28px;border:1px solid var(--border);">
+        <div style="color:var(--yellow);font-size:16px;margin-bottom:12px;">★★★★★</div>
         <p style="font-style:italic;color:var(--mid);font-size:14px;line-height:1.75;margin-bottom:16px;">"Within 8 weeks of private lessons I was having real conversations with Thai locals. Mind's teaching is precision — she knows exactly where you're going wrong and fixes it on the spot."</p>
         <div style="display:flex;align-items:center;gap:10px;border-top:1px solid var(--border);padding-top:14px;">
-          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#a8832a);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:13px;">SW</div>
+          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--yellow),#a8832a);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:13px;">SW</div>
           <div><div style="font-weight:600;font-size:14px;">Sarah W.</div><div style="font-size:12px;color:var(--muted);">🇺🇸 USA · 5-Class Pack</div></div>
         </div>
       </div>
-      <div style="background:var(--cream);border-radius:16px;padding:28px;border:1px solid var(--border);">
-        <div style="color:var(--gold);font-size:16px;margin-bottom:12px;">★★★★★</div>
+      <div style="background:var(--bg);border-radius:16px;padding:28px;border:1px solid var(--border);">
+        <div style="color:var(--yellow);font-size:16px;margin-bottom:12px;">★★★★★</div>
         <p style="font-style:italic;color:var(--mid);font-size:14px;line-height:1.75;margin-bottom:16px;">"I tried apps for two years with little progress. Two months of private sessions with Mind and I was reading Thai menus and holding conversations. The difference a great teacher makes is enormous."</p>
         <div style="display:flex;align-items:center;gap:10px;border-top:1px solid var(--border);padding-top:14px;">
-          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#a8832a);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:13px;">PC</div>
+          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--yellow),#a8832a);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:13px;">PC</div>
           <div><div style="font-weight:600;font-size:14px;">Peter C.</div><div style="font-size:12px;color:var(--muted);">🇬🇧 UK · 10-Class Pack</div></div>
         </div>
       </div>
-      <div style="background:var(--cream);border-radius:16px;padding:28px;border:1px solid var(--border);">
-        <div style="color:var(--gold);font-size:16px;margin-bottom:12px;">★★★★★</div>
+      <div style="background:var(--bg);border-radius:16px;padding:28px;border:1px solid var(--border);">
+        <div style="color:var(--yellow);font-size:16px;margin-bottom:12px;">★★★★★</div>
         <p style="font-style:italic;color:var(--mid);font-size:14px;line-height:1.75;margin-bottom:16px;">"I booked private classes to prepare for living in Bangkok. Mind didn't just teach me Thai — she taught me how Thais think, communicate, and see the world. Invaluable. I book 2 sessions a week now."</p>
         <div style="display:flex;align-items:center;gap:10px;border-top:1px solid var(--border);padding-top:14px;">
-          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--gold),#a8832a);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:13px;">AM</div>
+          <div style="width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,var(--yellow),#a8832a);display:flex;align-items:center;justify-content:center;color:white;font-weight:700;font-size:13px;">AM</div>
           <div><div style="font-weight:600;font-size:14px;">Anna M.</div><div style="font-size:12px;color:var(--muted);">🇩🇪 Germany · Ongoing</div></div>
         </div>
       </div>
@@ -673,11 +676,11 @@
 </section>
 
 <!-- ══════════ CONTACT STRIP ══════════ -->
-<section class="section-pad-sm" style="background:var(--navy);">
+<section class="section-pad-sm" style="background:var(--dark);">
   <div class="container">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:32px;flex-wrap:wrap;">
       <div>
-        <p class="eyebrow" style="color:var(--gold2);">Have a Question First?</p>
+        <p class="eyebrow" style="color:var(--yellow-dk);">Have a Question First?</p>
         <h2 style="color:var(--white);font-size:26px;margin-bottom:8px;">Reach Out to Mind Directly</h2>
         <p style="color:rgba(255,255,255,.65);font-size:15px;">Happy to answer any questions about lessons, levels, or learning goals before you commit.</p>
       </div>
@@ -700,7 +703,11 @@
   <div class="container">
     <div class="footer-grid">
       <div class="footer-brand">
-        <div class="nav-logo"><div class="nav-logo-emblem">M</div><div class="nav-logo-text"><span>Learn Thai with Mind</span><span>ภาษาไทยกับมายด์</span></div></div>
+        <div class="nav-logo">
+          <img src="https://uploads.teachablecdn.com/attachments/CjbMn4BTQKi1mENzZUhb_778d8eb8-2299-40f0-a3f7-1bd616be27eb.png" alt="Learn Thai with Mind logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <div class="nav-logo-emblem" style="display:none;">M</div>
+          <div class="nav-logo-text"><span>Learn Thai with Mind</span><span>ภาษาไทยกับมายด์</span></div>
+        </div>
         <p>Premium Thai language education for serious learners worldwide. Taught by Kru Mind — 10+ years, all skills, all levels.</p>
         <div class="footer-social">
           <a href="https://www.instagram.com/learnthaiwithmind/" target="_blank" rel="noopener" class="social-btn" title="Instagram">
@@ -716,12 +723,12 @@
       </div>
       <div class="footer-col"><h4>Learn</h4><ul><li><a href="courses.html">All Courses</a></li><li><a href="books.html">Books</a></li><li><a href="flashcard.html">Flashcards</a></li><li><a href="private-class.html">Private Classes</a></li></ul></div>
       <div class="footer-col"><h4>About</h4><ul><li><a href="index.html#about">About Mind</a></li><li><a href="https://www.facebook.com/learnthaiwithmind/" target="_blank">Facebook</a></li><li><a href="https://www.instagram.com/learnthaiwithmind/" target="_blank">Instagram</a></li></ul></div>
-      <div class="footer-col"><h4>Contact</h4><ul><li><a href="private-class.html">Book a Class</a></li><li><a href="https://www.facebook.com/learnthaiwithmind/" target="_blank">Message on Facebook</a></li><li><a href="https://www.instagram.com/learnthaiwithmind/" target="_blank">DM on Instagram</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul><li><a href="contact.html">Contact Page</a></li><li><a href="mailto:learnthaiwithmind@gmail.com">learnthaiwithmind@gmail.com</a></li><li><a href="private-class.html">Book a Class</a></li></ul></div>
     </div>
     <div class="footer-bottom">
       <span class="footer-logo-text">Learn Thai with Mind</span>
       <span>© 2026 · All rights reserved</span>
-      <span style="color:var(--gold);font-size:16px;">ภาษาไทยกับมายด์</span>
+      <span style="color:var(--yellow);font-size:16px;">ภาษาไทยกับมายด์</span>
     </div>
   </div>
 </footer>

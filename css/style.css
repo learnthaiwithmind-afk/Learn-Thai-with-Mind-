@@ -137,6 +137,7 @@ ul { list-style: none; }
 .nav-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; }
 
 .nav-logo { display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+.nav-logo-img { width: 40px; height: 40px; border-radius: 10px; object-fit: contain; flex-shrink: 0; }
 .nav-logo-emblem {
   width: 40px; height: 40px; border-radius: 12px;
   background: linear-gradient(135deg, var(--blue), var(--blue-lt));
