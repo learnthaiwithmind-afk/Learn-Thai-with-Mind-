@@ -1,53 +1,57 @@
 /* ============================================================
-   Learn Thai with Mind — Redesigned Modern Stylesheet 2026
-   Vibrant Blue + Sunny Yellow · Plus Jakarta Sans · DM Sans
+   Learn Thai with Mind — Premium Stylesheet 2026
+   Deep Royal Blue · Antique Gold · Thai Crimson · Cormorant
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap');
 
 /* ── Reset & Base ── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 :root {
-  /* Blues */
-  --blue:      #2563EB;
-  --blue-dk:   #1D4ED8;
-  --blue-lt:   #3B82F6;
-  --blue-100:  #DBEAFE;
-  --blue-50:   #EFF6FF;
-  --blue-deep: #1E3A8A;
+  /* ── Thai Royal Blue palette ── */
+  --blue:      #1A3680;  /* Deep royal blue — Thai flag inspired */
+  --blue-dk:   #0E2060;  /* Darker navy */
+  --blue-lt:   #2D52A8;  /* Medium for gradients */
+  --blue-100:  #C2CEEA;  /* Muted light blue */
+  --blue-50:   #EDF0F8;  /* Subtle blue tint for section bgs */
+  --blue-deep: #060C22;  /* Near-black navy — footer, deepest bgs */
 
-  /* Yellows */
-  --yellow:    #FBBF24;
-  --yellow-dk: #D97706;
-  --yellow-lt: #FEF3C7;
-  --yellow-50: #FFFBEB;
+  /* ── Antique Gold palette ── */
+  --yellow:    #C8981F;  /* Antique gold */
+  --yellow-dk: #8B680C;  /* Dark gold */
+  --yellow-lt: #F5EAC8;  /* Warm cream */
+  --yellow-50: #FCF7EE;  /* Lightest cream */
 
-  /* Neutrals */
+  /* ── Thai Crimson accent ── */
+  --red:       #8C1B28;  /* Deep Thai red — flag inspired */
+  --red-lt:    #F2E3E5;  /* Soft blush for badges */
+
+  /* ── Neutrals ── */
   --white:     #FFFFFF;
-  --bg:        #F8FAFF;
-  --dark:      #0F172A;
-  --mid:       #334155;
-  --muted:     #64748B;
-  --border:    #E2E8F0;
-  --border-lt: #F1F5F9;
+  --bg:        #F8F9FD;  /* Off-white with subtle blue warmth */
+  --dark:      #0D1525;  /* Deep navy-black */
+  --mid:       #2E3D54;  /* Deep slate */
+  --muted:     #5E6E88;  /* Muted slate */
+  --border:    #D4DCEA;  /* Slightly blue-tinted */
+  --border-lt: #EBF0F8;  /* Very light blue */
 
-  /* Semantic */
-  --success:   #059669;
-  --success-lt:#D1FAE5;
+  /* ── Semantic ── */
+  --success:   #057A52;
+  --success-lt:#D4F5E8;
 
-  /* Radius */
+  /* ── Radius ── */
   --r-sm:  8px;
   --r:     14px;
   --r-lg:  20px;
   --r-xl:  28px;
   --r-full:9999px;
 
-  /* Shadows (blue-tinted) */
-  --shadow-sm: 0 2px 8px rgba(37,99,235,.08);
-  --shadow:    0 4px 24px rgba(37,99,235,.10);
-  --shadow-lg: 0 12px 48px rgba(37,99,235,.16);
-  --shadow-y:  0 4px 20px rgba(251,191,36,.30);
+  /* ── Shadows (deeper, royal blue tinted) ── */
+  --shadow-sm: 0 2px 8px rgba(26,54,128,.09);
+  --shadow:    0 4px 24px rgba(26,54,128,.13);
+  --shadow-lg: 0 16px 56px rgba(26,54,128,.22);
+  --shadow-y:  0 4px 20px rgba(200,152,31,.38);
 }
 
 html { scroll-behavior: smooth; }
@@ -61,7 +65,13 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-h1, h2, h3, h4, h5 {
+h1, h2 {
+  font-family: 'Cormorant Garamond', 'Noto Sans Thai', serif;
+  line-height: 1.15;
+  color: var(--dark);
+  font-weight: 700;
+}
+h3, h4, h5 {
   font-family: 'Plus Jakarta Sans', 'Noto Sans Thai', sans-serif;
   line-height: 1.2;
   color: var(--dark);
@@ -87,7 +97,7 @@ ul { list-style: none; }
 .eyebrow.yw  { color: var(--yellow-dk); }
 .eyebrow.wh  { color: rgba(255,255,255,.8); }
 
-.section-title { font-size: clamp(28px,4vw,44px); font-weight: 800; margin-bottom: 8px; }
+.section-title { font-family: 'Cormorant Garamond','Noto Sans Thai',serif; font-size: clamp(30px,4vw,50px); font-weight: 700; margin-bottom: 8px; }
 .section-sub   { font-size: 17px; color: var(--muted); max-width: 580px; margin: 14px auto 0; line-height: 1.7; }
 
 .accent-bar { display: flex; align-items: center; gap: 10px; margin-top: 16px; }
@@ -177,14 +187,14 @@ ul { list-style: none; }
 ═══════════════════════════════════════ */
 .hero {
   min-height: 100vh;
-  background: linear-gradient(135deg, #1E40AF 0%, var(--blue) 50%, #3B82F6 100%);
+  background: linear-gradient(135deg, var(--blue-dk) 0%, var(--blue) 55%, var(--blue-lt) 100%);
   position: relative; display: flex; align-items: center;
   overflow: hidden; padding-top: 68px;
 }
 .hero::before {
   content: ''; position: absolute; top: -120px; right: -120px;
   width: 500px; height: 500px; border-radius: 50%;
-  background: radial-gradient(circle, rgba(251,191,36,.18) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(200,152,31,.22) 0%, transparent 70%);
   pointer-events: none;
 }
 .hero::after {
@@ -210,7 +220,8 @@ ul { list-style: none; }
 }
 
 .hero-title {
-  font-size: clamp(38px,5.5vw,68px); font-weight: 800;
+  font-family: 'Cormorant Garamond','Noto Sans Thai',serif;
+  font-size: clamp(42px,6vw,76px); font-weight: 700;
   color: var(--white); line-height: 1.08; margin-bottom: 20px;
 }
 .hero-title .hl { color: var(--yellow); }
@@ -267,6 +278,8 @@ ul { list-style: none; }
 }
 .hero-float-pill .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--success); flex-shrink: 0; }
 .pill-bottom { bottom: -16px; left: -20px; }
+/* When pill is used static (inside card), reset absolute positioning */
+.hero-float-pill[style*="position:static"] { position: static !important; bottom: auto !important; left: auto !important; width: 100%; justify-content: center; }
 
 /* ═══════════════════════════════════════
    TRUST BAR
@@ -524,16 +537,16 @@ ul { list-style: none; }
    PAGE HERO (inner pages)
 ═══════════════════════════════════════ */
 .page-hero {
-  background: linear-gradient(135deg,#1E40AF 0%,var(--blue) 55%,var(--blue-lt) 100%);
+  background: linear-gradient(135deg,var(--blue-dk) 0%,var(--blue) 55%,var(--blue-lt) 100%);
   padding: 130px 0 72px; position: relative; overflow: hidden;
 }
-.page-hero::before { content: ''; position: absolute; top: -80px; right: -80px; width: 360px; height: 360px; border-radius: 50%; background: radial-gradient(circle,rgba(251,191,36,.15) 0%,transparent 70%); }
+.page-hero::before { content: ''; position: absolute; top: -80px; right: -80px; width: 360px; height: 360px; border-radius: 50%; background: radial-gradient(circle,rgba(200,152,31,.18) 0%,transparent 70%); }
 
 /* ═══════════════════════════════════════
    CTA & SECTION BACKGROUNDS
 ═══════════════════════════════════════ */
-.bg-blue-gradient { background: linear-gradient(135deg,#1E40AF 0%,var(--blue) 60%,var(--blue-lt) 100%); position: relative; overflow: hidden; }
-.bg-blue-gradient::before { content: ''; position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle,rgba(251,191,36,.12) 0%,transparent 70%); }
+.bg-blue-gradient { background: linear-gradient(135deg,var(--blue-dk) 0%,var(--blue) 60%,var(--blue-lt) 100%); position: relative; overflow: hidden; }
+.bg-blue-gradient::before { content: ''; position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle,rgba(200,152,31,.15) 0%,transparent 70%); }
 .bg-yellow { background: var(--yellow); }
 .bg-light  { background: var(--bg); }
 .bg-white  { background: var(--white); }
@@ -609,8 +622,8 @@ ul { list-style: none; }
   .footer-grid       { grid-template-columns: 1fr; gap: 28px; }
   .form-row          { grid-template-columns: 1fr; }
 
-  .hero-title   { font-size: clamp(32px,9vw,48px); }
-  .section-title{ font-size: clamp(24px,6vw,36px); }
+  .hero-title   { font-size: clamp(34px,9vw,52px); }
+  .section-title{ font-size: clamp(26px,6vw,40px); }
   .hero-actions { flex-direction: column; }
   .hero-actions .btn { width: 100%; }
 
