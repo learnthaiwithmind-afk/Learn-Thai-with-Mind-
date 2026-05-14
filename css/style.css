@@ -204,44 +204,66 @@ ul { list-style: none; }
   pointer-events: none;
 }
 
-/* ── Ambient hero photo (decorative — sits behind content) ── */
-.hero-ambient-photo {
+/* ── Hero 3-column grid: Text | Photo | Card ── */
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.5fr 0.78fr;
+  column-gap: 28px;
+  align-items: center;
+  padding: 80px 0;
+  position: relative; z-index: 2;
+}
+
+/* ── Photo column — girl gets her own space, no card overlap ── */
+.hero-photo-col {
+  position: relative;
+  align-self: stretch;   /* fill the full grid-row height */
+}
+
+/* Top colour wash — fade the image into the hero background */
+.hero-photo-col::before {
+  content: '';
   position: absolute;
-  right: 4%;
-  bottom: 0;
-  height: 88%;
-  width: auto;
-  object-fit: contain;
-  object-position: bottom center;
-  /* Desaturate the warm tones to harmonise with the cool royal blue */
-  filter: saturate(0.38) brightness(0.58);
-  /* Fade in from the top — figure emerges from the dark */
+  top: -80px; left: 0; right: 0;
+  height: 200px;
+  background: linear-gradient(to bottom, rgba(14,32,96,.98) 0%, rgba(14,32,96,.5) 55%, transparent 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+.hero-photo-col img {
+  position: absolute;
+  top: -80px;            /* bleed above grid padding into hero */
+  bottom: -80px;         /* bleed below — hero overflow:hidden clips it */
+  left: 0; right: 0;
+  width: 100%;
+  height: calc(100% + 160px);
+  object-fit: cover;
+  object-position: center 18%;  /* focus on face + wai hands */
+  /* Keep warmth muted so she harmonises with royal blue, but stay visible */
+  filter: saturate(0.60) brightness(0.76);
+  /* Both left & right edges fade to zero — absolutely no hard border */
   -webkit-mask-image: linear-gradient(
-    to bottom,
-    transparent   0%,
-    rgba(0,0,0,.55) 22%,
-    black         44%
+    to right,
+    transparent  0%,
+    rgba(0,0,0,.8) 16%,
+    black        30%,
+    black        70%,
+    rgba(0,0,0,.8) 84%,
+    transparent 100%
   );
   mask-image: linear-gradient(
-    to bottom,
-    transparent   0%,
-    rgba(0,0,0,.55) 22%,
-    black         44%
+    to right,
+    transparent  0%,
+    rgba(0,0,0,.8) 16%,
+    black        30%,
+    black        70%,
+    rgba(0,0,0,.8) 84%,
+    transparent 100%
   );
-  /* Below the hero grid content (z-index 2) but above the glows */
   z-index: 1;
   pointer-events: none;
   user-select: none;
-}
-
-/* Hide on tablet/mobile — card also hides at 1024px */
-@media (max-width: 1024px) {
-  .hero-ambient-photo { display: none; }
-}
-
-.hero-grid {
-  display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 64px;
-  align-items: center; padding: 80px 0; position: relative; z-index: 2;
 }
 
 .hero-kicker {
@@ -643,6 +665,7 @@ ul { list-style: none; }
 @media (max-width: 1024px) {
   .hero-grid         { grid-template-columns: 1fr; gap: 48px; }
   .hero-card-wrap    { display: none; }
+  .hero-photo-col    { display: none; }
   .hero-stats        { gap: 20px; }
   .about-grid        { grid-template-columns: 1fr; }
   .about-visual      { display: none; }
