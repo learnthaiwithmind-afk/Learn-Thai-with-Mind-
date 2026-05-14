@@ -987,9 +987,8 @@ body.modal-open { overflow: hidden; }
 ═══════════════════════════════════════════════════════ */
 .thai-banner {
   position: relative;
-  padding: 110px 0;
+  padding: 96px 0 0; /* no bottom pad — photo sits at floor */
   overflow: hidden;
-  /* Thai flag image as background */
   background: url('../images/bannerhomepage.png') center center / cover no-repeat;
 }
 
@@ -997,8 +996,6 @@ body.modal-open { overflow: hidden; }
 .thai-banner::before {
   content: '';
   position: absolute; inset: 0; z-index: 1;
-  /* dark navy at ~72% — mutes the vibrant flag colours while letting
-     subtle blue/red tones bleed through for atmosphere */
   background: rgba(6, 12, 34, 0.72);
 }
 
@@ -1007,38 +1004,34 @@ body.modal-open { overflow: hidden; }
   content: '';
   position: absolute; inset: 0; z-index: 1;
   background:
-    linear-gradient(to right,  rgba(6,12,34,.35) 0%, transparent 22%, transparent 78%, rgba(6,12,34,.35) 100%),
-    linear-gradient(to bottom, rgba(6,12,34,.25) 0%, transparent 35%, transparent 65%, rgba(6,12,34,.25) 100%);
+    linear-gradient(to right,  rgba(6,12,34,.40) 0%, transparent 25%, transparent 75%, rgba(6,12,34,.40) 100%),
+    linear-gradient(to bottom, rgba(6,12,34,.30) 0%, transparent 30%, transparent 70%, rgba(6,12,34,.30) 100%);
 }
 
-/* ── Faint Thai watermark glyph ── */
-.thai-banner-wm {
-  position: absolute; top: 50%; left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: 'Noto Sans Thai', sans-serif;
-  font-size: 340px; font-weight: 800; line-height: 1;
-  color: rgba(255,255,255,.035);
-  white-space: nowrap;
-  pointer-events: none; user-select: none;
-  z-index: 1;
-}
-
-/* ── Content wrapper ── */
+/* ── Content wrapper — two-column layout ── */
 .thai-banner-inner {
   position: relative;
-  text-align: center;
   color: var(--white);
-  max-width: 820px;
-  margin: 0 auto;
+  display: flex;
+  align-items: flex-end;
+  gap: 40px;
+}
+
+/* ── Text column ── */
+.thai-banner-text {
+  flex: 1 1 0;
+  min-width: 0;
+  padding-bottom: 80px;
+  text-align: left;
 }
 
 /* ── Gold decorative rule ── */
 .thai-banner-rule {
-  width: 80px; height: 1.5px;
-  background: linear-gradient(90deg, transparent, var(--yellow), transparent);
-  margin: 0 auto 28px;
+  width: 72px; height: 1.5px;
+  background: linear-gradient(90deg, var(--yellow), rgba(200,152,31,.25), transparent);
+  margin: 0 0 28px;
 }
-.thai-banner-inner .thai-banner-rule:last-of-type { margin: 28px auto 32px; }
+.thai-banner-text .thai-banner-rule:last-of-type { margin: 28px 0 32px; }
 
 /* ── Eyebrow / sub-label ── */
 .thai-banner-eyebrow {
@@ -1053,7 +1046,7 @@ body.modal-open { overflow: hidden; }
 /* ── Main heading ── */
 .thai-banner-title {
   font-family: 'Cormorant Garamond', 'Noto Sans Thai', serif;
-  font-size: clamp(34px, 5vw, 62px);
+  font-size: clamp(32px, 4.5vw, 58px);
   font-weight: 700; line-height: 1.18;
   color: var(--white);
   margin-bottom: 22px;
@@ -1066,23 +1059,118 @@ body.modal-open { overflow: hidden; }
 
 /* ── Body copy ── */
 .thai-banner-sub {
-  font-size: 17px; line-height: 1.8;
-  color: rgba(255,255,255,.78);
-  max-width: 580px;
-  margin: 0 auto;
+  font-size: 16px; line-height: 1.8;
+  color: rgba(255,255,255,.75);
+  max-width: 500px;
+  margin: 0;
 }
 
 /* ── CTA buttons ── */
 .thai-banner-actions {
-  display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+  display: flex; gap: 14px; justify-content: flex-start; flex-wrap: wrap;
+}
+
+/* ── Photo column ── */
+.thai-banner-photo-wrap {
+  flex: 0 0 38%;
+  max-width: 420px;
+  position: relative;
+  align-self: flex-end;
+  overflow: hidden;
+  border-radius: 20px 20px 0 0;
+}
+
+/* Left fade: blends photo into the dark navy background */
+.thai-banner-photo-wrap::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(
+    to right,
+    rgba(6,12,34,1)    0%,
+    rgba(6,12,34,0.62) 22%,
+    rgba(6,12,34,0.18) 46%,
+    transparent        65%
+  );
+}
+
+/* Top fade: softens the top edge */
+.thai-banner-photo-wrap::after {
+  content: '';
+  position: absolute; inset: 0; z-index: 1; pointer-events: none;
+  background: linear-gradient(
+    to bottom,
+    rgba(6,12,34,0.55) 0%,
+    rgba(6,12,34,0.10) 22%,
+    transparent        38%
+  );
+}
+
+.thai-banner-photo {
+  width: 100%;
+  height: auto;
+  max-height: 540px;
+  object-fit: cover;
+  object-position: center 18%;
+  display: block;
+  /* Desaturate warmth to harmonise with the cool dark navy background */
+  filter: saturate(0.58) brightness(0.80);
+}
+
+/* ── Floating caption badge (sits at photo base) ── */
+.thai-banner-photo-caption {
+  position: absolute;
+  bottom: 26px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(9,16,40,0.84);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(200,152,31,0.42);
+  border-radius: 9999px;
+  padding: 7px 20px;
+  white-space: nowrap;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 13px; font-weight: 600;
+  color: rgba(255,255,255,.90);
+  letter-spacing: 0.4px;
+}
+.thai-banner-photo-caption .thai-script {
+  font-family: 'Noto Sans Thai', sans-serif;
+  color: var(--yellow);
+  font-size: 15px; font-weight: 700;
+}
+.thai-banner-photo-caption .caption-dot {
+  width: 4px; height: 4px;
+  border-radius: 50%;
+  background: rgba(200,152,31,0.6);
+  flex-shrink: 0;
+}
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .thai-banner { padding: 80px 0 0; }
+  .thai-banner-inner { flex-direction: column; align-items: center; gap: 32px; }
+  .thai-banner-text { padding-bottom: 0; text-align: center; }
+  .thai-banner-rule { margin: 0 auto 28px; background: linear-gradient(90deg, transparent, var(--yellow), transparent); }
+  .thai-banner-text .thai-banner-rule:last-of-type { margin: 28px auto 32px; }
+  .thai-banner-sub { margin: 0 auto; }
+  .thai-banner-actions { justify-content: center; }
+  .thai-banner-photo-wrap { flex: 0 0 auto; width: 260px; max-width: 100%; }
+  .thai-banner-photo { max-height: 320px; }
 }
 
 @media (max-width: 600px) {
-  .thai-banner { padding: 72px 0; }
-  .thai-banner-wm { font-size: 180px; }
+  .thai-banner { padding: 64px 0 0; }
   .thai-banner-title { font-size: clamp(28px, 8vw, 40px); }
   .thai-banner-actions { flex-direction: column; align-items: center; }
   .thai-banner-actions .btn { width: 100%; max-width: 280px; justify-content: center; }
+  .thai-banner-photo-wrap { width: 200px; }
+  .thai-banner-photo { max-height: 260px; }
+  .thai-banner-photo-caption { font-size: 12px; padding: 6px 14px; }
 }
 
 /* ═══════════════════════════════════════════════════════
