@@ -983,6 +983,109 @@ body.modal-open { overflow: hidden; }
 .auth-menu-link:hover { background: var(--bg); }
 
 /* ═══════════════════════════════════════════════════════
+   THAILAND BANNER
+═══════════════════════════════════════════════════════ */
+.thai-banner {
+  position: relative;
+  padding: 110px 0;
+  overflow: hidden;
+  /* Thai flag image as background */
+  background: url('../images/bannerhomepage.png') center center / cover no-repeat;
+}
+
+/* ── Layer 1: primary dark muting overlay ── */
+.thai-banner::before {
+  content: '';
+  position: absolute; inset: 0; z-index: 1;
+  /* dark navy at ~72% — mutes the vibrant flag colours while letting
+     subtle blue/red tones bleed through for atmosphere */
+  background: rgba(6, 12, 34, 0.72);
+}
+
+/* ── Layer 2: soft vignette on all four edges ── */
+.thai-banner::after {
+  content: '';
+  position: absolute; inset: 0; z-index: 1;
+  background:
+    linear-gradient(to right,  rgba(6,12,34,.35) 0%, transparent 22%, transparent 78%, rgba(6,12,34,.35) 100%),
+    linear-gradient(to bottom, rgba(6,12,34,.25) 0%, transparent 35%, transparent 65%, rgba(6,12,34,.25) 100%);
+}
+
+/* ── Faint Thai watermark glyph ── */
+.thai-banner-wm {
+  position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Noto Sans Thai', sans-serif;
+  font-size: 340px; font-weight: 800; line-height: 1;
+  color: rgba(255,255,255,.035);
+  white-space: nowrap;
+  pointer-events: none; user-select: none;
+  z-index: 1;
+}
+
+/* ── Content wrapper ── */
+.thai-banner-inner {
+  position: relative;
+  text-align: center;
+  color: var(--white);
+  max-width: 820px;
+  margin: 0 auto;
+}
+
+/* ── Gold decorative rule ── */
+.thai-banner-rule {
+  width: 80px; height: 1.5px;
+  background: linear-gradient(90deg, transparent, var(--yellow), transparent);
+  margin: 0 auto 28px;
+}
+.thai-banner-inner .thai-banner-rule:last-of-type { margin: 28px auto 32px; }
+
+/* ── Eyebrow / sub-label ── */
+.thai-banner-eyebrow {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px; font-weight: 700; letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--yellow);
+  margin-bottom: 20px;
+  opacity: .9;
+}
+
+/* ── Main heading ── */
+.thai-banner-title {
+  font-family: 'Cormorant Garamond', 'Noto Sans Thai', serif;
+  font-size: clamp(34px, 5vw, 62px);
+  font-weight: 700; line-height: 1.18;
+  color: var(--white);
+  margin-bottom: 22px;
+  text-shadow: 0 2px 20px rgba(0,0,0,.4);
+}
+.thai-banner-title em {
+  font-style: italic;
+  color: var(--yellow);
+}
+
+/* ── Body copy ── */
+.thai-banner-sub {
+  font-size: 17px; line-height: 1.8;
+  color: rgba(255,255,255,.78);
+  max-width: 580px;
+  margin: 0 auto;
+}
+
+/* ── CTA buttons ── */
+.thai-banner-actions {
+  display: flex; gap: 14px; justify-content: center; flex-wrap: wrap;
+}
+
+@media (max-width: 600px) {
+  .thai-banner { padding: 72px 0; }
+  .thai-banner-wm { font-size: 180px; }
+  .thai-banner-title { font-size: clamp(28px, 8vw, 40px); }
+  .thai-banner-actions { flex-direction: column; align-items: center; }
+  .thai-banner-actions .btn { width: 100%; max-width: 280px; justify-content: center; }
+}
+
+/* ═══════════════════════════════════════════════════════
    CALENDLY INLINE EMBED
 ═══════════════════════════════════════════════════════ */
 .calendly-wrap {
