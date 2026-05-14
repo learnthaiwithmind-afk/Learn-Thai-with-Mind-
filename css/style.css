@@ -204,6 +204,41 @@ ul { list-style: none; }
   pointer-events: none;
 }
 
+/* ── Ambient hero photo (decorative — sits behind content) ── */
+.hero-ambient-photo {
+  position: absolute;
+  right: 4%;
+  bottom: 0;
+  height: 88%;
+  width: auto;
+  object-fit: contain;
+  object-position: bottom center;
+  /* Desaturate the warm tones to harmonise with the cool royal blue */
+  filter: saturate(0.38) brightness(0.58);
+  /* Fade in from the top — figure emerges from the dark */
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent   0%,
+    rgba(0,0,0,.55) 22%,
+    black         44%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent   0%,
+    rgba(0,0,0,.55) 22%,
+    black         44%
+  );
+  /* Below the hero grid content (z-index 2) but above the glows */
+  z-index: 1;
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Hide on tablet/mobile — card also hides at 1024px */
+@media (max-width: 1024px) {
+  .hero-ambient-photo { display: none; }
+}
+
 .hero-grid {
   display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 64px;
   align-items: center; padding: 80px 0; position: relative; z-index: 2;
