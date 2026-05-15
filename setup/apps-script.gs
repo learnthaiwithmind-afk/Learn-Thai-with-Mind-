@@ -8,24 +8,25 @@ function config() {
   };
 }
 
+// Receives form POST submissions from the website
 function doPost(e) {
   try {
-    var raw  = e.postData ? e.postData.contents : '{}';
-    var data = JSON.parse(raw);
+    var data = e.parameter; // form fields arrive as e.parameter
     if (data.type === 'waitlist') {
       handleWaitlist(data);
     } else if (data.type === 'review') {
       handleReview(data);
     }
-    return respond({ success: true });
+    // Return a plain page so the hidden iframe loads without error
+    return HtmlService.createHtmlOutput('<p>OK</p>');
   } catch (err) {
     Logger.log(err.message);
-    return respond({ success: false, error: err.message });
+    return HtmlService.createHtmlOutput('<p>Error: ' + err.message + '</p>');
   }
 }
 
 function doGet(e) {
-  return respond({ status: 'running' });
+  return HtmlService.createHtmlOutput('<p>Learn Thai with Mind form handler is running.</p>');
 }
 
 function handleWaitlist(data) {
@@ -120,8 +121,8 @@ function handleReview(data) {
 }
 
 function reviewEmail(cfg, data) {
-  var r       = parseInt(data.rating, 10) || 0;
-  var stars   = '';
+  var r     = parseInt(data.rating, 10) || 0;
+  var stars = '';
   for (var i = 0; i < r; i++) { stars += '*'; }
   var subject = 'New review: ' + data.name + ' - ' + data.rating + '/5 ' + stars;
   var body    = 'Hi Kru Mind!\n\n'
@@ -158,10 +159,4 @@ function getSheet(sheetId, tabName, headers) {
     }
   }
   return sheet;
-}
-
-function respond(obj) {
-  return ContentService
-    .createTextOutput(JSON.stringify(obj))
-    .setMimeType(ContentService.MimeType.JSON);
 }

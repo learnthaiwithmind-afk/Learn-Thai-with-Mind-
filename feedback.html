@@ -381,20 +381,34 @@
 <script src="js/main.js"></script>
 <script src="js/cart.js"></script>
 <script src="js/auth.js"></script>
-<script>
-  /* ═══════════════════════════════════════════════════════════
-   *  POST-CLASS FEEDBACK FORM — Google Apps Script submission
-   *
-   *  SETUP: Paste your Apps Script Web App URL below.
-   *  (Same URL as private-class.html — same script handles both)
-   *  See setup/apps-script.gs for full instructions.
-   * ═══════════════════════════════════════════════════════════ */
-  var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwyAzqd2LfvN-11hqpf78MQUsbwGnllreuztL99UnuRlnxc3Fxkjys52SmegzDYfNo_/exec';
 
+<!-- Hidden iframe — review form response loads here silently -->
+<iframe name="fb-hidden-frame" style="display:none;" aria-hidden="true"></iframe>
+
+<!-- Hidden form — posts directly to Apps Script, targets the hidden iframe -->
+<form id="fbHiddenForm"
+      action="https://script.google.com/macros/s/AKfycbwyAzqd2LfvN-11hqpf78MQUsbwGnllreuztL99UnuRlnxc3Fxkjys52SmegzDYfNo_/exec"
+      method="POST"
+      target="fb-hidden-frame"
+      style="display:none;">
+  <input type="hidden" name="type"            value="review" />
+  <input type="hidden" name="name"            id="hfb-name" />
+  <input type="hidden" name="email"           id="hfb-email" />
+  <input type="hidden" name="cls"             id="hfb-cls" />
+  <input type="hidden" name="country"         id="hfb-country" />
+  <input type="hidden" name="rating"          id="hfb-rating" />
+  <input type="hidden" name="enjoyed"         id="hfb-enjoyed" />
+  <input type="hidden" name="suggestions"     id="hfb-suggestions" />
+  <input type="hidden" name="testimonial"     id="hfb-testimonial" />
+  <input type="hidden" name="sharePermission" id="hfb-share" />
+</form>
+
+<script>
   (function() {
-    var form    = document.getElementById('feedbackForm');
-    var success = document.getElementById('feedbackSuccess');
-    var btn     = document.getElementById('fbSubmitBtn');
+    var form       = document.getElementById('feedbackForm');
+    var hiddenForm = document.getElementById('fbHiddenForm');
+    var success    = document.getElementById('feedbackSuccess');
+    var btn        = document.getElementById('fbSubmitBtn');
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
@@ -407,61 +421,32 @@
       var suggest     = document.getElementById('fb-suggest').value.trim();
       var testimonial = document.getElementById('fb-testimonial').value.trim();
       var shareOk     = document.getElementById('fb-share').checked ? 'Yes' : 'No';
-
-      /* Get selected star rating */
-      var ratingEl = document.querySelector('input[name="rating"]:checked');
-      var rating   = ratingEl ? ratingEl.value : '';
+      var ratingEl    = document.querySelector('input[name="rating"]:checked');
+      var rating      = ratingEl ? ratingEl.value : '';
 
       if (!name || !email || !cls || !rating || !enjoyed) {
         alert('Please fill in all required fields: name, email, class, rating, and what you enjoyed.');
         return;
       }
 
-      btn.textContent = 'Sending…';
+      // Populate hidden form fields
+      document.getElementById('hfb-name').value        = name;
+      document.getElementById('hfb-email').value       = email;
+      document.getElementById('hfb-cls').value         = cls;
+      document.getElementById('hfb-country').value     = country;
+      document.getElementById('hfb-rating').value      = rating;
+      document.getElementById('hfb-enjoyed').value     = enjoyed;
+      document.getElementById('hfb-suggestions').value = suggest;
+      document.getElementById('hfb-testimonial').value = testimonial;
+      document.getElementById('hfb-share').value       = shareOk;
+
+      // Submit to Apps Script via hidden iframe (bypasses CORS completely)
+      hiddenForm.submit();
+
+      // Show success immediately
       btn.disabled = true;
-
-      var payload = {
-        type:            'review',
-        name:            name,
-        email:           email,
-        cls:             cls,
-        country:         country,
-        rating:          rating,
-        enjoyed:         enjoyed,
-        suggestions:     suggest,
-        testimonial:     testimonial,
-        sharePermission: shareOk
-      };
-
-      fetch(APPS_SCRIPT_URL, {
-        method:  'POST',
-        mode:    'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify(payload)
-      })
-      .then(function() {
-        form.style.display = 'none';
-        success.classList.add('show');
-      })
-      .catch(function(err) {
-        console.error('Submit error:', err);
-        /* Fallback: mailto */
-        var stars = '';
-        for (var i = 0; i < parseInt(rating); i++) stars += '★';
-        var subject = encodeURIComponent('Class Feedback — ' + name + ' · ' + stars);
-        var body = encodeURIComponent(
-          'Hi Kru Mind,\n\nFeedback from: ' + name + '\nEmail: ' + email +
-          '\nClass: ' + cls + '\nCountry: ' + country +
-          '\nRating: ' + stars + ' (' + rating + '/5)\n\n' +
-          'What I enjoyed:\n' + enjoyed + '\n\n' +
-          (suggest ? 'Suggestions:\n' + suggest + '\n\n' : '') +
-          (testimonial ? 'Testimonial for website:\n"' + testimonial + '"\nPermission to share: ' + shareOk : '') +
-          '\n\nThank you!'
-        );
-        window.location.href = 'mailto:learnthaiwithmind@gmail.com?subject=' + subject + '&body=' + body;
-        form.style.display = 'none';
-        success.classList.add('show');
-      });
+      form.style.display = 'none';
+      success.classList.add('show');
     });
   })();
 </script>
