@@ -473,7 +473,7 @@
           <div class="sched-level">Level 1 — Beginner</div>
           <p class="sched-desc">Build your spoken Thai from the ground up. Pronunciation, tones, everyday vocabulary, and real conversational patterns — all in a supportive small group.</p>
           <div class="sched-meta">
-            <div class="sched-meta-row"><span class="icon">📅</span> 2 days/week, Mon–Fri</div>
+            <div class="sched-meta-row"><span class="icon">📅</span> Every Monday &amp; Thursday</div>
             <div class="sched-meta-row"><span class="icon">🗓️</span> 1-month course · 8 sessions total</div>
             <div class="sched-meta-row"><span class="icon">👥</span> Max 10 students per group</div>
           </div>
@@ -501,7 +501,7 @@
           <div class="sched-level">Level 1 — Beginner</div>
           <p class="sched-desc">Crack the Thai script — all 44 consonants, vowels, tone marks, and the rules that make everything click. Start reading real Thai words from your very first lesson.</p>
           <div class="sched-meta">
-            <div class="sched-meta-row"><span class="icon">📅</span> 2 days/week, Mon–Fri</div>
+            <div class="sched-meta-row"><span class="icon">📅</span> Every Monday &amp; Thursday</div>
             <div class="sched-meta-row"><span class="icon">🗓️</span> 1-month course · 8 sessions total</div>
             <div class="sched-meta-row"><span class="icon">👥</span> Max 10 students per group</div>
           </div>
@@ -528,7 +528,7 @@
           <div class="sched-level">Level 1 — Beginner</div>
           <p class="sched-desc">The same Speaking Thai Level 1 curriculum — but scheduled for Europe and the Americas. Learn in the evening Thailand time and start your day with Thai in the West.</p>
           <div class="sched-meta">
-            <div class="sched-meta-row"><span class="icon">📅</span> 2 days/week, Mon–Fri</div>
+            <div class="sched-meta-row"><span class="icon">📅</span> Every Monday &amp; Thursday</div>
             <div class="sched-meta-row"><span class="icon">🗓️</span> 1-month course · 8 sessions total</div>
             <div class="sched-meta-row"><span class="icon">👥</span> Max 10 students per group</div>
           </div>
@@ -546,7 +546,7 @@
     </div>
 
     <p style="text-align:center;font-size:14px;color:var(--muted);margin-top:28px;">
-      ✦ Exact days (Mon/Wed or Tue/Thu, etc.) confirmed when your group forms &nbsp;·&nbsp; Times may vary slightly by season due to daylight saving in your country
+      ✦ All classes run every <strong>Monday &amp; Thursday</strong> &nbsp;·&nbsp; Times may vary by ±1 hour seasonally due to daylight saving in your country
     </p>
 
   </div>
@@ -612,9 +612,11 @@
       <div class="waitlist-body">
 
         <form class="waitlist-form" id="waitlistForm">
+
+          <!-- Row 1: Name + Email -->
           <div class="form-row-2">
             <div class="form-group">
-              <label for="wl-name">Your Name *</label>
+              <label for="wl-name">Full Name *</label>
               <input type="text" id="wl-name" placeholder="e.g. Sarah Johnson" required />
             </div>
             <div class="form-group">
@@ -623,42 +625,78 @@
             </div>
           </div>
 
+          <!-- Row 2: Phone + Class -->
           <div class="form-row-2">
+            <div class="form-group">
+              <label for="wl-phone">Phone / WhatsApp <span style="color:var(--muted);font-weight:400;">(optional)</span></label>
+              <input type="text" id="wl-phone" placeholder="+1 555 000 0000" />
+            </div>
             <div class="form-group">
               <label for="wl-class">Which Class? *</label>
               <select id="wl-class" required>
                 <option value="" disabled selected>Select a class…</option>
-                <option value="Speaking Morning 10:00 ICT">Speaking Thai — Morning (10:00–11:30 ICT)</option>
-                <option value="Reading & Writing 12:30 ICT">Reading &amp; Writing — Midday (12:30–14:00 ICT)</option>
-                <option value="Speaking Evening 20:00 ICT">Speaking Thai — Evening (20:00–21:30 ICT)</option>
-                <option value="Any / Flexible">Any class — I'm flexible</option>
+                <option value="Speaking Thai — Morning (Mon &amp; Thu · 10:00–11:30 ICT)">Speaking Thai — Morning (Mon &amp; Thu · 10:00–11:30 ICT)</option>
+                <option value="Reading &amp; Writing — Midday (Mon &amp; Thu · 12:30–14:00 ICT)">Reading &amp; Writing — Midday (Mon &amp; Thu · 12:30–14:00 ICT)</option>
+                <option value="Speaking Thai — Evening (Mon &amp; Thu · 20:00–21:30 ICT)">Speaking Thai — Evening (Mon &amp; Thu · 20:00–21:30 ICT)</option>
+                <option value="Any / Flexible — open to any slot">Any / Flexible — open to any slot</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Row 3: Level + Time Zone -->
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="wl-level">Your Current Thai Level *</label>
+              <select id="wl-level" required>
+                <option value="" disabled selected>Select your level…</option>
+                <option value="Complete Beginner — no Thai at all">Complete Beginner — no Thai at all</option>
+                <option value="Absolute Beginner — know a few words/phrases">Absolute Beginner — know a few words/phrases</option>
+                <option value="Elementary — can say basic sentences">Elementary — can say basic sentences</option>
+                <option value="Pre-Intermediate — can hold simple conversations">Pre-Intermediate — can hold simple conversations</option>
               </select>
             </div>
             <div class="form-group">
-              <label for="wl-level">Your Thai Level *</label>
-              <select id="wl-level" required>
-                <option value="" disabled selected>Select your level…</option>
-                <option value="Complete Beginner (no Thai at all)">Complete Beginner (no Thai at all)</option>
-                <option value="Absolute Beginner (know a few words)">Absolute Beginner (know a few words)</option>
-                <option value="Elementary (can say basic phrases)">Elementary (can say basic phrases)</option>
-                <option value="Pre-Intermediate">Pre-Intermediate</option>
-              </select>
+              <label for="wl-tz">Your Time Zone *</label>
+              <input type="text" id="wl-tz" placeholder="e.g. Germany (CET), New York (EST), Sydney (AEST)" required />
             </div>
           </div>
 
+          <!-- Why learn Thai -->
           <div class="form-group">
-            <label for="wl-tz">Your Time Zone *</label>
-            <input type="text" id="wl-tz" placeholder="e.g. Germany (CET), USA – New York (EST), Australia – Sydney (AEST)" required />
+            <label for="wl-why">Why do you want to learn Thai? *</label>
+            <textarea id="wl-why" placeholder="e.g. My partner is Thai and I want to speak with their family. / I'm moving to Bangkok. / I love Thai culture and want to connect more deeply…" required></textarea>
           </div>
 
+          <!-- Goals -->
           <div class="form-group">
-            <label for="wl-msg">Anything else you'd like Mind to know? <span style="color:var(--muted);font-weight:400;">(optional)</span></label>
-            <textarea id="wl-msg" placeholder="Your goals, previous Thai experience, questions about the course…"></textarea>
+            <label for="wl-goals">What are your learning goals? *</label>
+            <textarea id="wl-goals" placeholder="e.g. Hold basic conversations within 3 months. / Read Thai menus and signs. / Be fluent enough to work in Thailand…" required></textarea>
           </div>
 
-          <button type="submit" class="form-submit-btn">Request My Spot →</button>
+          <!-- How they found Mind -->
+          <div class="form-group">
+            <label for="wl-found">How did you find Kru Mind? *</label>
+            <select id="wl-found" required>
+              <option value="" disabled selected>Select one…</option>
+              <option value="Google search">Google search</option>
+              <option value="YouTube">YouTube</option>
+              <option value="Instagram">Instagram</option>
+              <option value="Facebook">Facebook</option>
+              <option value="Friend or family recommendation">Friend or family recommendation</option>
+              <option value="Thai language forum or community">Thai language forum or community</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+
+          <!-- Optional notes -->
+          <div class="form-group">
+            <label for="wl-notes">Anything else for Kru Mind? <span style="color:var(--muted);font-weight:400;">(optional)</span></label>
+            <textarea id="wl-notes" placeholder="Questions, previous experience, learning challenges, or anything else you'd like to share…"></textarea>
+          </div>
+
+          <button type="submit" class="form-submit-btn" id="wlSubmitBtn">Request My Spot →</button>
           <p class="form-note">
-            By submitting this form you agree to be contacted at the email address above. No spam — only class updates from Kru Mind.
+            By submitting this form you agree to be contacted at the email address above. No spam — only updates about your class from Kru Mind.
           </p>
         </form>
 
@@ -824,50 +862,91 @@
 <script src="js/cart.js"></script>
 <script src="js/auth.js"></script>
 <script>
-  /* ── Waiting list form — mailto submission ── */
+  /* ═══════════════════════════════════════════════════════════
+   *  WAITING LIST FORM — Google Apps Script submission
+   *
+   *  SETUP: Paste your Apps Script Web App URL below.
+   *  See setup/apps-script.gs for full instructions.
+   * ═══════════════════════════════════════════════════════════ */
+  var APPS_SCRIPT_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
+
   (function() {
     var form    = document.getElementById('waitlistForm');
     var success = document.getElementById('waitlistSuccess');
+    var btn     = document.getElementById('wlSubmitBtn');
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
 
-      var name   = document.getElementById('wl-name').value.trim();
-      var email  = document.getElementById('wl-email').value.trim();
-      var cls    = document.getElementById('wl-class').value;
-      var level  = document.getElementById('wl-level').value;
-      var tz     = document.getElementById('wl-tz').value.trim();
-      var msg    = document.getElementById('wl-msg').value.trim();
+      var name     = document.getElementById('wl-name').value.trim();
+      var email    = document.getElementById('wl-email').value.trim();
+      var phone    = document.getElementById('wl-phone').value.trim();
+      var cls      = document.getElementById('wl-class').value;
+      var level    = document.getElementById('wl-level').value;
+      var tz       = document.getElementById('wl-tz').value.trim();
+      var why      = document.getElementById('wl-why').value.trim();
+      var goals    = document.getElementById('wl-goals').value.trim();
+      var howFound = document.getElementById('wl-found').value;
+      var notes    = document.getElementById('wl-notes').value.trim();
 
-      if (!name || !email || !cls || !level || !tz) {
-        alert('Please fill in all required fields.');
+      if (!name || !email || !cls || !level || !tz || !why || !goals || !howFound) {
+        alert('Please fill in all required fields (marked with *).');
         return;
       }
 
-      var subject = encodeURIComponent('Group Class Waiting List — ' + name);
-      var body = encodeURIComponent(
-        'Hi Kru Mind,\n\n' +
-        'I would like to join the waiting list for a group Thai class.\n\n' +
-        'Name: ' + name + '\n' +
-        'Email: ' + email + '\n' +
-        'Class: ' + cls + '\n' +
-        'Thai Level: ' + level + '\n' +
-        'Time Zone: ' + tz + '\n' +
-        (msg ? '\nAdditional notes:\n' + msg + '\n' : '') +
-        '\nThank you!'
-      );
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
 
-      window.location.href = 'mailto:learnthaiwithmind@gmail.com?subject=' + subject + '&body=' + body;
+      var payload = {
+        type:     'waitlist',
+        name:     name,
+        email:    email,
+        phone:    phone,
+        cls:      cls,
+        level:    level,
+        tz:       tz,
+        why:      why,
+        goals:    goals,
+        howFound: howFound,
+        notes:    notes
+      };
 
-      form.style.display = 'none';
-      success.classList.add('show');
+      /* ── Send to Google Apps Script (mode: no-cors so browser doesn't
+            block cross-origin. Data still arrives at the script.) ── */
+      fetch(APPS_SCRIPT_URL, {
+        method:  'POST',
+        mode:    'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(payload)
+      })
+      .then(function() {
+        form.style.display = 'none';
+        success.classList.add('show');
+      })
+      .catch(function(err) {
+        console.error('Submit error:', err);
+        /* Fallback: open mail client if fetch fails */
+        var subject = encodeURIComponent('Group Class Waiting List — ' + name);
+        var body = encodeURIComponent(
+          'Hi Kru Mind,\n\nI would like to join the waiting list.\n\n' +
+          'Name: ' + name + '\nEmail: ' + email + '\nClass: ' + cls +
+          '\nLevel: ' + level + '\nTime Zone: ' + tz +
+          '\nWhy I want to learn Thai:\n' + why +
+          '\nMy goals:\n' + goals +
+          '\nHow I found you: ' + howFound +
+          (notes ? '\n\nNotes: ' + notes : '') + '\n\nThank you!'
+        );
+        window.location.href = 'mailto:learnthaiwithmind@gmail.com?subject=' + subject + '&body=' + body;
+        form.style.display = 'none';
+        success.classList.add('show');
+      });
     });
   })();
 
   /* ── FAQ accordion ── */
   document.querySelectorAll('.faq-q').forEach(function(btn) {
     btn.addEventListener('click', function() {
-      var item = this.closest('.faq-item');
+      var item   = this.closest('.faq-item');
       var isOpen = item.classList.contains('open');
       document.querySelectorAll('.faq-item').forEach(function(i) { i.classList.remove('open'); });
       if (!isOpen) item.classList.add('open');
