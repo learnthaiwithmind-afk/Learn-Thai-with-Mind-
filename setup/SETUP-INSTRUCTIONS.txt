@@ -1,0 +1,172 @@
+═══════════════════════════════════════════════════════════════
+  LEARN THAI WITH MIND — Waiting List & Reviews Setup Guide
+  (One-time setup, takes about 10–15 minutes)
+═══════════════════════════════════════════════════════════════
+
+What this does:
+  ✅ All waiting list sign-ups saved to a Google Spreadsheet
+  ✅ You receive an email for every new sign-up
+  ✅ You get a special alert when a class reaches 3 students
+  ✅ Post-class reviews saved to the same spreadsheet
+  ✅ You receive an email for every new review (with testimonial text ready to copy)
+
+
+─────────────────────────────────────────────────────────────
+STEP 1 — Create your Google Spreadsheet
+─────────────────────────────────────────────────────────────
+
+1. Go to https://sheets.google.com
+2. Click the big "+" button to create a new spreadsheet
+3. Name it:  "Learn Thai with Mind — Student Data"
+4. Copy the spreadsheet ID from the browser URL bar:
+   The URL looks like:
+   https://docs.google.com/spreadsheets/d/  <<<THIS PART HERE>>>  /edit
+   (It's a long string of letters and numbers)
+5. Keep this tab open — you'll need it in Step 2.
+
+
+─────────────────────────────────────────────────────────────
+STEP 2 — Open the Apps Script editor
+─────────────────────────────────────────────────────────────
+
+1. In your Google Spreadsheet, click the menu:
+   Extensions → Apps Script
+2. A new tab opens with a code editor
+3. You'll see some existing code — select ALL of it and DELETE it
+4. Open the file: setup/apps-script.gs (from your website files)
+5. Copy the ENTIRE contents of that file
+6. Paste it into the Apps Script editor
+7. Find this line near the top:
+       const SPREADSHEET_ID = 'YOUR_SPREADSHEET_ID_HERE';
+   Replace  YOUR_SPREADSHEET_ID_HERE  with the ID you copied in Step 1.
+   Keep the single quotes around it.
+8. Click the Save button (disk icon, or Ctrl+S / Cmd+S)
+
+
+─────────────────────────────────────────────────────────────
+STEP 3 — Deploy as a Web App
+─────────────────────────────────────────────────────────────
+
+1. Click the "Deploy" button (top right of Apps Script editor)
+2. Choose "New deployment"
+3. Click the gear icon next to "Type" and select "Web app"
+4. Fill in the settings:
+   - Description: Learn Thai with Mind Form Handler
+   - Execute as:  Me  (your Google account)
+   - Who has access:  Anyone
+5. Click "Deploy"
+6. A popup appears asking you to authorise — click "Authorise access"
+7. Choose your Google account (learnthaiwithmind@gmail.com)
+8. You may see a warning "Google hasn't verified this app"
+   → Click "Advanced" → "Go to [your project name] (unsafe)"
+   → Click "Allow"
+   (This is safe — it's YOUR code running on YOUR account)
+9. You'll see a "Web App URL" — it looks like:
+   https://script.google.com/macros/s/AKfycbXXXXXXXXXXXX/exec
+10. COPY THIS URL — you'll need it in Step 4.
+
+
+─────────────────────────────────────────────────────────────
+STEP 4 — Paste the URL into your website files
+─────────────────────────────────────────────────────────────
+
+You need to paste the URL into 2 files:
+
+FILE 1: private-class.html
+  Open the file and find this line (near the bottom, in the <script> tag):
+      var APPS_SCRIPT_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
+  Replace  YOUR_APPS_SCRIPT_URL_HERE  with the URL you copied.
+  Keep the single quotes around it.
+
+FILE 2: feedback.html
+  Same thing — find the same line and paste the same URL.
+
+After editing both files, save them and push to GitHub.
+
+
+─────────────────────────────────────────────────────────────
+STEP 5 — Test it!
+─────────────────────────────────────────────────────────────
+
+1. Go to your live website → Group Classes page
+2. Fill in the waiting list form and submit
+3. Wait about 30 seconds
+4. Check your Gmail inbox (learnthaiwithmind@gmail.com)
+   → You should receive an email with the submission details
+5. Open your Google Spreadsheet
+   → You should see a new tab called "Waiting List" with the data
+
+If you don't see anything, check the Apps Script editor:
+  View → Executions (shows recent runs and any errors)
+
+
+─────────────────────────────────────────────────────────────
+HOW TO SHARE THE FEEDBACK FORM WITH STUDENTS
+─────────────────────────────────────────────────────────────
+
+After each class, send students this link:
+  https://[your-site-url]/feedback.html
+
+You can include it in your Zoom chat at the end of class, or
+in the email where you send the cloud recording.
+
+Example message to copy:
+  "Hi everyone! Here is the recording from today's class: [link]
+   If you have a moment, I'd love to hear your feedback:
+   [your-site]/feedback.html
+   It only takes 2 minutes and really helps me improve!
+   ขอบคุณมากนะคะ 🙏"
+
+
+─────────────────────────────────────────────────────────────
+HOW TO POST A TESTIMONIAL ON YOUR WEBSITE
+─────────────────────────────────────────────────────────────
+
+When a student submits a review and ticks "permission to share":
+
+1. Open your Google Sheet → "Reviews" tab
+2. Find their testimonial in the "Testimonial Text" column
+3. Verify the "Share Permission" column says "Yes"
+4. Copy their testimonial text and name/country
+5. Open index.html or private-class.html
+6. Find the testimonials section and add a new testimonial card
+   (copy the existing HTML structure and replace the text)
+7. In the spreadsheet, set the "Published?" column to "Yes"
+   so you know it's live
+
+
+─────────────────────────────────────────────────────────────
+HOW THE 3-STUDENT ALERT WORKS
+─────────────────────────────────────────────────────────────
+
+Every time someone joins the waiting list, the script counts
+how many students have signed up for that specific class.
+
+When the count hits EXACTLY 3, you'll receive a special email:
+  Subject: 🎉 Class alert: "[class name]" has reached 3 students!
+
+That's your signal to:
+  1. Open your Google Sheet and review the 3 students
+  2. Contact them individually to confirm their spot
+  3. Send them the Zoom link and payment details
+  4. Set a start date and welcome them to the class!
+
+To change the minimum from 3 to a different number:
+  → Open Apps Script editor
+  → Find the line:  const MIN_STUDENTS = 3;
+  → Change 3 to your preferred number
+  → Click Save, then Deploy → Manage deployments → Edit → "New version" → Deploy
+
+
+─────────────────────────────────────────────────────────────
+QUESTIONS?
+─────────────────────────────────────────────────────────────
+
+If anything doesn't work, the developer who built your site
+can help you troubleshoot. The most common issues are:
+  - Wrong Spreadsheet ID (check for extra spaces)
+  - Forgot to deploy after saving changes
+  - URL not updated in both HTML files
+
+Good luck, Kru Mind! 🇹🇭
+═══════════════════════════════════════════════════════════════

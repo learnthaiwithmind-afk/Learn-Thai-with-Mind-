@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Class Feedback — Learn Thai with Mind</title>
+  <meta name="description" content="Share your feedback about your group Thai class with Kru Mind. Your review helps improve the classes and may be featured on the website." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── Star rating ── */
+    .star-rating {
+      display: flex;
+      gap: 8px;
+      margin-top: 4px;
+    }
+    .star-rating input { display: none; }
+    .star-rating label {
+      font-size: 40px;
+      color: var(--border);
+      cursor: pointer;
+      transition: color .15s, transform .15s;
+      line-height: 1;
+      user-select: none;
+    }
+    .star-rating label:hover,
+    .star-rating label:hover ~ label { color: var(--yellow); }
+    .star-rating input:checked ~ label { color: var(--border); }
+    .star-rating input:checked + label,
+    .star-rating label:hover { color: var(--yellow); transform: scale(1.15); }
+
+    /* Reverse the star order so CSS sibling trick works correctly */
+    .star-rating { flex-direction: row-reverse; justify-content: flex-end; }
+    .star-rating label:hover,
+    .star-rating label:hover ~ label { color: var(--yellow); }
+    .star-rating input:checked ~ label { color: var(--yellow); }
+    .star-rating input:checked + label ~ label { color: var(--border); }
+
+    .star-hint {
+      font-size: 13px;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* ── Feedback form wrapper ── */
+    .fb-wrap {
+      background: var(--white);
+      border-radius: 24px;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-lg);
+      overflow: hidden;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    .fb-header {
+      background: var(--dark);
+      padding: 40px 52px;
+      border-bottom: 1px solid rgba(200,152,31,.2);
+    }
+    @media(max-width:600px){ .fb-header { padding: 28px 24px; } }
+    .fb-header .thai-greeting {
+      font-family: 'Noto Sans Thai', sans-serif;
+      font-size: 32px;
+      color: var(--yellow);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .fb-header h2 { color: var(--white); font-size: 24px; margin-bottom: 6px; }
+    .fb-header p  { color: rgba(255,255,255,.6); font-size: 15px; line-height: 1.6; }
+
+    .fb-body { padding: 44px 52px; }
+    @media(max-width:600px){ .fb-body { padding: 28px 24px; } }
+
+    .fb-form { display: flex; flex-direction: column; gap: 22px; }
+    .form-row-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    @media(max-width:580px){ .form-row-2 { grid-template-columns: 1fr; } }
+
+    .form-group { display: flex; flex-direction: column; gap: 7px; }
+    .form-group label { font-size: 13px; font-weight: 600; color: var(--dark); }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 12px 16px;
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      color: var(--dark);
+      background: var(--bg);
+      outline: none;
+      transition: border-color .2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--yellow); background: var(--white); }
+    .form-group textarea { resize: vertical; min-height: 110px; }
+    .form-group select { cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%236b7280' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; padding-right: 40px; }
+
+    /* Share permission toggle */
+    .share-toggle {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 20px;
+      background: var(--yellow-lt);
+      border: 1.5px solid rgba(200,152,31,.3);
+      border-radius: 12px;
+    }
+    .share-toggle input[type="checkbox"] {
+      width: 20px; height: 20px;
+      accent-color: var(--yellow);
+      cursor: pointer;
+      flex-shrink: 0;
+      padding: 0; border: none; background: transparent;
+    }
+    .share-toggle label {
+      font-size: 14px;
+      font-weight: 600;
+      color: #7a5c00;
+      cursor: pointer;
+      line-height: 1.5;
+    }
+
+    .fb-submit-btn {
+      padding: 16px 40px;
+      background: var(--yellow);
+      color: var(--white);
+      border: none;
+      border-radius: 100px;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all .25s;
+      width: 100%;
+      letter-spacing: .3px;
+    }
+    .fb-submit-btn:hover { background: var(--yellow-dk); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,152,31,.35); }
+    .fb-submit-btn:disabled { opacity: .6; transform: none; cursor: not-allowed; }
+
+    .form-note {
+      font-size: 13px;
+      color: var(--muted);
+      text-align: center;
+      line-height: 1.6;
+    }
+
+    /* ── Success ── */
+    .fb-success {
+      display: none;
+      text-align: center;
+      padding: 60px 40px;
+    }
+    .fb-success.show { display: block; }
+    .fb-success-icon {
+      width: 88px; height: 88px;
+      background: linear-gradient(135deg, rgba(200,152,31,.15), rgba(200,152,31,.05));
+      border: 2px solid var(--yellow);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 40px;
+      margin: 0 auto 28px;
+    }
+    .fb-success h3 { font-size: 26px; color: var(--dark); margin-bottom: 12px; }
+    .fb-success p  { font-size: 16px; color: var(--mid); line-height: 1.75; max-width: 440px; margin: 0 auto 28px; }
+
+    /* ── Privacy note ── */
+    .privacy-box {
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: 14px;
+      padding: 24px 28px;
+      margin-top: 48px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+    }
+    .privacy-icon { font-size: 26px; flex-shrink: 0; margin-top: 2px; }
+    .privacy-box p { font-size: 14px; color: var(--muted); line-height: 1.7; margin: 0; }
+    .privacy-box strong { color: var(--dark); }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="images/logo.png" alt="Learn Thai with Mind logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+      <div class="nav-logo-emblem" style="display:none;">M</div>
+      <div class="nav-logo-text">
+        <span>Learn Thai with Mind</span>
+        <span>ภาษาไทยกับมายด์</span>
+      </div>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="books.html">Books</a></li>
+      <li><a href="flashcard.html">Flashcards</a></li>
+      <li><a href="private-class.html">Group Classes</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="private-class.html#waitlist" class="nav-cta">Join a Class</a></li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- ══════════ PAGE HERO ══════════ -->
+<section class="page-hero">
+  <div class="container text-center">
+    <p class="eyebrow" style="margin-bottom:12px;">After Your Class</p>
+    <h1 style="color:var(--white);font-size:clamp(32px,4.5vw,52px);margin-bottom:16px;">How Was Your Class?</h1>
+    <div class="accent-bar center" style="margin-top:20px;"><span class="accent-line"></span><span class="accent-dot"></span></div>
+    <p style="color:rgba(255,255,255,.65);font-size:17px;max-width:520px;margin:20px auto 0;line-height:1.7;">
+      Your honest feedback helps Kru Mind improve every lesson. It takes less than 3 minutes — and if you'd like to share a review, she'd love to feature it on the website.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════ FEEDBACK FORM ══════════ -->
+<section class="section-pad bg-cream">
+  <div class="container">
+
+    <div class="fb-wrap fade-in">
+
+      <!-- Form header -->
+      <div class="fb-header">
+        <span class="thai-greeting">ขอบคุณมากนะคะ</span>
+        <h2>Thank You for Learning with Mind!</h2>
+        <p>Your feedback is read personally by Kru Mind. It helps her make each class better, and hearing your progress makes her day. Please be as honest as you like — both the good and the "could be better"!</p>
+      </div>
+
+      <!-- Form body -->
+      <div class="fb-body">
+
+        <form class="fb-form" id="feedbackForm">
+
+          <!-- Row 1: Name + Email -->
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="fb-name">Your Name *</label>
+              <input type="text" id="fb-name" placeholder="e.g. Sarah Johnson" required />
+            </div>
+            <div class="form-group">
+              <label for="fb-email">Your Email *</label>
+              <input type="email" id="fb-email" placeholder="your@email.com" required />
+            </div>
+          </div>
+
+          <!-- Row 2: Class + Country -->
+          <div class="form-row-2">
+            <div class="form-group">
+              <label for="fb-class">Which class did you attend? *</label>
+              <select id="fb-class" required>
+                <option value="" disabled selected>Select a class…</option>
+                <option value="Speaking Thai — Morning (Mon &amp; Thu · 10:00–11:30 ICT)">Speaking Thai — Morning (10:00–11:30 ICT)</option>
+                <option value="Reading &amp; Writing — Midday (Mon &amp; Thu · 12:30–14:00 ICT)">Reading &amp; Writing — Midday (12:30–14:00 ICT)</option>
+                <option value="Speaking Thai — Evening (Mon &amp; Thu · 20:00–21:30 ICT)">Speaking Thai — Evening (20:00–21:30 ICT)</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="fb-country">Your Country <span style="color:var(--muted);font-weight:400;">(optional — for testimonial)</span></label>
+              <input type="text" id="fb-country" placeholder="e.g. Germany, USA, Australia…" />
+            </div>
+          </div>
+
+          <!-- Star rating -->
+          <div class="form-group">
+            <label>Overall rating *</label>
+            <div class="star-rating">
+              <input type="radio" id="star5" name="rating" value="5" required />
+              <label for="star5" title="5 stars — Excellent">★</label>
+              <input type="radio" id="star4" name="rating" value="4" />
+              <label for="star4" title="4 stars — Very good">★</label>
+              <input type="radio" id="star3" name="rating" value="3" />
+              <label for="star3" title="3 stars — Good">★</label>
+              <input type="radio" id="star2" name="rating" value="2" />
+              <label for="star2" title="2 stars — Fair">★</label>
+              <input type="radio" id="star1" name="rating" value="1" />
+              <label for="star1" title="1 star — Needs improvement">★</label>
+            </div>
+            <div class="star-hint">Click a star to rate your experience</div>
+          </div>
+
+          <!-- What they enjoyed -->
+          <div class="form-group">
+            <label for="fb-enjoyed">What did you enjoy most about the class? *</label>
+            <textarea id="fb-enjoyed" placeholder="e.g. Kru Mind's explanations are so clear. I loved the pronunciation drills. The small group made me feel comfortable to speak…" required></textarea>
+          </div>
+
+          <!-- Suggestions -->
+          <div class="form-group">
+            <label for="fb-suggest">Any suggestions for improvement? <span style="color:var(--muted);font-weight:400;">(optional)</span></label>
+            <textarea id="fb-suggest" placeholder="e.g. I'd love more time for Q&amp;A. Could we practise more dialogues? I'd like handout materials after class…"></textarea>
+          </div>
+
+          <!-- Testimonial (optional) -->
+          <div class="form-group">
+            <label for="fb-testimonial">
+              Would you like to share a testimonial for the website? <span style="color:var(--muted);font-weight:400;">(optional)</span>
+            </label>
+            <textarea id="fb-testimonial" placeholder="Write a short review in your own words — Kru Mind may feature it on the website (with your permission below). e.g. &quot;Within 4 weeks I could read Thai menus and greet locals. Kru Mind makes every class fun and easy to follow…&quot;"></textarea>
+          </div>
+
+          <!-- Share permission -->
+          <div class="share-toggle">
+            <input type="checkbox" id="fb-share" />
+            <label for="fb-share">
+              ✅ Yes, Kru Mind may use my testimonial on the Learn Thai with Mind website. I'm happy for my name and country to be shown alongside my review.
+            </label>
+          </div>
+
+          <button type="submit" class="fb-submit-btn" id="fbSubmitBtn">Send My Feedback →</button>
+          <p class="form-note">
+            Your feedback goes directly to Kru Mind's inbox. Testimonials are only published with your permission above.
+          </p>
+
+        </form>
+
+        <!-- Success message -->
+        <div class="fb-success" id="feedbackSuccess">
+          <div class="fb-success-icon">🙏</div>
+          <h3>ขอบคุณมากนะคะ — Thank you so much!</h3>
+          <p>Your feedback has been sent to Kru Mind. She reads every response personally and truly values your honest thoughts. See you in the next class!</p>
+          <a href="private-class.html" class="btn btn-yellow">Back to Group Classes</a>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Privacy note -->
+    <div class="privacy-box fade-in">
+      <div class="privacy-icon">🔒</div>
+      <p>
+        <strong>Your privacy matters.</strong> The information you share in this form is used only by Kru Mind to improve her classes and (with your explicit permission) to feature your testimonial on this website. Your email address is never shared with third parties. Testimonials are only published if you tick the permission checkbox above.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="nav-logo">
+          <img src="images/logo.png" alt="Learn Thai with Mind logo" class="nav-logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <div class="nav-logo-emblem" style="display:none;">M</div>
+          <div class="nav-logo-text"><span>Learn Thai with Mind</span><span>ภาษาไทยกับมายด์</span></div>
+        </div>
+        <p>Premium Thai language education for serious learners worldwide. Taught by Kru Mind — 10+ years, all skills, all levels.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/learnthaiwithmind/" target="_blank" rel="noopener" class="social-btn" title="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/learnthaiwithmind/" target="_blank" rel="noopener" class="social-btn" title="Facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/channel/UCC2l2QhjI3CubcFvxBKPYdg" target="_blank" rel="noopener" class="social-btn" title="YouTube">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Learn</h4><ul><li><a href="courses.html">All Courses</a></li><li><a href="books.html">Books</a></li><li><a href="flashcard.html">Flashcards</a></li><li><a href="private-class.html">Group Classes</a></li></ul></div>
+      <div class="footer-col"><h4>About</h4><ul><li><a href="index.html#about">About Mind</a></li><li><a href="https://www.facebook.com/learnthaiwithmind/" target="_blank">Facebook</a></li><li><a href="https://www.instagram.com/learnthaiwithmind/" target="_blank">Instagram</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul><li><a href="contact.html">Contact Page</a></li><li><a href="mailto:learnthaiwithmind@gmail.com">learnthaiwithmind@gmail.com</a></li><li><a href="private-class.html#waitlist">Join a Class</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-logo-text">Learn Thai with Mind</span>
+      <span>© 2026 · All rights reserved</span>
+      <span style="color:var(--yellow);font-size:16px;">ภาษาไทยกับมายด์</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast"></div>
+<script src="js/main.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/auth.js"></script>
+<script>
+  /* ═══════════════════════════════════════════════════════════
+   *  POST-CLASS FEEDBACK FORM — Google Apps Script submission
+   *
+   *  SETUP: Paste your Apps Script Web App URL below.
+   *  (Same URL as private-class.html — same script handles both)
+   *  See setup/apps-script.gs for full instructions.
+   * ═══════════════════════════════════════════════════════════ */
+  var APPS_SCRIPT_URL = 'YOUR_APPS_SCRIPT_URL_HERE';
+
+  (function() {
+    var form    = document.getElementById('feedbackForm');
+    var success = document.getElementById('feedbackSuccess');
+    var btn     = document.getElementById('fbSubmitBtn');
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      var name        = document.getElementById('fb-name').value.trim();
+      var email       = document.getElementById('fb-email').value.trim();
+      var cls         = document.getElementById('fb-class').value;
+      var country     = document.getElementById('fb-country').value.trim();
+      var enjoyed     = document.getElementById('fb-enjoyed').value.trim();
+      var suggest     = document.getElementById('fb-suggest').value.trim();
+      var testimonial = document.getElementById('fb-testimonial').value.trim();
+      var shareOk     = document.getElementById('fb-share').checked ? 'Yes' : 'No';
+
+      /* Get selected star rating */
+      var ratingEl = document.querySelector('input[name="rating"]:checked');
+      var rating   = ratingEl ? ratingEl.value : '';
+
+      if (!name || !email || !cls || !rating || !enjoyed) {
+        alert('Please fill in all required fields: name, email, class, rating, and what you enjoyed.');
+        return;
+      }
+
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+
+      var payload = {
+        type:            'review',
+        name:            name,
+        email:           email,
+        cls:             cls,
+        country:         country,
+        rating:          rating,
+        enjoyed:         enjoyed,
+        suggestions:     suggest,
+        testimonial:     testimonial,
+        sharePermission: shareOk
+      };
+
+      fetch(APPS_SCRIPT_URL, {
+        method:  'POST',
+        mode:    'no-cors',
+        headers: { 'Content-Type': 'application/json' },
+        body:    JSON.stringify(payload)
+      })
+      .then(function() {
+        form.style.display = 'none';
+        success.classList.add('show');
+      })
+      .catch(function(err) {
+        console.error('Submit error:', err);
+        /* Fallback: mailto */
+        var stars = '';
+        for (var i = 0; i < parseInt(rating); i++) stars += '★';
+        var subject = encodeURIComponent('Class Feedback — ' + name + ' · ' + stars);
+        var body = encodeURIComponent(
+          'Hi Kru Mind,\n\nFeedback from: ' + name + '\nEmail: ' + email +
+          '\nClass: ' + cls + '\nCountry: ' + country +
+          '\nRating: ' + stars + ' (' + rating + '/5)\n\n' +
+          'What I enjoyed:\n' + enjoyed + '\n\n' +
+          (suggest ? 'Suggestions:\n' + suggest + '\n\n' : '') +
+          (testimonial ? 'Testimonial for website:\n"' + testimonial + '"\nPermission to share: ' + shareOk : '') +
+          '\n\nThank you!'
+        );
+        window.location.href = 'mailto:learnthaiwithmind@gmail.com?subject=' + subject + '&body=' + body;
+        form.style.display = 'none';
+        success.classList.add('show');
+      });
+    });
+  })();
+</script>
+</body>
+</html>
