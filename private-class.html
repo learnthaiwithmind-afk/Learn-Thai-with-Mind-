@@ -857,23 +857,38 @@
   </div>
 </footer>
 
+<!-- Hidden iframe — form response loads here silently -->
+<iframe name="wl-hidden-frame" style="display:none;" aria-hidden="true"></iframe>
+
+<!-- Hidden form — posts directly to Apps Script, targets the hidden iframe -->
+<form id="wlHiddenForm"
+      action="https://script.google.com/macros/s/AKfycbwyAzqd2LfvN-11hqpf78MQUsbwGnllreuztL99UnuRlnxc3Fxkjys52SmegzDYfNo_/exec"
+      method="POST"
+      target="wl-hidden-frame"
+      style="display:none;">
+  <input type="hidden" name="type"     value="waitlist" />
+  <input type="hidden" name="name"     id="hf-name" />
+  <input type="hidden" name="email"    id="hf-email" />
+  <input type="hidden" name="phone"    id="hf-phone" />
+  <input type="hidden" name="cls"      id="hf-cls" />
+  <input type="hidden" name="level"    id="hf-level" />
+  <input type="hidden" name="tz"       id="hf-tz" />
+  <input type="hidden" name="why"      id="hf-why" />
+  <input type="hidden" name="goals"    id="hf-goals" />
+  <input type="hidden" name="howFound" id="hf-howFound" />
+  <input type="hidden" name="notes"    id="hf-notes" />
+</form>
+
 <div class="toast"></div>
 <script src="js/main.js"></script>
 <script src="js/cart.js"></script>
 <script src="js/auth.js"></script>
 <script>
-  /* ═══════════════════════════════════════════════════════════
-   *  WAITING LIST FORM — Google Apps Script submission
-   *
-   *  SETUP: Paste your Apps Script Web App URL below.
-   *  See setup/apps-script.gs for full instructions.
-   * ═══════════════════════════════════════════════════════════ */
-  var APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwyAzqd2LfvN-11hqpf78MQUsbwGnllreuztL99UnuRlnxc3Fxkjys52SmegzDYfNo_/exec';
-
   (function() {
-    var form    = document.getElementById('waitlistForm');
-    var success = document.getElementById('waitlistSuccess');
-    var btn     = document.getElementById('wlSubmitBtn');
+    var form       = document.getElementById('waitlistForm');
+    var hiddenForm = document.getElementById('wlHiddenForm');
+    var success    = document.getElementById('waitlistSuccess');
+    var btn        = document.getElementById('wlSubmitBtn');
 
     form.addEventListener('submit', function(e) {
       e.preventDefault();
@@ -894,56 +909,29 @@
         return;
       }
 
-      btn.textContent = 'Sending…';
+      // Populate the hidden form fields
+      document.getElementById('hf-name').value     = name;
+      document.getElementById('hf-email').value    = email;
+      document.getElementById('hf-phone').value    = phone;
+      document.getElementById('hf-cls').value      = cls;
+      document.getElementById('hf-level').value    = level;
+      document.getElementById('hf-tz').value       = tz;
+      document.getElementById('hf-why').value      = why;
+      document.getElementById('hf-goals').value    = goals;
+      document.getElementById('hf-howFound').value = howFound;
+      document.getElementById('hf-notes').value    = notes;
+
+      // Submit to Apps Script via hidden iframe (bypasses CORS completely)
+      hiddenForm.submit();
+
+      // Show success immediately
       btn.disabled = true;
-
-      var payload = {
-        type:     'waitlist',
-        name:     name,
-        email:    email,
-        phone:    phone,
-        cls:      cls,
-        level:    level,
-        tz:       tz,
-        why:      why,
-        goals:    goals,
-        howFound: howFound,
-        notes:    notes
-      };
-
-      /* ── Send to Google Apps Script (mode: no-cors so browser doesn't
-            block cross-origin. Data still arrives at the script.) ── */
-      fetch(APPS_SCRIPT_URL, {
-        method:  'POST',
-        mode:    'no-cors',
-        headers: { 'Content-Type': 'application/json' },
-        body:    JSON.stringify(payload)
-      })
-      .then(function() {
-        form.style.display = 'none';
-        success.classList.add('show');
-      })
-      .catch(function(err) {
-        console.error('Submit error:', err);
-        /* Fallback: open mail client if fetch fails */
-        var subject = encodeURIComponent('Group Class Waiting List — ' + name);
-        var body = encodeURIComponent(
-          'Hi Kru Mind,\n\nI would like to join the waiting list.\n\n' +
-          'Name: ' + name + '\nEmail: ' + email + '\nClass: ' + cls +
-          '\nLevel: ' + level + '\nTime Zone: ' + tz +
-          '\nWhy I want to learn Thai:\n' + why +
-          '\nMy goals:\n' + goals +
-          '\nHow I found you: ' + howFound +
-          (notes ? '\n\nNotes: ' + notes : '') + '\n\nThank you!'
-        );
-        window.location.href = 'mailto:learnthaiwithmind@gmail.com?subject=' + subject + '&body=' + body;
-        form.style.display = 'none';
-        success.classList.add('show');
-      });
+      form.style.display = 'none';
+      success.classList.add('show');
     });
   })();
 
-  /* ── FAQ accordion ── */
+  /* FAQ accordion */
   document.querySelectorAll('.faq-q').forEach(function(btn) {
     btn.addEventListener('click', function() {
       var item   = this.closest('.faq-item');
