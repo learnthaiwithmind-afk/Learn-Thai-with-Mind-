@@ -77,6 +77,21 @@
 
     /* ── Features ── */
     .bg-cream { background: var(--bg); }
+
+    /* ── Coloured feature cards ── */
+    .feature-card { border-top: 3px solid transparent; transition: border-color .2s, transform .25s, box-shadow .25s; }
+    .feature-card:nth-child(1) { border-top-color: var(--blue); }
+    .feature-card:nth-child(1) .feature-icon-wrap { background: rgba(26,54,128,.12); color: var(--blue); }
+    .feature-card:nth-child(2) { border-top-color: #C8981F; }
+    .feature-card:nth-child(2) .feature-icon-wrap { background: rgba(200,152,31,.15); color: #a07800; }
+    .feature-card:nth-child(3) { border-top-color: #0891B2; }
+    .feature-card:nth-child(3) .feature-icon-wrap { background: rgba(8,145,178,.12); color: #0891B2; }
+    .feature-card:nth-child(4) { border-top-color: #7C3AED; }
+    .feature-card:nth-child(4) .feature-icon-wrap { background: rgba(124,58,237,.12); color: #7C3AED; }
+    .feature-card:nth-child(5) { border-top-color: #EA580C; }
+    .feature-card:nth-child(5) .feature-icon-wrap { background: rgba(234,88,12,.12); color: #EA580C; }
+    .feature-card:nth-child(6) { border-top-color: #059669; }
+    .feature-card:nth-child(6) .feature-icon-wrap { background: rgba(5,150,105,.12); color: #059669; }
   </style>
 </head>
 <body>
@@ -101,6 +116,7 @@
       <li><a href="books.html">Books</a></li>
       <li><a href="flashcard.html">Flashcards</a></li>
       <li><a href="private-class.html">Group Classes</a></li>
+      <li><a href="blog.html">Blog</a></li>
       <li><a href="contact.html">Contact</a></li>
       <li><a href="private-class.html#waitlist" class="nav-cta">Join a Class</a></li>
     </ul>
@@ -251,71 +267,65 @@
 <!-- ══════════ WHY LEARN WITH MIND ══════════ -->
 <section class="section-pad bg-cream">
   <div class="container text-center">
-    <p class="eyebrow fade-in">Why Students Choose Mind</p>
-    <h2 class="section-title fade-in">The Premium Thai Learning<br>Experience</h2>
+    <p class="eyebrow fade-in">Why Learners Worldwide Choose Mind</p>
+    <h2 class="section-title fade-in">Master Thai on Your Terms —<br>Language, Culture &amp; Confidence</h2>
     <div class="accent-bar center fade-in"><div class="accent-line"></div><div class="accent-dot"></div><div class="accent-line"></div></div>
-    <p class="section-sub fade-in">Every lesson is crafted to give you real results — not just textbook knowledge, but the confidence to speak Thai in the real world.</p>
+    <p class="section-sub fade-in">Learn Thai at your own pace, in your own style. From your very first word to fluent conversation — with the cultural understanding to truly connect with Thailand and its people.</p>
 
     <div class="features-grid">
       <div class="feature-card fade-in">
         <div class="feature-icon-wrap">
-          <!-- Chat / speech bubble — Real Thai -->
           <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 0 1 .865-.501 48.172 48.172 0 0 0 3.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0 0 12 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018Z"/>
           </svg>
         </div>
         <h3 class="feature-title">Real Thai, Not Textbook Thai</h3>
-        <p class="feature-desc">Mind focuses on the Thai people actually speak — natural expressions, real slang, and the cultural context that makes language click. No robotic script-reading here.</p>
+        <p class="feature-desc">Mind teaches the Thai people actually speak — natural expressions, everyday slang, and the cultural nuance that makes language feel alive. You'll understand real conversations, not just scripted dialogues.</p>
       </div>
       <div class="feature-card fade-in">
         <div class="feature-icon-wrap">
-          <!-- Sparkles — Fun & Engaging -->
           <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9.813 15.904 9 18.75l-.813-2.846a4.5 4.5 0 0 0-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 0 0 3.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 0 0 3.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 0 0-3.09 3.09ZM18.259 8.715 18 9.75l-.259-1.035a3.375 3.375 0 0 0-2.455-2.456L14.25 6l1.036-.259a3.375 3.375 0 0 0 2.455-2.456L18 2.25l.259 1.035a3.375 3.375 0 0 0 2.456 2.456L21.75 6l-1.035.259a3.375 3.375 0 0 0-2.456 2.456ZM16.894 20.567 16.5 21.75l-.394-1.183a2.25 2.25 0 0 0-1.423-1.423L13.5 18.75l1.183-.394a2.25 2.25 0 0 0 1.423-1.423l.394-1.183.394 1.183a2.25 2.25 0 0 0 1.423 1.423l1.183.394-1.183.394a2.25 2.25 0 0 0-1.423 1.423Z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"/>
           </svg>
         </div>
-        <h3 class="feature-title">Fun &amp; Engaging Lessons</h3>
-        <p class="feature-desc">Thai can feel overwhelming at first — tones, script, unfamiliar sounds. Mind breaks it all down with humour, stories, and relatable examples that make even the trickiest concepts click.</p>
+        <h3 class="feature-title">Your Pace, Your Style</h3>
+        <p class="feature-desc">Every learner is different — and that's celebrated here. Study on weekday mornings, weekend evenings, or a quiet Sunday. Rewatch, go slow, skip ahead. Your Thai journey runs on your schedule, not anyone else's.</p>
       </div>
       <div class="feature-card fade-in">
         <div class="feature-icon-wrap">
-          <!-- Bar chart ascending — All Levels -->
           <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M3 13.125C3 12.504 3.504 12 4.125 12h2.25c.621 0 1.125.504 1.125 1.125v6.75C7.5 20.496 6.996 21 6.375 21h-2.25A1.125 1.125 0 0 1 3 19.875v-6.75ZM9.75 8.625c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125v11.25c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V8.625ZM16.5 4.125c0-.621.504-1.125 1.125-1.125h2.25C20.496 3 21 3.504 21 4.125v15.75c0 .621-.504 1.125-1.125 1.125h-2.25a1.125 1.125 0 0 1-1.125-1.125V4.125Z"/>
           </svg>
         </div>
         <h3 class="feature-title">All Levels, All Skills</h3>
-        <p class="feature-desc">Whether you've never seen a Thai letter or you want to fine-tune your advanced reading, there's a course here for you. Speaking, listening, reading, and writing — all covered.</p>
+        <p class="feature-desc">Never studied Thai before? Already conversational? There's a course for exactly where you are. Speaking, listening, reading, and writing — from your first สวัสดี to reading Thai signs with confidence.</p>
       </div>
       <div class="feature-card fade-in">
         <div class="feature-icon-wrap">
-          <!-- Lightbulb — Understand by Heart -->
           <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M12 18v-5.25m0 0a6.01 6.01 0 0 0 1.5-.189m-1.5.189a6.01 6.01 0 0 1-1.5-.189m3.75 7.478a12.06 12.06 0 0 1-4.5 0m3.75 2.383a14.406 14.406 0 0 1-3 0M14.25 18v-.192c0-.983.658-1.823 1.508-2.316a7.5 7.5 0 1 0-7.517 0c.85.493 1.509 1.333 1.509 2.316V18"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M15.182 15.182a4.5 4.5 0 0 1-6.364 0M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0ZM9.75 9.75c0 .414-.168.75-.375.75S9 10.164 9 9.75 9.168 9 9.375 9s.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Zm5.625 0c0 .414-.168.75-.375.75s-.375-.336-.375-.75.168-.75.375-.75.375.336.375.75Zm-.375 0h.008v.015h-.008V9.75Z"/>
           </svg>
         </div>
-        <h3 class="feature-title">Understand by Heart</h3>
-        <p class="feature-desc">Mind's core teaching philosophy: she wants you to truly understand <em>why</em> Thai works the way it does. When you understand the logic, everything becomes easier and stays with you.</p>
+        <h3 class="feature-title">Culture, Etiquette &amp; Respect</h3>
+        <p class="feature-desc">Language without culture is only half the picture. Learn when to wai, how to show respect, what <em>kreng jai</em> really means — and why it matters. Thais will feel your genuine understanding, and that opens every door.</p>
       </div>
       <div class="feature-card fade-in">
         <div class="feature-icon-wrap">
-          <!-- Globe — Language + Culture -->
           <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
             <path stroke-linecap="round" stroke-linejoin="round" d="M12 21a9.004 9.004 0 0 0 8.716-6.747M12 21a9.004 9.004 0 0 1-8.716-6.747M12 21c2.485 0 4.5-4.03 4.5-9S14.485 3 12 3m0 18c-2.485 0-4.5-4.03-4.5-9S9.515 3 12 3m0 0a8.997 8.997 0 0 1 7.843 4.582M12 3a8.997 8.997 0 0 0-7.843 4.582m15.686 0A11.953 11.953 0 0 1 12 10.5c-2.998 0-5.74-1.1-7.843-2.918m15.686 0A8.959 8.959 0 0 1 21 12c0 .778-.099 1.533-.284 2.253m0 0A17.919 17.919 0 0 1 12 16.5c-3.162 0-6.133-.815-8.716-2.247m0 0A9.015 9.015 0 0 1 3 12c0-1.605.42-3.113 1.157-4.418"/>
           </svg>
         </div>
         <h3 class="feature-title">Language + Culture Together</h3>
-        <p class="feature-desc">You can't fully understand Thai without understanding Thai culture — and Mind teaches both. From "kreng jai" to "sanook", you'll gain real insight into how Thais think and communicate.</p>
+        <p class="feature-desc">Sanook. Kreng jai. Mai pen rai. Every Thai phrase carries a world of meaning. Mind weaves cultural insight through every lesson — so you don't just speak Thai, you truly <em>understand</em> Thailand.</p>
       </div>
       <div class="feature-card fade-in">
         <div class="feature-icon-wrap">
-          <!-- Shield check — Real Results -->
           <svg width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" aria-hidden="true">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/>
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0H3"/>
           </svg>
         </div>
-        <h3 class="feature-title">Real Results, Guaranteed</h3>
-        <p class="feature-desc">If you put in the effort, Mind's courses will get you speaking Thai — not someday, but soon. Our 30-day satisfaction guarantee reflects total confidence in the method.</p>
+        <h3 class="feature-title">Study Anywhere, Anytime</h3>
+        <p class="feature-desc">HD video lessons, PDF workbooks, and lifetime access — on any device. Study from your sofa, a café in Chiang Mai, or during your commute. Your Thai classroom travels with you, wherever you go.</p>
       </div>
     </div>
   </div>
@@ -727,6 +737,7 @@
           <li><a href="books.html">Books &amp; Materials</a></li>
           <li><a href="flashcard.html">Free Flashcards</a></li>
           <li><a href="private-class.html">Group Classes</a></li>
+          <li><a href="blog.html">Blog</a></li>
         </ul>
       </div>
 

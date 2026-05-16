@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog — Learn Thai with Mind</title>
+  <meta name="description" content="Thai language tips, cultural insights, travel stories, and teaching experiences from Kru Mind. Learn Thai and understand Thailand — one article at a time." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Noto+Sans+Thai:wght@400;500;600;700;800&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+  <style>
+    /* ── Blog grid ── */
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 56px;
+    }
+    @media(max-width:960px){ .blog-grid { grid-template-columns: 1fr 1fr; } }
+    @media(max-width:580px){ .blog-grid { grid-template-columns: 1fr; } }
+
+    /* ── Blog card ── */
+    .blog-card {
+      background: var(--white);
+      border-radius: var(--r-lg);
+      border: 1.5px solid var(--border);
+      overflow: hidden;
+      transition: transform .25s, box-shadow .25s, border-color .25s;
+      display: flex;
+      flex-direction: column;
+    }
+    .blog-card:hover {
+      transform: translateY(-6px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--blue-100);
+    }
+
+    /* ── Card image / cover ── */
+    .blog-cover {
+      height: 200px;
+      display: flex;
+      align-items: flex-end;
+      padding: 20px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .blog-cover-1 { background: linear-gradient(145deg, #1A3680, #2563EB); }
+    .blog-cover-2 { background: linear-gradient(145deg, #92400E, #D97706); }
+    .blog-cover-3 { background: linear-gradient(145deg, #065F46, #059669); }
+    .blog-cover-4 { background: linear-gradient(145deg, #4C1D95, #7C3AED); }
+    .blog-cover-5 { background: linear-gradient(145deg, #9F1239, #E11D48); }
+    .blog-cover-6 { background: linear-gradient(145deg, #0C4A6E, #0891B2); }
+
+    .blog-cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,.18);
+    }
+    .blog-cover-thai {
+      font-family: 'Noto Sans Thai', sans-serif;
+      font-size: 48px;
+      color: rgba(255,255,255,.18);
+      position: absolute;
+      top: 12px;
+      right: 20px;
+      line-height: 1;
+      user-select: none;
+    }
+    .blog-category-pill {
+      position: relative;
+      z-index: 1;
+      display: inline-block;
+      background: rgba(255,255,255,.22);
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,.3);
+      color: var(--white);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.2px;
+      text-transform: uppercase;
+      border-radius: 100px;
+      padding: 5px 14px;
+    }
+
+    /* ── Card body ── */
+    .blog-body {
+      padding: 24px 28px 20px;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+    .blog-date {
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 500;
+      margin-bottom: 10px;
+    }
+    .blog-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--dark);
+      line-height: 1.35;
+      margin-bottom: 12px;
+    }
+    .blog-excerpt {
+      font-size: 14px;
+      color: var(--mid);
+      line-height: 1.7;
+      flex: 1;
+    }
+    .blog-footer {
+      padding: 16px 28px 24px;
+      border-top: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .blog-author {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .blog-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--blue-50);
+      border: 2px solid var(--blue-100);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--blue);
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+    .blog-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .blog-author-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--dark);
+    }
+    .blog-read-link {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--blue);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      transition: gap .2s;
+    }
+    .blog-read-link:hover { gap: 8px; }
+
+    /* ── Featured post (full width) ── */
+    .blog-featured {
+      background: var(--white);
+      border-radius: var(--r-xl);
+      border: 1.5px solid var(--border);
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      margin-bottom: 16px;
+      transition: box-shadow .25s;
+    }
+    .blog-featured:hover { box-shadow: var(--shadow-lg); }
+    @media(max-width:760px){ .blog-featured { grid-template-columns: 1fr; } }
+
+    .blog-featured-cover {
+      background: linear-gradient(145deg, #1A3680, #0d2560);
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 36px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+    .blog-featured-cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 30% 50%, rgba(200,152,31,.15), transparent 70%);
+    }
+    .blog-featured-thai {
+      font-family: 'Noto Sans Thai', sans-serif;
+      font-size: 80px;
+      color: rgba(255,255,255,.08);
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      line-height: 1;
+      user-select: none;
+    }
+    .featured-pill {
+      position: relative;
+      z-index: 1;
+      display: inline-block;
+      background: var(--yellow);
+      color: var(--white);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      border-radius: 100px;
+      padding: 5px 14px;
+      margin-bottom: 16px;
+      width: fit-content;
+    }
+    .blog-featured-title {
+      position: relative;
+      z-index: 1;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 30px;
+      font-weight: 600;
+      color: var(--white);
+      line-height: 1.3;
+    }
+    .blog-featured-body {
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .blog-featured-cat {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--yellow-dk);
+      margin-bottom: 16px;
+    }
+    .blog-featured-h {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--dark);
+      line-height: 1.3;
+      margin-bottom: 16px;
+    }
+    .blog-featured-excerpt {
+      font-size: 15px;
+      color: var(--mid);
+      line-height: 1.75;
+      margin-bottom: 28px;
+    }
+
+    /* ── Categories filter ── */
+    .blog-filter {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin-bottom: 48px;
+    }
+    .filter-btn {
+      padding: 8px 20px;
+      border-radius: 100px;
+      border: 1.5px solid var(--border);
+      background: var(--white);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--mid);
+      cursor: pointer;
+      transition: all .2s;
+    }
+    .filter-btn:hover, .filter-btn.active {
+      border-color: var(--blue);
+      background: var(--blue-50);
+      color: var(--blue);
+    }
+
+    /* ── Coming soon banner ── */
+    .coming-soon-banner {
+      background: var(--yellow-lt);
+      border: 1.5px solid rgba(200,152,31,.3);
+      border-radius: var(--r-lg);
+      padding: 28px 36px;
+      text-align: center;
+      margin-top: 48px;
+    }
+    .coming-soon-banner p {
+      font-size: 15px;
+      color: #7a5c00;
+      margin: 0;
+    }
+    .coming-soon-banner strong { color: #5c4400; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════ NAV ══════════ -->
+<nav class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="images/logo.png" alt="Learn Thai with Mind logo" class="nav-logo-img"
+           onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+      <div class="nav-logo-emblem" style="display:none;">M</div>
+      <div class="nav-logo-text">
+        <span>Learn Thai with Mind</span>
+        <span>ภาษาไทยกับมายด์</span>
+      </div>
+    </a>
+    <ul class="nav-links" id="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="courses.html">Courses</a></li>
+      <li><a href="books.html">Books</a></li>
+      <li><a href="flashcard.html">Flashcards</a></li>
+      <li><a href="private-class.html">Group Classes</a></li>
+      <li><a href="blog.html" class="active">Blog</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="private-class.html#waitlist" class="nav-cta">Join a Class</a></li>
+    </ul>
+    <div class="nav-hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<!-- ══════════ PAGE HERO ══════════ -->
+<section class="page-hero">
+  <div class="container text-center">
+    <p class="eyebrow wh" style="margin-bottom:12px;">Thai Language · Culture · Travel · Teaching</p>
+    <h1 style="color:var(--white);font-size:clamp(36px,5vw,58px);margin-bottom:16px;">Mind's Blog</h1>
+    <div class="accent-bar center" style="margin-bottom:0;">
+      <div class="accent-line"></div><div class="accent-dot"></div><div class="accent-line"></div>
+    </div>
+    <p style="color:rgba(255,255,255,.70);font-size:18px;max-width:560px;margin:24px auto 0;line-height:1.7;">
+      Language tips, cultural insights, travel stories, and slices of Thai life — from a Thai teacher who loves sharing her world with you.
+    </p>
+  </div>
+</section>
+
+<!-- ══════════ BLOG CONTENT ══════════ -->
+<section class="section-pad bg-light">
+  <div class="container">
+
+    <!-- Category filter -->
+    <div class="blog-filter fade-in">
+      <button class="filter-btn active">All Posts</button>
+      <button class="filter-btn">🗣️ Language Tips</button>
+      <button class="filter-btn">🏯 Thai Culture</button>
+      <button class="filter-btn">✈️ Travel</button>
+      <button class="filter-btn">📖 Teaching Stories</button>
+    </div>
+
+    <!-- Featured post -->
+    <div class="blog-featured fade-in">
+      <div class="blog-featured-cover">
+        <div class="blog-featured-thai">เข้าใจ</div>
+        <div class="featured-pill">✦ Featured Article</div>
+        <div class="blog-featured-title">"Mai pen rai" — the three words that explain everything about Thai culture</div>
+      </div>
+      <div class="blog-featured-body">
+        <div class="blog-featured-cat">🏯 Thai Culture</div>
+        <h2 class="blog-featured-h">Why Thais Say "Never Mind" — And What It Really Means</h2>
+        <p class="blog-featured-excerpt">Mai pen rai (ไม่เป็นไร) is one of the first phrases every learner picks up — but most people never discover its deeper meaning. It's not just "no worries." It's a window into how Thai people see life, stress, conflict, and grace. In this article I explain what mai pen rai truly teaches us about Thai culture and how to use it without sounding dismissive.</p>
+        <a href="#" class="btn btn-blue" style="width:fit-content;">Read Article →</a>
+      </div>
+    </div>
+
+    <!-- Blog grid -->
+    <div class="blog-grid">
+
+      <!-- Card 1 -->
+      <div class="blog-card fade-in">
+        <div class="blog-cover blog-cover-1">
+          <div class="blog-cover-thai">สวัสดี</div>
+          <span class="blog-category-pill">🗣️ Language Tips</span>
+        </div>
+        <div class="blog-body">
+          <div class="blog-date">Coming soon</div>
+          <h3 class="blog-title">5 Thai Phrases That Will Make Locals Love You Instantly</h3>
+          <p class="blog-excerpt">You don't need to be fluent to impress Thai people. These five phrases — simple, everyday, and often overlooked by textbooks — will earn you warm smiles everywhere from Chiang Mai night markets to Bangkok street stalls.</p>
+        </div>
+        <div class="blog-footer">
+          <div class="blog-author">
+            <div class="blog-avatar">
+              <img src="images/logo.png" alt="Kru Mind" onerror="this.style.display='none';this.parentNode.textContent='M';" />
+            </div>
+            <span class="blog-author-name">Kru Mind</span>
+          </div>
+          <a href="#" class="blog-read-link">Read <span>→</span></a>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="blog-card fade-in">
+        <div class="blog-cover blog-cover-2">
+          <div class="blog-cover-thai">เกรงใจ</div>
+          <span class="blog-category-pill">🏯 Thai Culture</span>
+        </div>
+        <div class="blog-body">
+          <div class="blog-date">Coming soon</div>
+          <h3 class="blog-title">Kreng Jai: The Thai Concept That Runs Every Relationship</h3>
+          <p class="blog-excerpt">If you've ever felt like a Thai person was too polite to say no — or said yes when they meant no — you've experienced kreng jai. This deeply Thai feeling shapes conversations, decisions, and relationships in ways that every learner must understand.</p>
+        </div>
+        <div class="blog-footer">
+          <div class="blog-author">
+            <div class="blog-avatar">
+              <img src="images/logo.png" alt="Kru Mind" onerror="this.style.display='none';this.parentNode.textContent='M';" />
+            </div>
+            <span class="blog-author-name">Kru Mind</span>
+          </div>
+          <a href="#" class="blog-read-link">Read <span>→</span></a>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="blog-card fade-in">
+        <div class="blog-cover blog-cover-3">
+          <div class="blog-cover-thai">วัฒนธรรม</div>
+          <span class="blog-category-pill">✈️ Travel</span>
+        </div>
+        <div class="blog-body">
+          <div class="blog-date">Coming soon</div>
+          <h3 class="blog-title">Street Food Thai: How to Order at a Bangkok Market Like a Local</h3>
+          <p class="blog-excerpt">Forget the tourist menu. The real Thai food experience happens when you can order directly in Thai — point, smile, and say the magic words. I'll walk you through exactly what to say at a noodle stall, a som tam cart, and a grilled satay stand.</p>
+        </div>
+        <div class="blog-footer">
+          <div class="blog-author">
+            <div class="blog-avatar">
+              <img src="images/logo.png" alt="Kru Mind" onerror="this.style.display='none';this.parentNode.textContent='M';" />
+            </div>
+            <span class="blog-author-name">Kru Mind</span>
+          </div>
+          <a href="#" class="blog-read-link">Read <span>→</span></a>
+        </div>
+      </div>
+
+      <!-- Card 4 -->
+      <div class="blog-card fade-in">
+        <div class="blog-cover blog-cover-4">
+          <div class="blog-cover-thai">วรรณยุกต์</div>
+          <span class="blog-category-pill">🗣️ Language Tips</span>
+        </div>
+        <div class="blog-body">
+          <div class="blog-date">Coming soon</div>
+          <h3 class="blog-title">Thai Tones Explained Simply — Stop Getting Them Wrong</h3>
+          <p class="blog-excerpt">Five tones. One of the biggest fears for new learners. But here's the truth: tones follow rules, and once you see the pattern, they become logical — not mysterious. This is the guide I wish I had on day one of teaching Thai.</p>
+        </div>
+        <div class="blog-footer">
+          <div class="blog-author">
+            <div class="blog-avatar">
+              <img src="images/logo.png" alt="Kru Mind" onerror="this.style.display='none';this.parentNode.textContent='M';" />
+            </div>
+            <span class="blog-author-name">Kru Mind</span>
+          </div>
+          <a href="#" class="blog-read-link">Read <span>→</span></a>
+        </div>
+      </div>
+
+      <!-- Card 5 -->
+      <div class="blog-card fade-in">
+        <div class="blog-cover blog-cover-5">
+          <div class="blog-cover-thai">ไหว้</div>
+          <span class="blog-category-pill">🏯 Thai Culture</span>
+        </div>
+        <div class="blog-body">
+          <div class="blog-date">Coming soon</div>
+          <h3 class="blog-title">The Wai: When to Do It, How to Do It, and When NOT To</h3>
+          <p class="blog-excerpt">The wai (ไหว้) is the most visible Thai greeting — and one of the most misunderstood by visitors. Did you know wai-ing the wrong person in the wrong way can actually be rude? I'll explain everything from the angle of the hands to who goes first.</p>
+        </div>
+        <div class="blog-footer">
+          <div class="blog-author">
+            <div class="blog-avatar">
+              <img src="images/logo.png" alt="Kru Mind" onerror="this.style.display='none';this.parentNode.textContent='M';" />
+            </div>
+            <span class="blog-author-name">Kru Mind</span>
+          </div>
+          <a href="#" class="blog-read-link">Read <span>→</span></a>
+        </div>
+      </div>
+
+      <!-- Card 6 -->
+      <div class="blog-card fade-in">
+        <div class="blog-cover blog-cover-6">
+          <div class="blog-cover-thai">เรียน</div>
+          <span class="blog-category-pill">📖 Teaching Stories</span>
+        </div>
+        <div class="blog-body">
+          <div class="blog-date">Coming soon</div>
+          <h3 class="blog-title">My First Day Teaching Thai — What I Learned From My Students</h3>
+          <p class="blog-excerpt">I walked in thinking I'd be the one doing all the teaching. I walked out realising my students had already taught me something important about patience, curiosity, and what it really takes to learn a language as a grown adult.</p>
+        </div>
+        <div class="blog-footer">
+          <div class="blog-author">
+            <div class="blog-avatar">
+              <img src="images/logo.png" alt="Kru Mind" onerror="this.style.display='none';this.parentNode.textContent='M';" />
+            </div>
+            <span class="blog-author-name">Kru Mind</span>
+          </div>
+          <a href="#" class="blog-read-link">Read <span>→</span></a>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Coming soon note -->
+    <div class="coming-soon-banner fade-in">
+      <p>✍️ <strong>More articles coming soon!</strong> Mind is writing new posts about Thai language, culture, and travel. Subscribe via <a href="contact.html" style="color:#7a5c00;font-weight:700;">the contact page</a> to be notified when new articles go live.</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════ CTA ══════════ -->
+<section class="section-pad bg-white">
+  <div class="container text-center" style="max-width:680px;">
+    <div class="fade-in">
+      <p class="eyebrow">Ready to Go Deeper?</p>
+      <h2 class="section-title" style="font-size:clamp(24px,4vw,36px);">Words on a page are just the beginning</h2>
+      <div class="accent-bar center"><div class="accent-line"></div><div class="accent-dot"></div><div class="accent-line"></div></div>
+      <p style="color:var(--mid);font-size:16px;line-height:1.75;margin:0 auto 36px;">
+        If these articles spark something in you, imagine what a full course can do. Learn Thai at your own pace — with the language, the culture, and the confidence to truly connect with Thailand.
+      </p>
+      <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
+        <a href="courses.html" class="btn btn-blue btn-lg">Explore Courses</a>
+        <a href="private-class.html#waitlist" class="btn btn-outline btn-lg">Join Group Classes</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="nav-logo" style="margin-bottom:16px;">
+          <img src="images/logo.png" alt="Learn Thai with Mind" class="nav-logo-img"
+               onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+          <div class="nav-logo-emblem" style="display:none;">M</div>
+          <div class="nav-logo-text"><span>Learn Thai with Mind</span><span>ภาษาไทยกับมายด์</span></div>
+        </a>
+        <p>Thai language, culture, and travel — taught by Kru Mind with heart, humour, and 10+ years of experience.</p>
+        <div class="footer-social">
+          <a href="https://www.instagram.com/learnthaiwithmind/" target="_blank" rel="noopener" class="social-btn" title="Instagram">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+          </a>
+          <a href="https://www.facebook.com/learnthaiwithmind/" target="_blank" rel="noopener" class="social-btn" title="Facebook">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <a href="https://www.youtube.com/channel/UCC2l2QhjI3CubcFvxBKPYdg" target="_blank" rel="noopener" class="social-btn" title="YouTube">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="footer-col"><h4>Learn</h4><ul><li><a href="courses.html">All Courses</a></li><li><a href="books.html">Books</a></li><li><a href="flashcard.html">Flashcards</a></li><li><a href="private-class.html">Group Classes</a></li></ul></div>
+      <div class="footer-col"><h4>Explore</h4><ul><li><a href="blog.html">Blog</a></li><li><a href="index.html#about">About Mind</a></li><li><a href="https://www.facebook.com/learnthaiwithmind/" target="_blank">Facebook</a></li><li><a href="https://www.instagram.com/learnthaiwithmind/" target="_blank">Instagram</a></li></ul></div>
+      <div class="footer-col"><h4>Contact</h4><ul><li><a href="contact.html">Send a Message</a></li><li><a href="private-class.html#waitlist">Join a Class</a></li><li><a href="mailto:learnthaiwithmind@gmail.com">Email Mind</a></li></ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span class="footer-logo-text">Learn Thai with Mind</span>
+      <span>© 2026 · All rights reserved</span>
+      <span style="font-family:'Noto Sans Thai',sans-serif;color:var(--yellow);font-size:15px;">ภาษาไทยกับมายด์</span>
+    </div>
+  </div>
+</footer>
+
+<div class="toast"></div>
+<script src="js/main.js"></script>
+</body>
+</html>
