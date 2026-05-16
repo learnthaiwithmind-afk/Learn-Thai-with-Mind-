@@ -10,113 +10,179 @@
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/style.css" />
   <style>
-    .books-detail-grid {
+
+    /* ── Available badge ── */
+    .badge-available {
+      display: inline-flex; align-items: center; gap: 7px;
+      background: #ecfdf5; color: #059669;
+      border: 1px solid #a7f3d0;
+      border-radius: 100px; padding: 6px 18px;
+      font-size: 13px; font-weight: 700; letter-spacing: .5px;
+    }
+
+    /* ── Featured book layout ── */
+    .featured-book-wrap {
+      display: grid;
+      grid-template-columns: 380px 1fr;
+      gap: 64px;
+      align-items: start;
+      margin-top: 56px;
+    }
+    @media(max-width:960px){ .featured-book-wrap { grid-template-columns: 300px 1fr; gap: 40px; } }
+    @media(max-width:700px){ .featured-book-wrap { grid-template-columns: 1fr; } }
+
+    .featured-cover-wrap {
+      position: sticky;
+      top: 100px;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 24px 64px rgba(0,0,0,.18);
+    }
+    @media(max-width:700px){ .featured-cover-wrap { position: static; max-width: 320px; margin: 0 auto; } }
+
+    .featured-cover-wrap img {
+      width: 100%; display: block;
+    }
+    .featured-cover-placeholder {
+      background: linear-gradient(155deg, #0d2b45 0%, #1a5276 60%, #1e6b94 100%);
+      aspect-ratio: 3/4;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      text-align: center; padding: 40px 32px;
+      position: relative;
+    }
+    .featured-cover-placeholder::before {
+      content: ''; position: absolute;
+      left: 0; top: 0; bottom: 0; width: 18px;
+      background: rgba(0,0,0,.3);
+    }
+    .fcp-thai { font-family: 'Noto Sans Thai', sans-serif; font-size: 52px; color: rgba(255,255,255,.9); margin-bottom: 16px; }
+    .fcp-series { font-size: 11px; letter-spacing: 3px; text-transform: uppercase; color: var(--yellow); font-weight: 700; margin-bottom: 12px; }
+    .fcp-title { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 26px; font-weight: 800; color: #fff; line-height: 1.25; margin-bottom: 8px; }
+    .fcp-num { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 80px; font-weight: 900; color: rgba(255,255,255,.08); line-height: 1; position: absolute; bottom: 16px; right: 24px; }
+    .fcp-author { font-size: 13px; color: rgba(255,255,255,.6); font-style: italic; margin-top: 12px; }
+
+    /* ── Book details panel ── */
+    .featured-book-details { padding-top: 4px; }
+
+    .book-who-tags { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
+    .book-who-tag {
+      background: #eff6ff; color: #1e40af;
+      border: 1px solid #bfdbfe;
+      border-radius: 100px; padding: 5px 14px;
+      font-size: 13px; font-weight: 600;
+    }
+    .book-who-tag.teacher { background: #fefce8; color: #854d0e; border-color: #fde68a; }
+
+    .featured-book-details h2 {
+      font-size: clamp(26px, 3.5vw, 38px);
+      line-height: 1.2; margin-bottom: 16px;
+    }
+    .featured-book-details .book-desc {
+      font-size: 16px; color: var(--mid); line-height: 1.75; margin-bottom: 32px;
+    }
+
+    /* ── Chapter list ── */
+    .chapter-list-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 11px; font-weight: 700; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--muted); margin-bottom: 14px;
+    }
+    .chapter-list { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; }
+    .chapter-item {
+      display: flex; align-items: center; gap: 14px;
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 10px; padding: 12px 16px;
+    }
+    .chapter-num {
+      width: 28px; height: 28px; border-radius: 8px;
+      background: var(--blue); color: #fff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12px; font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+    }
+    .chapter-name { font-size: 14px; font-weight: 600; color: var(--dark); }
+    .chapter-sub { font-size: 12px; color: var(--muted); margin-top: 1px; }
+
+    .book-extras { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 32px; margin-top: 16px; }
+    .book-extra-tag {
+      background: var(--white); border: 1px solid var(--border);
+      border-radius: 100px; padding: 5px 14px;
+      font-size: 12px; color: var(--mid); font-weight: 500;
+    }
+
+    /* ── Buy box ── */
+    .buy-box {
+      background: var(--bg); border: 1.5px solid var(--border);
+      border-radius: 16px; padding: 28px 32px;
+      display: flex; align-items: center;
+      justify-content: space-between; gap: 24px;
+      flex-wrap: wrap;
+    }
+    .buy-price-group {}
+    .buy-price {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 44px; font-weight: 800; color: var(--dark); line-height: 1;
+    }
+    .buy-price-sub { font-size: 13px; color: var(--muted); margin-top: 4px; }
+    .buy-actions { display: flex; flex-direction: column; gap: 10px; align-items: flex-end; }
+    @media(max-width:500px){ .buy-actions { align-items: stretch; width: 100%; } }
+    .buy-note { font-size: 12px; color: var(--muted); text-align: center; }
+
+    /* ── Promptpay note ── */
+    .promptpay-note {
+      background: #fffbeb; border: 1px solid #fde68a;
+      border-radius: 10px; padding: 14px 18px;
+      font-size: 13px; color: #92400e;
+      margin-top: 12px; line-height: 1.6;
+    }
+
+    /* ── Coming soon books ── */
+    .coming-soon-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: 36px;
-      margin-top: 64px;
+      gap: 24px;
+      margin-top: 40px;
     }
-    @media(max-width:900px){ .books-detail-grid { grid-template-columns: 1fr 1fr; } }
-    @media(max-width:600px){ .books-detail-grid { grid-template-columns: 1fr; } }
+    @media(max-width:800px){ .coming-soon-grid { grid-template-columns: 1fr 1fr; } }
+    @media(max-width:500px){ .coming-soon-grid { grid-template-columns: 1fr; } }
 
-    .book-detail-card {
+    .cs-card {
       background: var(--white);
-      border-radius: 20px;
       border: 1px solid var(--border);
+      border-radius: 16px;
       overflow: hidden;
-      transition: all .3s ease;
-      display: flex;
-      flex-direction: column;
+      opacity: .72;
+      transition: opacity .2s;
     }
-    .book-detail-card:hover {
-      transform: translateY(-8px);
-      box-shadow: var(--shadow-lg);
-    }
-
-    .book-cover-large {
-      height: 280px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .cs-card:hover { opacity: 1; }
+    .cs-cover {
+      height: 160px;
+      display: flex; align-items: center; justify-content: center;
       position: relative;
-      overflow: hidden;
     }
-    .book-cover-large .spine {
-      position: absolute;
-      left: 0; top: 0; bottom: 0;
-      width: 22px;
-      background: rgba(0,0,0,.25);
+    .cs-cover .cs-spine {
+      position: absolute; left: 0; top: 0; bottom: 0;
+      width: 14px; background: rgba(0,0,0,.22);
     }
-    .book-cover-large .cover-content {
-      text-align: center;
-      padding: 24px;
-      position: relative;
-      z-index: 1;
-    }
-    .book-cover-large .cover-thai {
-      font-size: 48px;
-      color: rgba(255,255,255,.9);
-      margin-bottom: 12px;
-    }
-    .book-cover-large .cover-title {
+    .cs-cover-text { text-align: center; position: relative; z-index: 1; }
+    .cs-cover-emoji { font-size: 32px; margin-bottom: 6px; display: block; }
+    .cs-cover-label {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 20px;
-      color: var(--white);
-      font-weight: 700;
-      line-height: 1.3;
-      margin-bottom: 8px;
+      font-size: 13px; font-weight: 700; color: rgba(255,255,255,.9); line-height: 1.3;
     }
-    .book-cover-large .cover-sub {
-      font-size: 12px;
-      color: rgba(255,255,255,.7);
-      letter-spacing: 2px;
-      text-transform: uppercase;
-    }
-    .book-cover-large .cover-author {
-      position: absolute;
-      bottom: 16px;
-      font-size: 13px;
-      color: rgba(255,255,255,.75);
-      font-style: italic;
-    }
-
-    .book-detail-body { padding: 28px; flex: 1; display: flex; flex-direction: column; }
-    .book-detail-body h3 { font-size: 20px; margin-bottom: 8px; }
-    .book-detail-body .desc { font-size: 14px; color: var(--mid); line-height: 1.65; margin-bottom: 20px; flex: 1; }
-
-    .book-specs {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 20px;
-    }
-    .book-spec-tag {
-      background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 100px;
-      padding: 4px 12px;
-      font-size: 12px;
-      color: var(--mid);
-      font-weight: 500;
-    }
-
-    .book-detail-footer {
+    .cs-body { padding: 18px 20px; }
+    .cs-body h4 { font-size: 15px; margin-bottom: 6px; }
+    .cs-body p { font-size: 13px; color: var(--muted); line-height: 1.55; margin-bottom: 14px; }
+    .cs-footer {
       border-top: 1px solid var(--border);
-      padding: 20px 28px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 12px;
+      padding: 14px 20px;
+      display: flex; align-items: center; justify-content: space-between;
     }
-    .book-detail-footer .price {
-      font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: 28px;
-      font-weight: 700;
-      color: var(--dark);
-    }
-    .book-detail-footer .price sup { font-size: 16px; vertical-align: super; }
-    .book-detail-footer .format { font-size: 12px; color: var(--muted); }
+    .cs-footer .cs-level { font-size: 11px; color: var(--muted); font-weight: 600; letter-spacing: 1px; text-transform: uppercase; }
 
+    /* ── bundle box ── */
     .bundle-box {
       background: var(--dark);
       border-radius: 20px;
@@ -140,8 +206,6 @@
     .bundle-box h2 { color: var(--white); font-size: 32px; margin-bottom: 12px; }
     .bundle-box p { color: rgba(255,255,255,.65); font-size: 16px; line-height: 1.7; max-width: 520px; }
     .bundle-price-block { text-align: center; position: relative; z-index: 1; }
-    .bundle-price-block .was { font-size: 16px; color: rgba(255,255,255,.5); text-decoration: line-through; margin-bottom: 4px; }
-    .bundle-price-block .price { font-family: 'Plus Jakarta Sans', sans-serif; font-size: 52px; font-weight: 700; color: var(--yellow); line-height: 1; }
     .bundle-price-block .note { font-size: 13px; color: rgba(255,255,255,.5); margin-top: 4px; margin-bottom: 16px; }
     @media(max-width:768px){ .bundle-box { grid-template-columns: 1fr; padding: 36px; text-align: center; } .bundle-price-block { text-align: center; } }
 
@@ -190,235 +254,222 @@
 <section class="page-hero">
   <div class="container text-center">
     <p class="eyebrow" style="margin-bottom:12px;">Books &amp; Study Materials</p>
-    <h1 style="color:var(--white);font-size:clamp(36px,5vw,58px);margin-bottom:16px;">Learn Thai On Your Terms</h1>
+    <h1 style="color:var(--white);font-size:clamp(36px,5vw,58px);margin-bottom:16px;">Study Thai in Your Own Hands</h1>
     <div class="accent-bar center" style="margin-top:20px;"><span class="accent-line"></span><span class="accent-dot"></span></div>
     <p style="color:rgba(255,255,255,.65);font-size:18px;max-width:560px;margin:24px auto 0;line-height:1.7;">
-      Beautifully written study guides and reference books designed to complement your learning — whether at home, on your commute, or across Southeast Asia.
+      Self-learning books written by a real Thai teacher — clear, practical, and full of cultural insight. Perfect for independent learners and classroom use alike.
     </p>
   </div>
 </section>
 
-<!-- ══════════ BOOKS GRID ══════════ -->
+<!-- ══════════ FEATURED BOOK ══════════ -->
 <section class="section-pad bg-white">
   <div class="container">
 
     <div class="text-center fade-in">
-      <p class="eyebrow">Physical &amp; Digital Books</p>
-      <h2 class="section-title">Mind's Study Library</h2>
+      <span class="badge-available">✦ Now Available</span>
+      <p class="eyebrow" style="margin-top:20px;">Kru Mind's First Book</p>
+      <h2 class="section-title">Speaking &amp; Listening 1</h2>
       <div class="accent-bar center"><span class="accent-line"></span><span class="accent-dot"></span></div>
-      <p class="section-sub">Each book is crafted with the same care and clarity as Mind's video courses. Clear explanations, beautiful layout, practical examples — and a voice that makes you feel like you have a personal tutor right on the page.</p>
+      <p class="section-sub">A complete self-learning book for absolute beginners — with everything you need to start speaking Thai from day one.</p>
     </div>
 
-    <div class="books-detail-grid">
+    <!-- Featured layout -->
+    <div class="featured-book-wrap fade-in">
 
-      <!-- Book 1 -->
-      <div class="book-detail-card fade-in">
-        <div class="book-cover-large" style="background: linear-gradient(160deg,#0d2b45,#1a5276);">
-          <div class="spine"></div>
-          <div class="cover-content">
-            <div class="cover-thai">ไทย</div>
-            <div class="cover-title">Thai Made Simple</div>
-            <div class="cover-sub">Beginner's Complete Guide</div>
-          </div>
-          <div class="cover-author">by Kru Mind</div>
-        </div>
-        <div class="book-detail-body">
-          <h3>Thai Made Simple</h3>
-          <p class="desc">The definitive beginner's handbook. Covers greetings, numbers, colours, family, time, food, travel, and over 800 essential words — all with phonetic pronunciation guides. Perfect alongside the Beginners course or as a standalone travel companion.</p>
-          <div class="book-specs">
-            <span class="book-spec-tag">📖 240 pages</span>
-            <span class="book-spec-tag">🔰 Beginner</span>
-            <span class="book-spec-tag">PDF + Print</span>
-            <span class="book-spec-tag">Audio included</span>
-          </div>
-        </div>
-        <div class="book-detail-footer">
-          <div>
-            <div class="price"><sup>$</sup>24.99</div>
-            <div class="format">PDF + Printable Edition</div>
-          </div>
-          <span class="btn btn-outline" style="opacity:.55;cursor:default;pointer-events:none;">Coming Soon</span>
+      <!-- Cover -->
+      <div class="featured-cover-wrap">
+        <img src="images/book-sl1-cover.png" alt="Speaking and Listening 1 by Kru Mind"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='flex';">
+        <div class="featured-cover-placeholder">
+          <div class="fcp-series">Speaking &amp; Listening</div>
+          <div class="fcp-thai">พูดและฟัง</div>
+          <div class="fcp-title">Book 1</div>
+          <div class="fcp-author">by Kru Mind · Wasina</div>
+          <div class="fcp-num">1</div>
         </div>
       </div>
 
-      <!-- Book 2 -->
-      <div class="book-detail-card fade-in">
-        <div class="book-cover-large" style="background: linear-gradient(160deg,#1a2e1a,#2e7d52);">
-          <div class="spine"></div>
-          <div class="cover-content">
-            <div class="cover-thai">คำศัพท์</div>
-            <div class="cover-title">1,000 Essential Thai Words</div>
-            <div class="cover-sub">Vocabulary Reference</div>
-          </div>
-          <div class="cover-author">by Kru Mind</div>
-        </div>
-        <div class="book-detail-body">
-          <h3>1,000 Essential Thai Words</h3>
-          <p class="desc">The most important 1,000 words in the Thai language — organised by topic, frequency, and usage. Each entry includes Thai script, romanisation, an example sentence, and a note on formal vs casual usage. An indispensable reference for every learner.</p>
-          <div class="book-specs">
-            <span class="book-spec-tag">📖 180 pages</span>
-            <span class="book-spec-tag">🔰–🎓 All Levels</span>
-            <span class="book-spec-tag">PDF + Print</span>
-            <span class="book-spec-tag">Topic-sorted</span>
-          </div>
-        </div>
-        <div class="book-detail-footer">
-          <div>
-            <div class="price"><sup>$</sup>19.99</div>
-            <div class="format">PDF + Printable Edition</div>
-          </div>
-          <span class="btn btn-outline" style="opacity:.55;cursor:default;pointer-events:none;">Coming Soon</span>
-        </div>
-      </div>
+      <!-- Details -->
+      <div class="featured-book-details">
 
-      <!-- Book 3 -->
-      <div class="book-detail-card fade-in">
-        <div class="book-cover-large" style="background: linear-gradient(160deg,#2d1b4e,#6b21a8);">
-          <div class="spine"></div>
-          <div class="cover-content">
-            <div class="cover-thai">ไวยากรณ์</div>
-            <div class="cover-title">Thai Grammar Unlocked</div>
-            <div class="cover-sub">Complete Grammar Guide</div>
-          </div>
-          <div class="cover-author">by Kru Mind</div>
+        <div class="book-who-tags">
+          <span class="book-who-tag">🙋 Self-Learners</span>
+          <span class="book-who-tag teacher">👩‍🏫 Thai Teachers</span>
+          <span class="book-who-tag">🔰 Absolute Beginners</span>
         </div>
-        <div class="book-detail-body">
-          <h3>Thai Grammar Unlocked</h3>
-          <p class="desc">Grammar doesn't have to be boring — and this book proves it. Mind explains every core grammatical structure with clear rules, memorable analogies, and dozens of real-world examples. From sentence structure basics to complex clauses and particles.</p>
-          <div class="book-specs">
-            <span class="book-spec-tag">📖 220 pages</span>
-            <span class="book-spec-tag">🎓 Int.–Advanced</span>
-            <span class="book-spec-tag">PDF + Print</span>
-            <span class="book-spec-tag">Exercise sheets</span>
-          </div>
-        </div>
-        <div class="book-detail-footer">
-          <div>
-            <div class="price"><sup>$</sup>22.99</div>
-            <div class="format">PDF + Printable Edition</div>
-          </div>
-          <span class="btn btn-outline" style="opacity:.55;cursor:default;pointer-events:none;">Coming Soon</span>
-        </div>
-      </div>
 
-      <!-- Book 4 -->
-      <div class="book-detail-card fade-in">
-        <div class="book-cover-large" style="background: linear-gradient(160deg,#4a2c00,#c9a130);">
-          <div class="spine"></div>
-          <div class="cover-content">
-            <div class="cover-thai">อักษร</div>
-            <div class="cover-title">Thai Script Workbook</div>
-            <div class="cover-sub">Reading &amp; Writing Practice</div>
-          </div>
-          <div class="cover-author">by Kru Mind</div>
-        </div>
-        <div class="book-detail-body">
-          <h3>Thai Script Workbook</h3>
-          <p class="desc">The hands-on companion to the Reading &amp; Writing course. Filled with writing practice grids, stroke-order diagrams, reading exercises, and tone drills. Designed to be printed and written in — because learning to write Thai is a full-body skill.</p>
-          <div class="book-specs">
-            <span class="book-spec-tag">📖 160 pages</span>
-            <span class="book-spec-tag">🔰 Beginner</span>
-            <span class="book-spec-tag">Printable Workbook</span>
-            <span class="book-spec-tag">Stroke guides</span>
-          </div>
-        </div>
-        <div class="book-detail-footer">
-          <div>
-            <div class="price"><sup>$</sup>17.99</div>
-            <div class="format">Printable PDF Workbook</div>
-          </div>
-          <span class="btn btn-outline" style="opacity:.55;cursor:default;pointer-events:none;">Coming Soon</span>
-        </div>
-      </div>
+        <h2>Your First Step into Thai — Speak with Confidence from Page One</h2>
 
-      <!-- Book 5 -->
-      <div class="book-detail-card fade-in">
-        <div class="book-cover-large" style="background: linear-gradient(160deg,#1a3040,#2980b9);">
-          <div class="spine"></div>
-          <div class="cover-content">
-            <div class="cover-thai">สนทนา</div>
-            <div class="cover-title">Thai Conversation Phrasebook</div>
-            <div class="cover-sub">Real Dialogue &amp; Phrases</div>
-          </div>
-          <div class="cover-author">by Kru Mind</div>
-        </div>
-        <div class="book-detail-body">
-          <h3>Thai Conversation Phrasebook</h3>
-          <p class="desc">Go beyond the tourist phrasebook. This guide features 50 realistic dialogues across everyday scenarios — from weekend plans to negotiating a lease in Bangkok. Each dialogue comes with cultural notes and vocabulary breakdowns.</p>
-          <div class="book-specs">
-            <span class="book-spec-tag">📖 200 pages</span>
-            <span class="book-spec-tag">🗣 Conversational</span>
-            <span class="book-spec-tag">PDF + Print</span>
-            <span class="book-spec-tag">50 dialogues</span>
-          </div>
-        </div>
-        <div class="book-detail-footer">
-          <div>
-            <div class="price"><sup>$</sup>21.99</div>
-            <div class="format">PDF + Printable Edition</div>
-          </div>
-          <span class="btn btn-outline" style="opacity:.55;cursor:default;pointer-events:none;">Coming Soon</span>
-        </div>
-      </div>
+        <p class="book-desc">
+          Whether you're learning on your own or teaching in a classroom, <strong>Speaking &amp; Listening 1</strong> gives you a clear, structured path into the Thai language. Written by Kru Mind with 10+ years of real teaching experience, this book goes beyond phrases — it helps you understand <em>why</em> Thai works the way it does, with cultural insight woven into every chapter.
+        </p>
 
-      <!-- Book 6 -->
-      <div class="book-detail-card fade-in">
-        <div class="book-cover-large" style="background: linear-gradient(160deg,#2e1515,#c0392b);">
-          <div class="spine"></div>
-          <div class="cover-content">
-            <div class="cover-thai">วัฒนธรรม</div>
-            <div class="cover-title">Thai Culture &amp; Language</div>
-            <div class="cover-sub">The Insider's Guide</div>
+        <!-- What's inside -->
+        <p class="chapter-list-title">What's Inside — 6 Chapters</p>
+        <div class="chapter-list">
+          <div class="chapter-item">
+            <div class="chapter-num">1</div>
+            <div>
+              <div class="chapter-name">Phonetics System</div>
+              <div class="chapter-sub">Thai tones, vowels, and consonants using Mind's phonetic system</div>
+            </div>
           </div>
-          <div class="cover-author">by Kru Mind</div>
-        </div>
-        <div class="book-detail-body">
-          <h3>Thai Culture &amp; Language</h3>
-          <p class="desc">Understanding Thailand goes far deeper than the language. This unique guide explores Buddhist culture, kreng jai (consideration), sanook (fun), the wai, Thai festivals, family values, and how all of this shapes the way Thai people communicate every single day.</p>
-          <div class="book-specs">
-            <span class="book-spec-tag">📖 190 pages</span>
-            <span class="book-spec-tag">🏯 Culture</span>
-            <span class="book-spec-tag">PDF + Print</span>
-            <span class="book-spec-tag">All learners</span>
+          <div class="chapter-item">
+            <div class="chapter-num">2</div>
+            <div>
+              <div class="chapter-name">Greetings</div>
+              <div class="chapter-sub">Introduce yourself, polite phrases, and how Thais really greet each other</div>
+            </div>
+          </div>
+          <div class="chapter-item">
+            <div class="chapter-num">3</div>
+            <div>
+              <div class="chapter-name">Verbs</div>
+              <div class="chapter-sub">Essential action words for everyday conversations</div>
+            </div>
+          </div>
+          <div class="chapter-item">
+            <div class="chapter-num">4</div>
+            <div>
+              <div class="chapter-name">Ordering Food</div>
+              <div class="chapter-sub">Speak Thai at restaurants, markets, and street food stalls</div>
+            </div>
+          </div>
+          <div class="chapter-item">
+            <div class="chapter-num">5</div>
+            <div>
+              <div class="chapter-name">Numbers</div>
+              <div class="chapter-sub">Count, pay, tell the time, and negotiate prices</div>
+            </div>
+          </div>
+          <div class="chapter-item">
+            <div class="chapter-num">6</div>
+            <div>
+              <div class="chapter-name">Directions &amp; Places</div>
+              <div class="chapter-sub">Navigate Thailand and ask for help with confidence</div>
+            </div>
           </div>
         </div>
-        <div class="book-detail-footer">
-          <div>
-            <div class="price"><sup>$</sup>18.99</div>
-            <div class="format">PDF + Printable Edition</div>
-          </div>
-          <span class="btn btn-outline" style="opacity:.55;cursor:default;pointer-events:none;">Coming Soon</span>
-        </div>
-      </div>
 
-    </div>
+        <div class="book-extras">
+          <span class="book-extra-tag">💡 Language tips every chapter</span>
+          <span class="book-extra-tag">🏯 Cultural tips every chapter</span>
+          <span class="book-extra-tag">✏️ Exercises included</span>
+          <span class="book-extra-tag">✅ Full answer key</span>
+          <span class="book-extra-tag">📄 Digital PDF</span>
+          <span class="book-extra-tag">🖨️ Print-friendly</span>
+        </div>
 
-    <!-- Bundle -->
-    <div class="bundle-box fade-in">
-      <div>
-        <p class="eyebrow" style="color:var(--yellow-dk);">Complete Library</p>
-        <h2>All 6 Books — Complete Bundle</h2>
-        <p>Get every book in Mind's library at a significant saving. The complete Thai learning library — perfect as a gift for yourself or someone beginning their Thai journey. Covers everything from first words to advanced culture, grammar, and writing.</p>
-        <div style="margin-top:24px;">
-          <div style="display:flex;gap:8px;flex-wrap:wrap;">
-            <span style="background:rgba(201,161,48,.15);color:var(--yellow-dk);border-radius:100px;padding:5px 14px;font-size:13px;font-weight:600;">✓ Thai Made Simple</span>
-            <span style="background:rgba(201,161,48,.15);color:var(--yellow-dk);border-radius:100px;padding:5px 14px;font-size:13px;font-weight:600;">✓ 1,000 Words</span>
-            <span style="background:rgba(201,161,48,.15);color:var(--yellow-dk);border-radius:100px;padding:5px 14px;font-size:13px;font-weight:600;">✓ Grammar Unlocked</span>
-            <span style="background:rgba(201,161,48,.15);color:var(--yellow-dk);border-radius:100px;padding:5px 14px;font-size:13px;font-weight:600;">✓ Script Workbook</span>
-            <span style="background:rgba(201,161,48,.15);color:var(--yellow-dk);border-radius:100px;padding:5px 14px;font-size:13px;font-weight:600;">✓ Phrasebook</span>
-            <span style="background:rgba(201,161,48,.15);color:var(--yellow-dk);border-radius:100px;padding:5px 14px;font-size:13px;font-weight:600;">✓ Culture Guide</span>
+        <!-- Buy box -->
+        <div class="buy-box">
+          <div class="buy-price-group">
+            <div class="buy-price">฿550</div>
+            <div class="buy-price-sub">Digital PDF · Instant download · ≈ $16 USD</div>
+          </div>
+          <div class="buy-actions">
+            <a href="GUMROAD_LINK_HERE" class="btn btn-primary btn-lg" target="_blank" rel="noopener">
+              Buy Now — ฿550
+            </a>
+            <div class="buy-note">🔒 Secure payment · Instant PDF delivery</div>
           </div>
         </div>
-      </div>
-      <div class="bundle-price-block">
-        <div class="was">Was $125.94</div>
-        <div class="price">$89</div>
-        <div class="note">Save over $36 · All 6 PDFs</div>
-        <span class="btn btn-outline btn-lg" style="opacity:.55;cursor:default;pointer-events:none;">Coming Soon</span>
+
+        <div class="promptpay-note">
+          🇹🇭 <strong>ลูกค้าไทย:</strong> หากต้องการชำระผ่าน PromptPay หรือโอนเงิน ติดต่อ Kru Mind ได้ที่
+          <a href="mailto:learnthaiwithmind@gmail.com" style="color:#92400e;font-weight:600;">learnthaiwithmind@gmail.com</a>
+        </div>
+
       </div>
     </div>
 
-    <!-- About the materials -->
+  </div>
+</section>
+
+<!-- ══════════ COMING SOON BOOKS ══════════ -->
+<section class="section-pad" style="background:var(--bg);">
+  <div class="container">
+
+    <div class="text-center fade-in">
+      <p class="eyebrow">The Series Continues</p>
+      <h2 class="section-title">More Books on the Way</h2>
+      <div class="accent-bar center"><span class="accent-line"></span><span class="accent-dot"></span></div>
+      <p class="section-sub">Speaking &amp; Listening 1 is just the beginning. Each new book follows the same curriculum — building your Thai step by step, skill by skill.</p>
+    </div>
+
+    <div class="coming-soon-grid">
+
+      <!-- S&L 2 -->
+      <div class="cs-card fade-in">
+        <div class="cs-cover" style="background:linear-gradient(155deg,#0d2b45,#1a5276);">
+          <div class="cs-spine"></div>
+          <div class="cs-cover-text">
+            <span class="cs-cover-emoji">🗣️</span>
+            <div class="cs-cover-label">Speaking &amp;<br>Listening 2</div>
+          </div>
+        </div>
+        <div class="cs-body">
+          <h4>Speaking &amp; Listening 2</h4>
+          <p>Daily life conversations, shopping, transport, and expanding your vocabulary into real situations.</p>
+        </div>
+        <div class="cs-footer">
+          <span class="cs-level">A2 · Beginner</span>
+          <span class="btn btn-outline" style="opacity:.5;cursor:default;pointer-events:none;padding:6px 14px;font-size:13px;">Coming Soon</span>
+        </div>
+      </div>
+
+      <!-- S&L 3 -->
+      <div class="cs-card fade-in">
+        <div class="cs-cover" style="background:linear-gradient(155deg,#0d2b45,#1e6b94);">
+          <div class="cs-spine"></div>
+          <div class="cs-cover-text">
+            <span class="cs-cover-emoji">💬</span>
+            <div class="cs-cover-label">Speaking &amp;<br>Listening 3</div>
+          </div>
+        </div>
+        <div class="cs-body">
+          <h4>Speaking &amp; Listening 3</h4>
+          <p>Handle real-life situations comfortably — relationships, work, travel, and longer conversations.</p>
+        </div>
+        <div class="cs-footer">
+          <span class="cs-level">A2+ · Elementary</span>
+          <span class="btn btn-outline" style="opacity:.5;cursor:default;pointer-events:none;padding:6px 14px;font-size:13px;">Coming Soon</span>
+        </div>
+      </div>
+
+      <!-- R&W 1 -->
+      <div class="cs-card fade-in">
+        <div class="cs-cover" style="background:linear-gradient(155deg,#1a2e1a,#2e7d52);">
+          <div class="cs-spine"></div>
+          <div class="cs-cover-text">
+            <span class="cs-cover-emoji">✍️</span>
+            <div class="cs-cover-label">Reading &amp;<br>Writing 1</div>
+          </div>
+        </div>
+        <div class="cs-body">
+          <h4>Reading &amp; Writing 1</h4>
+          <p>Learn the Thai alphabet — consonants, vowels, and tones — and start reading real Thai for the first time.</p>
+        </div>
+        <div class="cs-footer">
+          <span class="cs-level">B1 · Literacy</span>
+          <span class="btn btn-outline" style="opacity:.5;cursor:default;pointer-events:none;padding:6px 14px;font-size:13px;">Coming Soon</span>
+        </div>
+      </div>
+
+    </div>
+
+    <p style="text-align:center;margin-top:32px;font-size:14px;color:var(--muted);">
+      🔔 Want to know when the next book launches?
+      <a href="private-class.html#waitlist" style="color:var(--blue);font-weight:600;">Join the waiting list</a> and you'll be the first to know.
+    </p>
+
+  </div>
+</section>
+
+<!-- ══════════ WHY THIS BOOK ══════════ -->
+<section class="section-pad bg-white">
+  <div class="container">
+
     <div class="about-materials fade-in">
       <div>
         <p class="eyebrow">Written by a Real Teacher</p>
@@ -455,11 +506,11 @@
 <!-- ══════════ CTA ══════════ -->
 <section class="section-pad bg-blue-gradient">
   <div class="container text-center cta-content fade-in">
-    <p class="eyebrow" style="color:var(--yellow);">Pair with a Course</p>
-    <h2 class="section-title" style="color:var(--white);margin-bottom:16px;">Books + Course = Maximum Results</h2>
-    <p style="font-size:17px;color:rgba(255,255,255,.7);max-width:520px;margin:0 auto 36px;line-height:1.7;">Combine any book with its matching online course for the fastest progress. Watch, listen, read, and practise — all with the same teacher, same vocabulary, same methodology.</p>
+    <p class="eyebrow" style="color:var(--yellow);">Start Your Journey</p>
+    <h2 class="section-title" style="color:var(--white);margin-bottom:16px;">Ready to Speak Thai?</h2>
+    <p style="font-size:17px;color:rgba(255,255,255,.7);max-width:540px;margin:0 auto 36px;line-height:1.7;">Pick up Speaking &amp; Listening 1 and start learning today — or join a live group class with Kru Mind for real-time speaking practice alongside your book.</p>
     <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap;">
-      <a href="courses.html" class="btn btn-yellow btn-lg">View Online Courses</a>
+      <a href="GUMROAD_LINK_HERE" class="btn btn-yellow btn-lg" target="_blank" rel="noopener">Buy the Book — ฿550</a>
       <a href="private-class.html" class="btn btn-outline-white btn-lg">Join Group Classes</a>
     </div>
   </div>
