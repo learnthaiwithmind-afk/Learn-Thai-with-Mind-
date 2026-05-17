@@ -169,6 +169,14 @@ ul { list-style: none; }
   padding: 8px 13px; border-radius: var(--r-full); transition: all .2s;
 }
 .nav-links a:hover, .nav-links a.active { color: var(--blue); background: var(--blue-50); }
+.nav-mycourses {
+  background: var(--blue-50) !important; color: var(--blue) !important;
+  padding: 9px 18px !important; border-radius: var(--r-full) !important;
+  font-weight: 600 !important; border: 1.5px solid var(--blue-100) !important;
+  font-size: 13.5px !important;
+}
+.nav-mycourses:hover { background: #dbeafe !important; color: var(--blue) !important; transform: translateY(-1px) !important; }
+
 .nav-cta {
   background: var(--yellow) !important; color: var(--dark) !important;
   padding: 9px 20px !important; border-radius: var(--r-full) !important;
