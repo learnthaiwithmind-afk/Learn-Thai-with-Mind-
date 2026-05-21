@@ -633,8 +633,8 @@ ul { list-style: none; }
 @media (max-width: 768px) {
   .nav-links { display: none; }
   .nav-hamburger { display: flex; }
-  .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 68px; left: 0; right: 0; background: var(--white); padding: 16px 20px; gap: 4px; border-bottom: 1px solid var(--border); box-shadow: var(--shadow); }
-  .nav-links.open a { padding: 12px 16px; border-radius: var(--r); font-size: 15px; }
+  .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 68px; left: 0; right: 0; background: var(--white); padding: 16px 20px; gap: 8px; border-bottom: 1px solid var(--border); box-shadow: var(--shadow); }
+  .nav-links.open a { padding: 14px 16px; border-radius: var(--r); font-size: 15px; }
 
   .section-pad    { padding: 64px 0; }
   .container      { padding: 0 18px; }
