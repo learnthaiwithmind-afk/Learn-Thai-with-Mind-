@@ -166,7 +166,7 @@ ul { list-style: none; }
 .nav-links { display: flex; align-items: center; gap: 4px; }
 .nav-links a {
   font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px; font-weight: 600; color: var(--mid);
-  padding: 8px 13px; border-radius: var(--r-full); transition: all .2s;
+  padding: 8px 13px; border-radius: var(--r-full); transition: all .2s; white-space: nowrap;
 }
 .nav-links a:hover, .nav-links a.active { color: var(--blue); background: var(--blue-50); }
 .nav-mycourses {
