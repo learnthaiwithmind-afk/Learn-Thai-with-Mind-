@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from '@clerk/nextjs';
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
@@ -77,6 +78,19 @@ export default function Nav() {
             <Link href="/private-class#waitlist" className="nav-cta" onClick={() => setOpen(false)}>
               Join a Class
             </Link>
+          </li>
+          <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <SignedOut>
+              <SignInButton mode="modal">
+                <button className="btn btn-outline" style={{ padding: '8px 16px', fontSize: '14px' }}>Sign In</button>
+              </SignInButton>
+              <SignUpButton mode="modal">
+                <button className="btn btn-primary" style={{ padding: '8px 16px', fontSize: '14px' }}>Sign Up</button>
+              </SignUpButton>
+            </SignedOut>
+            <SignedIn>
+              <UserButton afterSignOutUrl="/" />
+            </SignedIn>
           </li>
         </ul>
 

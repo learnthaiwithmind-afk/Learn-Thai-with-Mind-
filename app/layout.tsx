@@ -1,3 +1,4 @@
+import {ClerkProvider} from '@clerk/nextjs';
 import type { Metadata } from 'next';
 import '../styles/globals.css';
 import Nav from '../components/Nav';
@@ -12,9 +13,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body>
-        <Nav />
-        {children}
-        <Footer />
+        <ClerkProvider>
+          <Nav />
+          {children}
+          <Footer />
+        </ClerkProvider>
       </body>
     </html>
   );
