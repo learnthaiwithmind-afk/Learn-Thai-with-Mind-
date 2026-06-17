@@ -650,26 +650,60 @@ ul { list-style: none; }
 /* ═══════════════════════════════════════
    RESPONSIVE — MOBILE ≤768px
 ═══════════════════════════════════════ */
+/* ── Mobile nav panel ── */
+.nav-mobile-panel {
+  display: none;
+  position: fixed; top: 68px; left: 0; right: 0;
+  background: var(--white);
+  border-bottom: 1px solid var(--border);
+  box-shadow: 0 8px 32px rgba(0,0,0,.12);
+  z-index: 998;
+  padding: 8px 0 16px;
+  flex-direction: column;
+}
+.nav-mobile-link {
+  display: block; padding: 14px 24px;
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 16px; font-weight: 600;
+  color: var(--dark); text-decoration: none;
+  border-bottom: 1px solid var(--border);
+  transition: background .15s;
+}
+.nav-mobile-link:last-of-type { border-bottom: none; }
+.nav-mobile-link:hover, .nav-mobile-link.active {
+  background: var(--blue-50); color: var(--blue);
+}
+.nav-mobile-divider {
+  height: 1px; background: var(--border); margin: 4px 0;
+}
+.nav-mobile-auth {
+  display: flex; flex-direction: column; gap: 10px; padding: 12px 24px 0;
+}
+.nav-mobile-mycourses {
+  display: block; text-align: center; padding: 13px 20px;
+  border-radius: var(--r); font-size: 15px; font-weight: 700;
+  background: var(--blue-50); color: var(--blue);
+  border: 1.5px solid var(--blue-100); text-decoration: none;
+}
+.nav-mobile-user {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px 4px;
+}
+.nav-mobile-user-label {
+  font-family: 'Plus Jakarta Sans', sans-serif; font-size: 14px;
+  font-weight: 600; color: var(--mid);
+}
+.nav-mobile-signin {
+  display: block; margin: 12px 24px 0; text-align: center; padding: 13px 20px;
+  border-radius: var(--r); font-size: 15px; font-weight: 700;
+  background: var(--blue); color: var(--white); text-decoration: none;
+}
+
 @media (max-width: 768px) {
   .nav-inner { grid-template-columns: 1fr auto; }
   .nav-links { display: none; }
   .nav-auth  { display: none; }
   .nav-hamburger { display: flex; grid-column: 2; }
-
-  .nav-links.open, .nav-auth.open {
-    display: flex; flex-direction: column; align-items: stretch;
-    position: fixed; top: 68px; left: 0; right: 0;
-    background: var(--white); padding: 16px 20px; gap: 8px;
-    border-bottom: 1px solid var(--border); box-shadow: var(--shadow);
-  }
-  .nav-auth.open { top: auto; position: static; padding: 0 20px 16px; border: none; box-shadow: none; }
-  .nav-links.open a { padding: 14px 16px; border-radius: var(--r); font-size: 15px; }
-  .nav-auth.open .nav-signin,
-  .nav-auth.open .nav-signup,
-  .nav-auth.open .nav-mycourses {
-    display: block; text-align: center; padding: 14px 16px;
-    border-radius: var(--r); font-size: 15px;
-  }
+  .nav-mobile-panel { display: flex; }
 
   .section-pad    { padding: 64px 0; }
   .container      { padding: 0 18px; }
