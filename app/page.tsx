@@ -23,10 +23,8 @@ export default function HomePage() {
               </p>
               <div className="hero-actions">
                 <Link href="/courses" className="btn btn-yellow btn-lg">Explore Courses</Link>
-                {isSignedIn ? (
+                {isSignedIn && (
                   <Link href="/dashboard" className="btn btn-outline-white btn-lg">My Dashboard</Link>
-                ) : (
-                  <Link href="/sign-up" className="btn btn-outline-white btn-lg">Create Free Account</Link>
                 )}
               </div>
               <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '24px' }}>
@@ -344,17 +342,17 @@ export default function HomePage() {
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '32px', flexWrap: 'wrap' }}>
               <div>
                 <p style={{ color: 'var(--yellow)', fontWeight: 700, fontSize: '13px', letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: '8px' }}>
-                  Free to join · No credit card required
+                  Premium Thai courses · All levels
                 </p>
                 <h2 style={{ color: 'var(--white)', fontSize: 'clamp(22px,3vw,32px)', margin: '0 0 8px' }}>
                   Ready to start your Thai journey?
                 </h2>
                 <p style={{ color: 'rgba(255,255,255,.65)', fontSize: '16px', margin: 0 }}>
-                  Create your free account and browse all courses, flashcards, and free lessons.
+                  Browse courses, books and flashcards. Already a student?
                 </p>
               </div>
               <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', flexShrink: 0 }}>
-                <Link href="/sign-up" className="btn btn-yellow btn-lg">Create Free Account</Link>
+                <Link href="/courses" className="btn btn-yellow btn-lg">Browse Courses</Link>
                 <Link href="/sign-in" className="btn btn-outline-white">Sign In</Link>
               </div>
             </div>
@@ -439,15 +437,9 @@ export default function HomePage() {
             {isSignedIn ? (
               <Link href="/dashboard" className="btn btn-outline-white btn-lg">Go to Dashboard</Link>
             ) : (
-              <Link href="/sign-up" className="btn btn-outline-white btn-lg">Create Free Account</Link>
+              <Link href="/sign-in" className="btn btn-outline-white btn-lg">Sign In</Link>
             )}
           </div>
-          {!isSignedIn && (
-            <p style={{ marginTop: '20px', fontSize: '14px', color: 'rgba(255,255,255,.45)' }}>
-              Already have an account?{' '}
-              <Link href="/sign-in" style={{ color: 'rgba(255,255,255,.7)', textDecoration: 'underline' }}>Sign in here</Link>
-            </p>
-          )}
         </FadeIn>
       </section>
     </>

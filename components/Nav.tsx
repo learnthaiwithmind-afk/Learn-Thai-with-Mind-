@@ -82,10 +82,7 @@ export default function Nav() {
               <UserButton />
             </>
           ) : (
-            <>
-              <Link href="/sign-in" className="nav-signin" onClick={() => setOpen(false)}>Sign In</Link>
-              <Link href="/sign-up" className="nav-signup" onClick={() => setOpen(false)}>Get Started</Link>
-            </>
+            <Link href="/sign-in" className="nav-signin" onClick={() => setOpen(false)}>Sign In</Link>
           )}
         </div>
 
