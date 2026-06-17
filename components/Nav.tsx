@@ -3,11 +3,13 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
+import { UserButton, useUser } from '@clerk/nextjs';
 
 export default function Nav() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const pathname = usePathname();
+  const { isSignedIn } = useUser();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20);
@@ -26,11 +28,10 @@ export default function Nav() {
   const isActive = (href: string) => pathname === href;
 
   const links = [
-    { href: '/', label: 'Home' },
     { href: '/courses', label: 'Courses' },
     { href: '/books', label: 'Books' },
     { href: '/flashcard', label: 'Flashcards' },
-    { href: '/private-class', label: 'Group Classes' },
+    { href: '/private-class', label: 'Classes' },
     { href: '/blog', label: 'Blog' },
     { href: '/contact', label: 'Contact' },
   ];
@@ -38,6 +39,8 @@ export default function Nav() {
   return (
     <nav className={`nav${scrolled ? ' scrolled' : ''}`} id="nav">
       <div className="container nav-inner">
+
+        {/* Logo */}
         <Link href="/" className="nav-logo">
           <Image
             src="/images/logo.png"
@@ -54,6 +57,7 @@ export default function Nav() {
           </div>
         </Link>
 
+        {/* Centre links */}
         <ul className={`nav-links${open ? ' open' : ''}`} id="nav-links">
           {links.map(({ href, label }) => (
             <li key={href}>
@@ -62,23 +66,28 @@ export default function Nav() {
               </Link>
             </li>
           ))}
-          <li>
-            <a
-              href="https://learn-thai-with-mind.teachable.com/sign_in"
-              className="nav-mycourses"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setOpen(false)}
-            >
-              🎓 My Courses
-            </a>
-          </li>
-          <li>
-            <Link href="/private-class#waitlist" className="nav-cta" onClick={() => setOpen(false)}>
-              Join a Class
-            </Link>
-          </li>
         </ul>
+
+        {/* Right-side auth */}
+        <div className={`nav-auth${open ? ' open' : ''}`}>
+          {isSignedIn ? (
+            <>
+              <Link
+                href="/dashboard"
+                className={`nav-mycourses${isActive('/dashboard') ? ' active' : ''}`}
+                onClick={() => setOpen(false)}
+              >
+                🎓 My Courses
+              </Link>
+              <UserButton />
+            </>
+          ) : (
+            <>
+              <Link href="/sign-in" className="nav-signin" onClick={() => setOpen(false)}>Sign In</Link>
+              <Link href="/sign-up" className="nav-signup" onClick={() => setOpen(false)}>Get Started</Link>
+            </>
+          )}
+        </div>
 
         <button
           className={`nav-hamburger${open ? ' open' : ''}`}

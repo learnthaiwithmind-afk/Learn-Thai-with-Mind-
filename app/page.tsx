@@ -1,7 +1,10 @@
+'use client';
 import Link from 'next/link';
 import FadeIn from '../components/FadeIn';
+import { useUser } from '@clerk/nextjs';
 
 export default function HomePage() {
+  const { isSignedIn } = useUser();
   return (
     <>
       {/* HERO */}
@@ -20,12 +23,30 @@ export default function HomePage() {
               </p>
               <div className="hero-actions">
                 <Link href="/courses" className="btn btn-yellow btn-lg">Explore Courses</Link>
-                <Link href="/private-class" className="btn btn-outline-white btn-lg">Join Group Classes</Link>
+                {isSignedIn ? (
+                  <Link href="/dashboard" className="btn btn-outline-white btn-lg">My Dashboard</Link>
+                ) : (
+                  <Link href="/sign-up" className="btn btn-outline-white btn-lg">Create Free Account</Link>
+                )}
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: '10px', marginTop: '24px' }}>
+                <div style={{ display: 'flex' }}>
+                  {['🇬🇧','🇺🇸','🇦🇺','🇩🇪','🇫🇷'].map(f => (
+                    <span key={f} style={{ fontSize: '18px', marginRight: '-4px' }}>{f}</span>
+                  ))}
+                </div>
+                <span style={{ fontSize: '14px', color: 'rgba(255,255,255,.7)', fontWeight: 500 }}>
+                  Trusted by students from <strong style={{ color: 'var(--yellow)' }}>30+ countries</strong>
+                </span>
               </div>
               <div className="hero-stats">
                 <div className="hero-stat">
                   <div className="hero-stat-val">10+</div>
                   <div className="hero-stat-lbl">Years Teaching</div>
+                </div>
+                <div className="hero-stat">
+                  <div className="hero-stat-val">★ 5.0</div>
+                  <div className="hero-stat-lbl">Student Rating</div>
                 </div>
                 <div className="hero-stat">
                   <div className="hero-stat-val">All</div>
@@ -316,22 +337,51 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* CONVERSION BANNER */}
+      {!isSignedIn && (
+        <section style={{ background: 'linear-gradient(135deg, var(--blue-dk) 0%, var(--blue) 100%)', padding: '56px 0' }}>
+          <FadeIn className="container">
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '32px', flexWrap: 'wrap' }}>
+              <div>
+                <p style={{ color: 'var(--yellow)', fontWeight: 700, fontSize: '13px', letterSpacing: '1.5px', textTransform: 'uppercase', marginBottom: '8px' }}>
+                  Free to join · No credit card required
+                </p>
+                <h2 style={{ color: 'var(--white)', fontSize: 'clamp(22px,3vw,32px)', margin: '0 0 8px' }}>
+                  Ready to start your Thai journey?
+                </h2>
+                <p style={{ color: 'rgba(255,255,255,.65)', fontSize: '16px', margin: 0 }}>
+                  Create your free account and browse all courses, flashcards, and free lessons.
+                </p>
+              </div>
+              <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', flexShrink: 0 }}>
+                <Link href="/sign-up" className="btn btn-yellow btn-lg">Create Free Account</Link>
+                <Link href="/sign-in" className="btn btn-outline-white">Sign In</Link>
+              </div>
+            </div>
+          </FadeIn>
+        </section>
+      )}
+
       {/* TESTIMONIALS */}
       <section className="section-pad testimonials-section">
         <div className="container">
           <div className="text-center">
-            <p className="eyebrow yw">Student Stories</p>
-            <h2 className="section-title" style={{ color: 'var(--white)' }}>What My Students Say</h2>
+            <p className="eyebrow">Student Stories</p>
+            <h2 className="section-title">What My Students Say</h2>
             <div className="accent-bar center"><div className="accent-line"></div><div className="accent-dot" style={{ background: 'var(--yellow)' }}></div><div className="accent-line"></div></div>
           </div>
           <div className="testimonials-grid" style={{ marginTop: '56px' }}>
             {[
-              { initials: 'JM', name: 'James Mitchell', from: '🇬🇧 United Kingdom · Conversational Thai Mastery', text: "Mind is without a doubt the best Thai teacher I've ever encountered. I'd tried apps, textbooks, and other online teachers — nothing clicked until I found her. Her lessons feel effortless and I now hold real conversations with my Thai partner's family. Truly life-changing." },
-              { initials: 'SW', name: 'Sarah Walters', from: '🇺🇸 United States · Private Classes', text: "I signed up for private classes because I was moving to Chiang Mai for work and needed to speak Thai fast. Within 8 weeks of working with Mind, I could navigate daily life, bargain at markets, and even joke with colleagues. She's incredibly patient and makes every lesson fun." },
-              { initials: 'TC', name: 'Thomas Chen', from: '🇦🇺 Australia · Thai Reading & Writing', text: "The Reading & Writing course blew my mind — I always assumed Thai script was impossibly hard for a Westerner. Mind breaks it down so logically and methodically. I can now read Thai signs and messages on my phone. The investment is absolutely worth it." },
-              { initials: 'EV', name: 'Emma van der Berg', from: '🇳🇱 Netherlands · Thai for Complete Beginners', text: "I've been studying Thai on and off for years but always struggled with the tones. Mind's beginner course fixed that in the first three lessons. Her explanations are clear, concise and — honestly — hilarious. I look forward to every single lesson. Worth every penny." },
-              { initials: 'RL', name: 'Robert Larsson', from: '🇸🇪 Sweden · Conversational Thai Mastery', text: "I travel to Thailand twice a year and wanted to go beyond tourist Thai. Mind's conversational course transformed my trips. Locals are genuinely surprised and delighted when I speak Thai. The cultural lessons are an incredible bonus — I understand Thailand so much more deeply now." },
-              { initials: 'DN', name: 'Daniel Nakamura', from: '🇨🇦 Canada · Full Course Bundle', text: "Mind is the perfect combination of professional and personable. The quality of her materials rivals what you'd find in a university course, but delivered with warmth and genuine enthusiasm. My Thai went from near-zero to intermediate within a year. I now recommend her to everyone I meet." },
+              { initials: 'RS', name: 'Raphaelle S.', from: '🇫🇷 France', text: "I highly recommend Kru Mind if you want to learn Thai! She's patient, speaks very good English, and structures lessons according to your needs. She is very professional in the most friendliest way ever. I feel that each lesson I am making progress." },
+              { initials: 'ZI', name: 'Zhenya I.', from: '🇺🇸 United States', text: "Kru Mind is excellent. She is attentive to your learning needs and always goes at a comfortable pace — but you'll always get a lot out of her lessons. I've never had a single boring lesson with her, and I am always impressed with her linguistic and grammatical command of Thai. 10/10" },
+              { initials: 'RS2', name: 'Ringo S.', from: '🇩🇪 Germany', text: "You want to learn Thai in a nice, funny and fast way? Don't hesitate to contact Teacher Mind! She creates a warm atmosphere where you can learn and try to speak without fear. During lessons she is very flexible and tailors everything to your personal goals. Highly recommended." },
+              { initials: 'TV', name: 'Tim de V.', from: '🇳🇱 The Netherlands', text: "Mind is a great teacher! She is experienced enough to recognise your current level and tailor lessons right from the start. She will teach you useful daily conversation vocabulary in an easy-to-understand manner. Punctual, flexible, friendly — recommended!" },
+              { initials: 'TL', name: 'Tracy R. L.', from: '🇺🇸 United States', text: "Learning online with Teacher Mind is so wonderful. She has worked with me and my needs as an intermediate learner — teaching me slang and real conversational Thai. I so appreciate her flexibility and willingness to talk about anything. Try a lesson wherever you prefer to be!" },
+              { initials: 'AW', name: 'Adrian W.', from: '🇲🇾 Malaysia', text: "I am taking classes with Kru Mind and she's been great at helping me understand how to speak more like a local. She knows how to make learning interesting and is detailed and patient." },
+              { initials: 'AT', name: 'Aron T.', from: '🇳🇱 The Netherlands', text: "Mind is a great teacher. She helped me become conversational in a surprisingly short time. She's punctual, flexible and her lessons are fun." },
+              { initials: 'JT', name: 'James T.', from: '🇺🇸 United States', text: "I started learning only about a month ago and I already love it. I thought Thai would be difficult. She's great — always patient and makes it fun! Signed up for 10 more lessons!" },
+              { initials: 'LE', name: 'Lj E.', from: '🇦🇺 Australia', text: "I have been taking lessons with Khun Mind for a few weeks now and my Thai has improved so much. She is a dedicated teacher with well-planned classes. I highly recommend." },
+              { initials: 'TP', name: 'Tom P.', from: '🇬🇧 England', text: "Mind is a wonderful teacher who has helped me to improve my conversational Thai. The lessons are fun, interactive and move along at the perfect pace. Thanks!" },
             ].map(({ initials, name, from, text }) => (
               <FadeIn key={name}>
                 <div className="t-card">
@@ -386,8 +436,18 @@ export default function HomePage() {
           </p>
           <div style={{ display: 'flex', gap: '16px', justifyContent: 'center', flexWrap: 'wrap' }}>
             <Link href="/courses" className="btn btn-yellow btn-lg">Browse All Courses</Link>
-            <Link href="/private-class" className="btn btn-outline-white btn-lg">Join Group Classes</Link>
+            {isSignedIn ? (
+              <Link href="/dashboard" className="btn btn-outline-white btn-lg">Go to Dashboard</Link>
+            ) : (
+              <Link href="/sign-up" className="btn btn-outline-white btn-lg">Create Free Account</Link>
+            )}
           </div>
+          {!isSignedIn && (
+            <p style={{ marginTop: '20px', fontSize: '14px', color: 'rgba(255,255,255,.45)' }}>
+              Already have an account?{' '}
+              <Link href="/sign-in" style={{ color: 'rgba(255,255,255,.7)', textDecoration: 'underline' }}>Sign in here</Link>
+            </p>
+          )}
         </FadeIn>
       </section>
     </>

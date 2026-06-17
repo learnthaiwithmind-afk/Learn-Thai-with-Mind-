@@ -39,13 +39,13 @@ export default function CoursesPage() {
                   <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '12px', alignItems: 'center' }}>
                     <span className="badge badge-yellow">⭐ Bestseller</span>
                     <span className="level-badge" style={{ background: '#e8f4fd', color: '#1a5f8a' }}>Absolute Beginner</span>
-                    <span style={{ fontSize: '13px', color: 'var(--muted)' }}>40+ lessons · Self-paced · Lifetime access</span>
+                    <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.6)' }}>40+ lessons · Self-paced · Lifetime access</span>
                   </div>
-                  <h2 style={{ fontSize: 'clamp(22px,3vw,30px)', marginBottom: '12px' }}>Thai for Complete Beginners</h2>
-                  <p style={{ fontSize: '16px', color: 'var(--mid)', lineHeight: '1.7', maxWidth: '640px' }}>The perfect starting point for anyone who has never studied Thai before. You&apos;ll go from knowing absolutely nothing to holding basic conversations, understanding Thai tones, and reading your first Thai words — all in a structured, stress-free environment.</p>
+                  <h2 style={{ fontSize: 'clamp(22px,3vw,30px)', marginBottom: '12px', color: 'var(--white)' }}>Thai for Complete Beginners</h2>
+                  <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.8)', lineHeight: '1.7', maxWidth: '640px' }}>The perfect starting point for anyone who has never studied Thai before. You&apos;ll go from knowing absolutely nothing to holding basic conversations, understanding Thai tones, and reading your first Thai words — all in a structured, stress-free environment.</p>
                 </div>
                 <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: '16px', padding: '28px 32px', textAlign: 'center', minWidth: '200px' }}>
-                  <div style={{ fontSize: '16px', color: 'var(--muted)', textDecoration: 'line-through', marginBottom: '4px' }}>Was $130</div>
+                  <div style={{ fontSize: '14px', color: 'var(--muted)', textDecoration: 'line-through', marginBottom: '4px' }}>Was $130</div>
                   <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: '48px', fontWeight: 800, color: 'var(--dark)', lineHeight: 1 }}><sup style={{ fontSize: '22px', verticalAlign: 'super' }}>$</sup>97</div>
                   <div style={{ fontSize: '13px', color: 'var(--muted)', marginTop: '4px' }}>One-time payment</div>
                   <a href="#" className="btn btn-yellow" style={{ width: '100%', marginTop: '16px', justifyContent: 'center' }}>🔒 Enrol Now</a>
@@ -91,10 +91,10 @@ export default function CoursesPage() {
                   <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '12px', alignItems: 'center' }}>
                     <span className="badge badge-blue">🔥 Most Popular</span>
                     <span className="level-badge" style={{ background: '#fff3cd', color: '#7a5c00' }}>Intermediate</span>
-                    <span style={{ fontSize: '13px', color: 'var(--muted)' }}>60+ lessons · Self-paced · Monthly live Q&amp;A</span>
+                    <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.6)' }}>60+ lessons · Self-paced · Monthly live Q&amp;A</span>
                   </div>
-                  <h2 style={{ fontSize: 'clamp(22px,3vw,30px)', marginBottom: '12px' }}>Conversational Thai Mastery</h2>
-                  <p style={{ fontSize: '16px', color: 'var(--mid)', lineHeight: '1.7', maxWidth: '640px' }}>The course that students describe as &ldquo;life-changing.&rdquo; If you&apos;ve got the basics and want to break through to real fluency — this is it. You&apos;ll cover the everyday topics Thais actually talk about, learn natural slang, understand cultural nuances, and develop the instinct to express yourself freely without mentally translating every word.</p>
+                  <h2 style={{ fontSize: 'clamp(22px,3vw,30px)', marginBottom: '12px', color: 'var(--white)' }}>Conversational Thai Mastery</h2>
+                  <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.8)', lineHeight: '1.7', maxWidth: '640px' }}>The course that students describe as &ldquo;life-changing.&rdquo; If you&apos;ve got the basics and want to break through to real fluency — this is it. You&apos;ll cover the everyday topics Thais actually talk about, learn natural slang, understand cultural nuances, and develop the instinct to express yourself freely without mentally translating every word.</p>
                 </div>
                 <div style={{ background: 'var(--bg)', border: '1px solid var(--yellow)', borderRadius: '16px', padding: '28px 32px', textAlign: 'center', minWidth: '200px' }}>
                   <div style={{ fontSize: '16px', color: 'var(--muted)', textDecoration: 'line-through', marginBottom: '4px' }}>Was $195</div>
@@ -142,10 +142,10 @@ export default function CoursesPage() {
                   <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '12px', alignItems: 'center' }}>
                     <span className="badge badge-green">✨ New</span>
                     <span className="level-badge" style={{ background: '#e8f4fd', color: '#1a5f8a' }}>Beginner – Intermediate</span>
-                    <span style={{ fontSize: '13px', color: 'var(--muted)' }}>50+ lessons · Self-paced · Lifetime access</span>
+                    <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.6)' }}>50+ lessons · Self-paced · Lifetime access</span>
                   </div>
-                  <h2 style={{ fontSize: 'clamp(22px,3vw,30px)', marginBottom: '12px' }}>Thai Reading &amp; Writing</h2>
-                  <p style={{ fontSize: '16px', color: 'var(--mid)', lineHeight: '1.7', maxWidth: '640px' }}>Unlock the beautiful, ancient Thai script. Most learners avoid it — but those who learn it progress three times faster and earn instant respect from Thai people. Mind demystifies every consonant, vowel, and tone mark with the clearest, most systematic approach available online.</p>
+                  <h2 style={{ fontSize: 'clamp(22px,3vw,30px)', marginBottom: '12px', color: 'var(--white)' }}>Thai Reading &amp; Writing</h2>
+                  <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.8)', lineHeight: '1.7', maxWidth: '640px' }}>Unlock the beautiful, ancient Thai script. Most learners avoid it — but those who learn it progress three times faster and earn instant respect from Thai people. Mind demystifies every consonant, vowel, and tone mark with the clearest, most systematic approach available online.</p>
                 </div>
                 <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: '16px', padding: '28px 32px', textAlign: 'center', minWidth: '200px' }}>
                   <div style={{ fontSize: '16px', color: 'var(--muted)', textDecoration: 'line-through', marginBottom: '4px' }}>Was $165</div>
@@ -193,10 +193,10 @@ export default function CoursesPage() {
                   <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '12px', alignItems: 'center' }}>
                     <span className="badge badge-purple">💎 Advanced</span>
                     <span className="level-badge" style={{ background: '#f3e8ff', color: '#6b21a8' }}>Upper Intermediate – Advanced</span>
-                    <span style={{ fontSize: '13px', color: 'var(--muted)' }}>70+ lessons · Self-paced · Lifetime access</span>
+                    <span style={{ fontSize: '13px', color: 'rgba(255,255,255,0.6)' }}>70+ lessons · Self-paced · Lifetime access</span>
                   </div>
-                  <h2 style={{ fontSize: 'clamp(22px,3vw,30px)', marginBottom: '12px' }}>Advanced Thai Fluency</h2>
-                  <p style={{ fontSize: '16px', color: 'var(--mid)', lineHeight: '1.7', maxWidth: '640px' }}>For learners who want to think in Thai. This course takes you into complex grammar, formal and informal registers, Thai literature references, proverbs, and the subtle art of speaking Thai in a way that leaves locals genuinely impressed.</p>
+                  <h2 style={{ fontSize: 'clamp(22px,3vw,30px)', marginBottom: '12px', color: 'var(--white)' }}>Advanced Thai Fluency</h2>
+                  <p style={{ fontSize: '16px', color: 'rgba(255,255,255,0.8)', lineHeight: '1.7', maxWidth: '640px' }}>For learners who want to think in Thai. This course takes you into complex grammar, formal and informal registers, Thai literature references, proverbs, and the subtle art of speaking Thai in a way that leaves locals genuinely impressed.</p>
                 </div>
                 <div style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: '16px', padding: '28px 32px', textAlign: 'center', minWidth: '200px' }}>
                   <div style={{ fontSize: '16px', color: 'var(--muted)', textDecoration: 'line-through', marginBottom: '4px' }}>Was $250</div>
