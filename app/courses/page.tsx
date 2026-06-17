@@ -240,7 +240,7 @@ export default function CoursesPage() {
           <FadeIn>
             <div className="course-detail-card" style={{ marginBottom: '40px', background: 'linear-gradient(160deg,var(--dark) 0%,#1e3a5f 100%)', borderColor: 'var(--yellow)' }}>
               <div style={{ background: 'linear-gradient(90deg,var(--yellow),var(--yellow-dk),var(--yellow))', height: '6px' }}></div>
-              <div className="cdc-header" style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '32px', padding: '40px 48px', alignItems: 'start', borderBottom: '1px solid rgba(255,255,255,.1)' }}>
+              <div className="cdc-header cdc-header-grid" style={{ borderBottom: '1px solid rgba(255,255,255,.1)' }}>
                 <div>
                   <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '12px', alignItems: 'center' }}>
                     <span className="badge badge-bundle">✦ Best Value</span>
@@ -258,7 +258,7 @@ export default function CoursesPage() {
                   <div style={{ fontSize: '12px', color: 'rgba(255,255,255,.4)', marginTop: '12px' }}>🔒 30-day money-back guarantee</div>
                 </div>
               </div>
-              <div style={{ padding: '40px 48px' }}>
+              <div className="cdc-body-grid">
                 <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2,1fr)', gap: '16px' }}>
                   {[['Thai for Complete Beginners','40+ lessons · Beginner'],['Conversational Thai Mastery','60+ lessons · Intermediate'],['Thai Reading & Writing','50+ lessons · Beginner – Int.'],['Advanced Thai Fluency','70+ lessons · Advanced']].map(([name, desc]) => (
                     <div key={name} style={{ background: 'rgba(255,255,255,.06)', border: '1px solid rgba(251,191,36,.2)', borderRadius: '12px', padding: '20px' }}>
