@@ -108,7 +108,7 @@ export default function PrivateClassPage() {
             </div>
           </FadeIn>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', marginTop: '56px' }}>
+          <div className="pc-glance-grid">
             {glanceItems.map(({ icon, title, desc }) => (
               <FadeIn key={title}>
                 <div style={{ background: 'var(--white)', border: '1.5px solid var(--border)', borderRadius: '16px', padding: '28px 24px', display: 'flex', alignItems: 'flex-start', gap: '18px', transition: 'all .25s' }}
@@ -138,7 +138,7 @@ export default function PrivateClassPage() {
             </div>
           </FadeIn>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px', marginTop: '48px' }}>
+          <div className="pc-schedule-grid">
             {scheduleCards.map(({ tag, time, course, level: lv, desc, tz, featured, ribbon, btnClass }) => (
               <FadeIn key={tag}>
                 <div style={{ background: 'var(--white)', border: `2px solid ${featured ? 'var(--yellow)' : 'var(--border)'}`, borderRadius: '20px', overflow: 'hidden', transition: 'all .3s', position: 'relative', boxShadow: featured ? '0 0 0 1px var(--yellow), var(--shadow-lg)' : 'none' }}
@@ -196,8 +196,8 @@ export default function PrivateClassPage() {
             </div>
           </FadeIn>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0', marginTop: '56px', position: 'relative' }}>
-            <div style={{ position: 'absolute', top: '32px', left: 'calc(12.5% + 16px)', right: 'calc(12.5% + 16px)', height: '2px', background: 'linear-gradient(90deg, var(--yellow), var(--blue), var(--yellow))', opacity: .3 }} />
+          <div className="pc-how-grid">
+            <div className="pc-how-connector" style={{ position: 'absolute', top: '32px', left: 'calc(12.5% + 16px)', right: 'calc(12.5% + 16px)', height: '2px', background: 'linear-gradient(90deg, var(--yellow), var(--blue), var(--yellow))', opacity: .3 }} />
             {howSteps.map(({ num, icon, title, desc }) => (
               <FadeIn key={num}>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '0 16px', position: 'relative', zIndex: 1 }}>

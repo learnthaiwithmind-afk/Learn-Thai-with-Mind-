@@ -403,7 +403,7 @@ export default function HomePage() {
       {/* FLASHCARD CTA */}
       <section className="section-pad-sm bg-white">
         <div className="container">
-          <div style={{ background: 'var(--blue-50)', border: '1.5px solid var(--blue-100)', borderRadius: 'var(--r-xl)', padding: '56px', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '40px', flexWrap: 'wrap' }}>
+          <div style={{ background: 'var(--blue-50)', border: '1.5px solid var(--blue-100)', borderRadius: 'var(--r-xl)', padding: 'clamp(24px,4vw,56px)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: '40px', flexWrap: 'wrap' }}>
             <FadeIn>
               <p className="eyebrow">Free Tool</p>
               <h2 style={{ fontSize: '32px', marginBottom: '12px' }}>Practice Thai with<br />Interactive Flashcards</h2>

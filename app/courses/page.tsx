@@ -34,7 +34,7 @@ export default function CoursesPage() {
           {/* Course 1: Beginners */}
           <FadeIn>
             <div className="course-detail-card" style={{ marginBottom: '40px' }}>
-              <div className="cdc-header" style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '32px', padding: '40px 48px', alignItems: 'start', borderBottom: '1px solid var(--border)' }}>
+              <div className="cdc-header cdc-header-grid">
                 <div>
                   <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '12px', alignItems: 'center' }}>
                     <span className="badge badge-yellow">⭐ Bestseller</span>
@@ -52,7 +52,7 @@ export default function CoursesPage() {
                   <div style={{ fontSize: '12px', color: 'var(--muted)', marginTop: '12px' }}>🔒 30-day money-back guarantee</div>
                 </div>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px', padding: '40px 48px' }}>
+              <div className="cdc-body-grid">
                 <div>
                   <div style={{ fontFamily: 'sans-serif', fontSize: '13px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '16px' }}>What&apos;s Included</div>
                   <ul style={{ listStyle: 'none', padding: 0 }}>
@@ -86,7 +86,7 @@ export default function CoursesPage() {
           <FadeIn>
             <div className="course-detail-card" style={{ marginBottom: '40px', borderColor: 'var(--yellow)', boxShadow: '0 0 0 2px var(--yellow)' }}>
               <div style={{ background: 'linear-gradient(90deg,var(--yellow),var(--yellow-dk))', height: '6px' }}></div>
-              <div className="cdc-header" style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '32px', padding: '40px 48px', alignItems: 'start', borderBottom: '1px solid var(--border)' }}>
+              <div className="cdc-header cdc-header-grid">
                 <div>
                   <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '12px', alignItems: 'center' }}>
                     <span className="badge badge-blue">🔥 Most Popular</span>
@@ -104,7 +104,7 @@ export default function CoursesPage() {
                   <div style={{ fontSize: '12px', color: 'var(--muted)', marginTop: '12px' }}>🔒 30-day money-back guarantee</div>
                 </div>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px', padding: '40px 48px' }}>
+              <div className="cdc-body-grid">
                 <div>
                   <div style={{ fontFamily: 'sans-serif', fontSize: '13px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '16px' }}>What&apos;s Included</div>
                   <ul style={{ listStyle: 'none', padding: 0 }}>
@@ -137,7 +137,7 @@ export default function CoursesPage() {
           {/* Course 3: R&W */}
           <FadeIn>
             <div className="course-detail-card" style={{ marginBottom: '40px' }}>
-              <div className="cdc-header" style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '32px', padding: '40px 48px', alignItems: 'start', borderBottom: '1px solid var(--border)' }}>
+              <div className="cdc-header cdc-header-grid">
                 <div>
                   <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '12px', alignItems: 'center' }}>
                     <span className="badge badge-green">✨ New</span>
@@ -155,7 +155,7 @@ export default function CoursesPage() {
                   <div style={{ fontSize: '12px', color: 'var(--muted)', marginTop: '12px' }}>🔒 30-day money-back guarantee</div>
                 </div>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px', padding: '40px 48px' }}>
+              <div className="cdc-body-grid">
                 <div>
                   <div style={{ fontFamily: 'sans-serif', fontSize: '13px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '16px' }}>What&apos;s Included</div>
                   <ul style={{ listStyle: 'none', padding: 0 }}>
@@ -188,7 +188,7 @@ export default function CoursesPage() {
           {/* Course 4: Advanced */}
           <FadeIn>
             <div className="course-detail-card" style={{ marginBottom: '40px' }}>
-              <div className="cdc-header" style={{ display: 'grid', gridTemplateColumns: '1fr auto', gap: '32px', padding: '40px 48px', alignItems: 'start', borderBottom: '1px solid var(--border)' }}>
+              <div className="cdc-header cdc-header-grid">
                 <div>
                   <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '12px', alignItems: 'center' }}>
                     <span className="badge badge-purple">💎 Advanced</span>
@@ -206,7 +206,7 @@ export default function CoursesPage() {
                   <div style={{ fontSize: '12px', color: 'var(--muted)', marginTop: '12px' }}>🔒 30-day money-back guarantee</div>
                 </div>
               </div>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px', padding: '40px 48px' }}>
+              <div className="cdc-body-grid">
                 <div>
                   <div style={{ fontFamily: 'sans-serif', fontSize: '13px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '16px' }}>What&apos;s Included</div>
                   <ul style={{ listStyle: 'none', padding: 0 }}>
