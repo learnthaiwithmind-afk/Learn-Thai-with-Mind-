@@ -276,15 +276,15 @@ export default function FlashcardPage() {
 
           {/* Stats bar */}
           <FadeIn>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px', marginBottom: '40px' }}>
+            <div className="fc-stats-grid">
               {[
                 { label: 'Total Cards', value: TOTAL_CARDS, icon: '🗂️' },
                 { label: 'Known This Deck', value: `${knownInCategory} / ${cards.length}`, icon: '✅' },
                 { label: 'Total Known', value: known.size, icon: '⭐' },
               ].map(({ label, value, icon }) => (
-                <div key={label} style={{ background: 'var(--bg)', border: '1px solid var(--border)', borderRadius: 'var(--r)', padding: '20px 24px', textAlign: 'center' }}>
+                <div key={label} className="fc-stat-box">
                   <div style={{ fontSize: '24px', marginBottom: '4px' }}>{icon}</div>
-                  <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: '28px', fontWeight: 800, color: 'var(--dark)' }}>{value}</div>
+                  <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 'clamp(16px,5vw,28px)', fontWeight: 800, color: 'var(--dark)', whiteSpace: 'nowrap' }}>{value}</div>
                   <div style={{ fontSize: '12px', color: 'var(--muted)', fontWeight: 600, marginTop: '2px' }}>{label}</div>
                 </div>
               ))}
@@ -331,8 +331,8 @@ export default function FlashcardPage() {
                 {/* Front */}
                 <div style={{ position: 'absolute', inset: 0, backfaceVisibility: 'hidden', background: 'var(--dark)', borderRadius: '24px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', padding: '40px', boxShadow: '0 20px 60px rgba(0,0,0,.18)', overflow: 'hidden' }}>
                   <div style={{ position: 'absolute', top: '-80px', right: '-80px', width: '280px', height: '280px', borderRadius: '50%', background: 'radial-gradient(circle, rgba(251,191,36,.12) 0%, transparent 70%)', pointerEvents: 'none' }} />
-                  <div style={{ fontFamily: "'Noto Sans Thai', sans-serif", fontSize: 'clamp(52px,8vw,80px)', color: 'var(--white)', lineHeight: 1.2, marginBottom: '16px', textAlign: 'center', position: 'relative', zIndex: 1 }}>{card.thai}</div>
-                  <div style={{ fontSize: '18px', color: 'rgba(255,255,255,.55)', fontStyle: 'italic', marginBottom: '24px', position: 'relative', zIndex: 1 }}>{card.roman}</div>
+                  <div style={{ fontFamily: "'Noto Sans Thai', sans-serif", fontSize: 'clamp(16px,6vw,80px)', color: 'var(--white)', lineHeight: 1.2, marginBottom: '16px', textAlign: 'center', position: 'relative', zIndex: 1, whiteSpace: 'nowrap' }}>{card.thai}</div>
+                  <div style={{ fontSize: 'clamp(11px,3.5vw,18px)', color: 'rgba(255,255,255,.55)', fontStyle: 'italic', marginBottom: '24px', position: 'relative', zIndex: 1, whiteSpace: 'nowrap' }}>{card.roman}</div>
                   <div style={{ fontSize: '13px', color: 'rgba(255,255,255,.3)', position: 'relative', zIndex: 1, display: 'flex', alignItems: 'center', gap: '6px' }}>
                     <svg width="14" height="14" fill="none" stroke="currentColor" strokeWidth="2" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5" /></svg>
                     Tap to reveal meaning

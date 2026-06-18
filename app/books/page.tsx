@@ -39,7 +39,7 @@ export default function BooksPage() {
           </FadeIn>
 
           <FadeIn>
-            <div style={{ display: 'grid', gridTemplateColumns: '380px 1fr', gap: '64px', alignItems: 'start', marginTop: '56px' }}>
+            <div className="book-featured-grid" style={{ display: 'grid', gridTemplateColumns: '380px 1fr', gap: '64px', alignItems: 'start', marginTop: '56px' }}>
               <div style={{ borderRadius: '16px', overflow: 'hidden', boxShadow: '0 24px 64px rgba(0,0,0,.18)' }}>
                 <Image src="/images/book-sl1-cover.png" alt="Speaking and Listening 1 by Kru Mind" width={380} height={507} style={{ width: '100%', display: 'block' }} />
               </div>
@@ -116,7 +116,7 @@ export default function BooksPage() {
             </div>
           </FadeIn>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '24px', marginTop: '40px' }}>
+          <div className="book-cs-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: '24px', marginTop: '40px' }}>
             {comingSoon.map(({ img, alt, title, desc, level }) => (
               <FadeIn key={img}>
                 <div style={{ background: 'var(--white)', border: '1px solid var(--border)', borderRadius: '16px', overflow: 'hidden', opacity: .72, transition: 'opacity .2s' }}
@@ -149,7 +149,7 @@ export default function BooksPage() {
       <section className="section-pad bg-white">
         <div className="container">
           <FadeIn>
-            <div style={{ background: 'var(--bg)', borderRadius: '16px', padding: '48px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px', alignItems: 'center', border: '1px solid var(--border)', marginTop: '0' }}>
+            <div className="book-why-grid" style={{ background: 'var(--bg)', borderRadius: '16px', padding: '48px', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '48px', alignItems: 'center', border: '1px solid var(--border)', marginTop: '0' }}>
               <div>
                 <p className="eyebrow">Written by a Real Teacher</p>
                 <h2 className="section-title" style={{ fontSize: '28px' }}>Why These Books Are Different</h2>

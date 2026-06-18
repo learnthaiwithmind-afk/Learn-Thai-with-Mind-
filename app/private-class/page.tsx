@@ -108,7 +108,7 @@ export default function PrivateClassPage() {
             </div>
           </FadeIn>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', marginTop: '56px' }}>
+          <div className="pc-glance-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '20px', marginTop: '56px' }}>
             {glanceItems.map(({ icon, title, desc }) => (
               <FadeIn key={title}>
                 <div style={{ background: 'var(--white)', border: '1.5px solid var(--border)', borderRadius: '16px', padding: '28px 24px', display: 'flex', alignItems: 'flex-start', gap: '18px', transition: 'all .25s' }}
@@ -138,7 +138,7 @@ export default function PrivateClassPage() {
             </div>
           </FadeIn>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px', marginTop: '48px' }}>
+          <div className="pc-schedule-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '24px', marginTop: '48px' }}>
             {scheduleCards.map(({ tag, time, course, level: lv, desc, tz, featured, ribbon, btnClass }) => (
               <FadeIn key={tag}>
                 <div style={{ background: 'var(--white)', border: `2px solid ${featured ? 'var(--yellow)' : 'var(--border)'}`, borderRadius: '20px', overflow: 'hidden', transition: 'all .3s', position: 'relative', boxShadow: featured ? '0 0 0 1px var(--yellow), var(--shadow-lg)' : 'none' }}
@@ -196,8 +196,8 @@ export default function PrivateClassPage() {
             </div>
           </FadeIn>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0', marginTop: '56px', position: 'relative' }}>
-            <div style={{ position: 'absolute', top: '32px', left: 'calc(12.5% + 16px)', right: 'calc(12.5% + 16px)', height: '2px', background: 'linear-gradient(90deg, var(--yellow), var(--blue), var(--yellow))', opacity: .3 }} />
+          <div className="pc-how-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '0', marginTop: '56px', position: 'relative' }}>
+            <div className="pc-how-connector" style={{ position: 'absolute', top: '32px', left: 'calc(12.5% + 16px)', right: 'calc(12.5% + 16px)', height: '2px', background: 'linear-gradient(90deg, var(--yellow), var(--blue), var(--yellow))', opacity: .3 }} />
             {howSteps.map(({ num, icon, title, desc }) => (
               <FadeIn key={num}>
                 <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', textAlign: 'center', padding: '0 16px', position: 'relative', zIndex: 1 }}>
@@ -226,15 +226,15 @@ export default function PrivateClassPage() {
 
           <FadeIn>
             <div style={{ background: 'var(--white)', borderRadius: '24px', border: '1px solid var(--border)', boxShadow: 'var(--shadow-lg)', overflow: 'hidden', maxWidth: '760px', margin: '0 auto' }}>
-              <div style={{ background: 'var(--dark)', padding: '36px 48px', borderBottom: '1px solid rgba(200,152,31,.2)' }}>
+              <div className="pc-form-head" style={{ background: 'var(--dark)', padding: '36px 48px', borderBottom: '1px solid rgba(200,152,31,.2)' }}>
                 <h2 style={{ color: 'var(--white)', fontSize: '26px', marginBottom: '6px' }}>สมัครเรียน · Sign Up</h2>
                 <p style={{ color: 'rgba(255,255,255,.6)', fontSize: '15px', lineHeight: '1.6' }}>Fill in your details below. Kru Mind will contact you personally when your class group opens. No payment required to join the list.</p>
               </div>
-              <div style={{ padding: '40px 48px' }}>
+              <div className="pc-form-body" style={{ padding: '40px 48px' }}>
                 {!submitted ? (
                   <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                    <div className="pc-form-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
                       <div className="form-group">
                         <label htmlFor="wl-name">Full Name *</label>
                         <input type="text" id="wl-name" placeholder="e.g. Sarah Johnson" required value={name} onChange={e => setName(e.target.value)} />
@@ -245,7 +245,7 @@ export default function PrivateClassPage() {
                       </div>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                    <div className="pc-form-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
                       <div className="form-group">
                         <label htmlFor="wl-phone">Phone / WhatsApp <span style={{ color: 'var(--muted)', fontWeight: 400 }}>(optional)</span></label>
                         <input type="text" id="wl-phone" placeholder="+1 555 000 0000" value={phone} onChange={e => setPhone(e.target.value)} />
@@ -262,7 +262,7 @@ export default function PrivateClassPage() {
                       </div>
                     </div>
 
-                    <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
+                    <div className="pc-form-row" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
                       <div className="form-group">
                         <label htmlFor="wl-level">Your Current Thai Level *</label>
                         <select id="wl-level" required value={level} onChange={e => setLevel(e.target.value)}>

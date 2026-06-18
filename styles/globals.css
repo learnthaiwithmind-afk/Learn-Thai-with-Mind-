@@ -1067,3 +1067,50 @@ ul { list-style: none; }
 .tips-box { background: var(--yellow-lt); border: 1px solid var(--yellow); border-radius: var(--r); padding: 14px 20px; margin-top: 24px; font-size: 14px; color: var(--yellow-dk); text-align: center; }
 .category-label { font-family: 'Plus Jakarta Sans',sans-serif; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--muted); text-align: center; margin-bottom: 8px; }
 .cta-learn-more { background: var(--blue-50); border-radius: var(--r-xl); padding: 40px; text-align: center; margin-top: 56px; border: 1.5px solid var(--blue-100); }
+
+/* Flashcard page stats grid */
+.fc-stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 40px; }
+.fc-stat-box   { background: var(--bg); border: 1px solid var(--border); border-radius: var(--r); padding: 20px 24px; text-align: center; }
+@media(max-width: 600px) {
+  .fc-stats-grid { gap: 8px; }
+  .fc-stat-box   { padding: 12px 8px; }
+}
+
+/* ═══════════════════════════════════════════════════════
+   MOBILE RESPONSIVE LAYOUT OVERRIDES
+   className-targeted, !important overrides inline styles
+═══════════════════════════════════════════════════════ */
+
+/* Private class page grids */
+@media(max-width: 768px) {
+  .pc-glance-grid   { grid-template-columns: 1fr 1fr !important; }
+  .pc-schedule-grid { grid-template-columns: 1fr !important; }
+  .pc-how-grid      { grid-template-columns: 1fr 1fr !important; gap: 32px !important; }
+  .pc-how-connector { display: none !important; }
+  .pc-form-row      { grid-template-columns: 1fr !important; }
+  .pc-form-head     { padding: 28px 20px !important; }
+  .pc-form-body     { padding: 24px 20px !important; }
+}
+@media(max-width: 480px) {
+  .pc-glance-grid { grid-template-columns: 1fr !important; }
+  .pc-how-grid    { grid-template-columns: 1fr !important; }
+}
+
+/* Courses page card grids */
+@media(max-width: 768px) {
+  .cdc-grid-header { grid-template-columns: 1fr !important; padding: 24px 20px !important; }
+  .cdc-grid-body   { grid-template-columns: 1fr !important; padding: 24px 20px !important; gap: 24px !important; }
+  .cdc-bundle-pad  { padding: 24px 20px !important; }
+}
+
+/* Books page grids */
+@media(max-width: 900px) {
+  .book-featured-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+}
+@media(max-width: 768px) {
+  .book-cs-grid  { grid-template-columns: 1fr 1fr !important; gap: 16px !important; }
+  .book-why-grid { grid-template-columns: 1fr !important; padding: 32px 24px !important; gap: 32px !important; }
+}
+@media(max-width: 480px) {
+  .book-cs-grid { grid-template-columns: 1fr !important; }
+}
