@@ -14,7 +14,7 @@ export default function FadeIn({ children, className = '' }: { children: React.R
           observer.unobserve(el);
         }
       },
-      { threshold: 0.12 }
+      { threshold: 0.05, rootMargin: '0px 0px -40px 0px' }
     );
     observer.observe(el);
     return () => observer.disconnect();
