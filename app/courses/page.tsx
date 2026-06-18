@@ -39,7 +39,7 @@ export default function CoursesPage() {
                   <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '12px', alignItems: 'center' }}>
                     <span className="badge badge-yellow">⭐ Bestseller</span>
                     <span className="level-badge" style={{ background: '#e8f4fd', color: '#1a5f8a' }}>Absolute Beginner</span>
-                    <span style={{ fontSize: '13px', color: 'var(--muted)' }}>40+ lessons · Self-paced · Lifetime access</span>
+                    <span className="cdc-meta" style={{ fontSize: '13px', color: 'var(--muted)' }}>40+ lessons · Self-paced · Lifetime access</span>
                   </div>
                   <h2 style={{ fontSize: 'clamp(22px,3vw,30px)', marginBottom: '12px' }}>Thai for Complete Beginners</h2>
                   <p style={{ fontSize: '16px', color: 'var(--mid)', lineHeight: '1.7', maxWidth: '640px' }}>The perfect starting point for anyone who has never studied Thai before. You&apos;ll go from knowing absolutely nothing to holding basic conversations, understanding Thai tones, and reading your first Thai words — all in a structured, stress-free environment.</p>
@@ -91,7 +91,7 @@ export default function CoursesPage() {
                   <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '12px', alignItems: 'center' }}>
                     <span className="badge badge-blue">🔥 Most Popular</span>
                     <span className="level-badge" style={{ background: '#fff3cd', color: '#7a5c00' }}>Intermediate</span>
-                    <span style={{ fontSize: '13px', color: 'var(--muted)' }}>60+ lessons · Self-paced · Monthly live Q&amp;A</span>
+                    <span className="cdc-meta" style={{ fontSize: '13px', color: 'var(--muted)' }}>60+ lessons · Self-paced · Monthly live Q&amp;A</span>
                   </div>
                   <h2 style={{ fontSize: 'clamp(22px,3vw,30px)', marginBottom: '12px' }}>Conversational Thai Mastery</h2>
                   <p style={{ fontSize: '16px', color: 'var(--mid)', lineHeight: '1.7', maxWidth: '640px' }}>The course that students describe as &ldquo;life-changing.&rdquo; If you&apos;ve got the basics and want to break through to real fluency — this is it. You&apos;ll cover the everyday topics Thais actually talk about, learn natural slang, understand cultural nuances, and develop the instinct to express yourself freely without mentally translating every word.</p>
@@ -142,7 +142,7 @@ export default function CoursesPage() {
                   <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '12px', alignItems: 'center' }}>
                     <span className="badge badge-green">✨ New</span>
                     <span className="level-badge" style={{ background: '#e8f4fd', color: '#1a5f8a' }}>Beginner – Intermediate</span>
-                    <span style={{ fontSize: '13px', color: 'var(--muted)' }}>50+ lessons · Self-paced · Lifetime access</span>
+                    <span className="cdc-meta" style={{ fontSize: '13px', color: 'var(--muted)' }}>50+ lessons · Self-paced · Lifetime access</span>
                   </div>
                   <h2 style={{ fontSize: 'clamp(22px,3vw,30px)', marginBottom: '12px' }}>Thai Reading &amp; Writing</h2>
                   <p style={{ fontSize: '16px', color: 'var(--mid)', lineHeight: '1.7', maxWidth: '640px' }}>Unlock the beautiful, ancient Thai script. Most learners avoid it — but those who learn it progress three times faster and earn instant respect from Thai people. Mind demystifies every consonant, vowel, and tone mark with the clearest, most systematic approach available online.</p>
@@ -193,7 +193,7 @@ export default function CoursesPage() {
                   <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap', marginBottom: '12px', alignItems: 'center' }}>
                     <span className="badge badge-purple">💎 Advanced</span>
                     <span className="level-badge" style={{ background: '#f3e8ff', color: '#6b21a8' }}>Upper Intermediate – Advanced</span>
-                    <span style={{ fontSize: '13px', color: 'var(--muted)' }}>70+ lessons · Self-paced · Lifetime access</span>
+                    <span className="cdc-meta" style={{ fontSize: '13px', color: 'var(--muted)' }}>70+ lessons · Self-paced · Lifetime access</span>
                   </div>
                   <h2 style={{ fontSize: 'clamp(22px,3vw,30px)', marginBottom: '12px' }}>Advanced Thai Fluency</h2>
                   <p style={{ fontSize: '16px', color: 'var(--mid)', lineHeight: '1.7', maxWidth: '640px' }}>For learners who want to think in Thai. This course takes you into complex grammar, formal and informal registers, Thai literature references, proverbs, and the subtle art of speaking Thai in a way that leaves locals genuinely impressed.</p>

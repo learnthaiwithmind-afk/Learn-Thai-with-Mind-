@@ -66,14 +66,14 @@ export default function BlogPage() {
 
           {/* Featured post */}
           <FadeIn>
-            <div style={{ background: 'var(--white)', borderRadius: 'var(--r-xl)', border: '1.5px solid var(--border)', overflow: 'hidden', display: 'grid', gridTemplateColumns: '1fr 1fr', marginBottom: '16px', transition: 'box-shadow .25s' }}
+            <div className="blog-featured-inline" style={{ background: 'var(--white)', borderRadius: 'var(--r-xl)', border: '1.5px solid var(--border)', overflow: 'hidden', display: 'grid', gridTemplateColumns: '1fr 1fr', marginBottom: '16px', transition: 'box-shadow .25s' }}
               onMouseEnter={e => { e.currentTarget.style.boxShadow = 'var(--shadow-lg)'; }}
               onMouseLeave={e => { e.currentTarget.style.boxShadow = 'none'; }}>
               <div style={{ background: 'linear-gradient(145deg, #1A3680, #0d2560)', minHeight: '320px', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '36px 40px', position: 'relative', overflow: 'hidden' }}>
                 <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(ellipse at 30% 50%, rgba(200,152,31,.15), transparent 70%)' }} />
                 <div style={{ fontFamily: "'Noto Sans Thai', sans-serif", fontSize: '80px', color: 'rgba(255,255,255,.08)', position: 'absolute', top: '20px', right: '20px', lineHeight: 1, userSelect: 'none' }}>เข้าใจ</div>
                 <div style={{ position: 'relative', zIndex: 1, display: 'inline-block', background: 'var(--yellow)', color: 'var(--white)', fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: '11px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', borderRadius: '100px', padding: '5px 14px', marginBottom: '16px', width: 'fit-content' }}>✦ Featured Article</div>
-                <div style={{ position: 'relative', zIndex: 1, fontFamily: "'Cormorant Garamond', serif", fontSize: '30px', fontWeight: 600, color: 'var(--white)', lineHeight: '1.3' }}>&ldquo;Mai pen rai&rdquo; — the three words that explain everything about Thai culture</div>
+                <div style={{ position: 'relative', zIndex: 1, fontFamily: "'Cormorant Garamond', serif", fontSize: 'clamp(20px,3.5vw,30px)', fontWeight: 600, color: 'var(--white)', lineHeight: '1.3' }}>&ldquo;Mai pen rai&rdquo; — the three words that explain everything about Thai culture</div>
               </div>
               <div style={{ padding: '40px', display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
                 <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: '11px', fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: 'var(--yellow-dk)', marginBottom: '16px' }}>🏯 Thai Culture</div>
@@ -85,7 +85,7 @@ export default function BlogPage() {
           </FadeIn>
 
           {/* Blog grid */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '32px', marginTop: '56px' }}>
+          <div className="blog-grid-mobile" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '32px', marginTop: '56px' }}>
             {filtered.map(({ cover, thai, cat, title, excerpt }) => (
               <FadeIn key={title}>
                 <div style={{ background: 'var(--white)', borderRadius: 'var(--r-lg)', border: '1.5px solid var(--border)', overflow: 'hidden', transition: 'transform .25s, box-shadow .25s, border-color .25s', display: 'flex', flexDirection: 'column' }}

@@ -79,7 +79,7 @@ export default function Nav() {
               Join a Class
             </Link>
           </li>
-          <li style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+          <li className="nav-auth-row" style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <Show when="signed-out">
               <SignInButton mode="modal">
                 <button className="btn btn-outline" style={{ padding: '8px 16px', fontSize: '14px' }}>Sign In</button>
