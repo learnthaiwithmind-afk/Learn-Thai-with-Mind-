@@ -41,7 +41,7 @@ export default function Nav() {
       <div className="container nav-inner">
         <Link href="/" className="nav-logo">
           <Image
-            src="/images/logo.png"
+            src="/images/logo.webp"
             alt="Learn Thai with Mind logo"
             className="nav-logo-img"
             width={120}

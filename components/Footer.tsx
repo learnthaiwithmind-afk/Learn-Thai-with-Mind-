@@ -10,7 +10,7 @@ export default function Footer() {
           <div className="footer-brand">
             <Link href="/" className="nav-logo" style={{ marginBottom: '16px' }}>
               <Image
-                src="/images/logo.png"
+                src="/images/logo.webp"
                 alt="Learn Thai with Mind"
                 className="nav-logo-img"
                 width={120}

@@ -5,11 +5,11 @@ import FadeIn from '../../components/FadeIn';
 
 export default function BooksPage() {
   const comingSoon = [
-    { img: 'book-sl2-cover.png', alt: 'Speaking and Listening 2', title: 'Speaking & Listening 2', desc: 'Daily life conversations, shopping, transport, and expanding your vocabulary into real situations.', level: 'A2 · Beginner' },
-    { img: 'book-sl3-cover.png', alt: 'Speaking and Listening 3', title: 'Speaking & Listening 3', desc: 'Handle real-life situations comfortably — relationships, work, travel, and longer conversations.', level: 'A2+ · Elementary' },
-    { img: 'book-rw1-cover.png', alt: 'Reading and Writing 1', title: 'Reading & Writing 1', desc: 'Learn the Thai alphabet — consonants, vowels, and tones — and start reading real Thai for the first time.', level: 'B1 · Literacy' },
-    { img: 'book-rw2-cover.png', alt: 'Reading and Writing 2', title: 'Reading & Writing 2', desc: 'Read and write short Thai texts — build confidence with sentences, vocabulary, and everyday script.', level: 'B1 · Literacy' },
-    { img: 'book-rw3-cover.png', alt: 'Reading and Writing 3', title: 'Reading & Writing 3', desc: 'Read paragraphs, write messages, and handle real Thai text — from menus and signs to short articles.', level: 'B1+ · Intermediate' },
+    { img: 'book-sl2-cover.webp', alt: 'Speaking and Listening 2', title: 'Speaking & Listening 2', desc: 'Daily life conversations, shopping, transport, and expanding your vocabulary into real situations.', level: 'A2 · Beginner' },
+    { img: 'book-sl3-cover.webp', alt: 'Speaking and Listening 3', title: 'Speaking & Listening 3', desc: 'Handle real-life situations comfortably — relationships, work, travel, and longer conversations.', level: 'A2+ · Elementary' },
+    { img: 'book-rw1-cover.webp', alt: 'Reading and Writing 1', title: 'Reading & Writing 1', desc: 'Learn the Thai alphabet — consonants, vowels, and tones — and start reading real Thai for the first time.', level: 'B1 · Literacy' },
+    { img: 'book-rw2-cover.webp', alt: 'Reading and Writing 2', title: 'Reading & Writing 2', desc: 'Read and write short Thai texts — build confidence with sentences, vocabulary, and everyday script.', level: 'B1 · Literacy' },
+    { img: 'book-rw3-cover.webp', alt: 'Reading and Writing 3', title: 'Reading & Writing 3', desc: 'Read paragraphs, write messages, and handle real Thai text — from menus and signs to short articles.', level: 'B1+ · Intermediate' },
   ];
 
   return (
@@ -41,7 +41,7 @@ export default function BooksPage() {
           <FadeIn>
             <div className="book-featured-grid" style={{ display: 'grid', gridTemplateColumns: '380px 1fr', gap: '64px', alignItems: 'start', marginTop: '56px' }}>
               <div style={{ borderRadius: '16px', overflow: 'hidden', boxShadow: '0 24px 64px rgba(0,0,0,.18)' }}>
-                <Image src="/images/book-sl1-cover.png" alt="Speaking and Listening 1 by Kru Mind" width={380} height={507} style={{ width: '100%', display: 'block' }} />
+                <Image src="/images/book-sl1-cover.webp" alt="Speaking and Listening 1 by Kru Mind" width={380} height={507} style={{ width: '100%', display: 'block' }} priority />
               </div>
 
               <div style={{ paddingTop: '4px' }}>
