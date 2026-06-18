@@ -63,6 +63,13 @@ export default function Nav() {
               </Link>
             </li>
           ))}
+          <Show when="signed-in">
+            <li>
+              <Link href="/dashboard" className={isActive('/dashboard') ? 'active' : ''} onClick={() => setOpen(false)}>
+                My Learning
+              </Link>
+            </li>
+          </Show>
           <li>
             <a
               href="https://learn-thai-with-mind.teachable.com/sign_in"

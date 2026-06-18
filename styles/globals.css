@@ -1161,3 +1161,20 @@ ul { list-style: none; }
   .book-chapters-grid { grid-template-columns: 1fr; }
   .book-chapter-sub { display: block; }
 }
+
+/* ── Dashboard page ── */
+@media(max-width: 900px) {
+  .dash-stats-row   { grid-template-columns: 1fr 1fr !important; }
+  .dash-course-grid { grid-template-columns: 1fr 1fr !important; }
+  .dash-deck-grid   { grid-template-columns: repeat(4,1fr) !important; }
+  .dash-books-row   { grid-template-columns: 1fr !important; }
+  .dash-books-row > :first-child { max-width: 240px; margin: 0 auto; }
+  .dash-classes-inner { grid-template-columns: 1fr !important; }
+  .dash-classes-inner > :last-child { align-items: flex-start !important; }
+}
+@media(max-width: 600px) {
+  .dash-stats-row   { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
+  .dash-course-grid { grid-template-columns: 1fr !important; }
+  .dash-deck-grid   { grid-template-columns: repeat(2,1fr) !important; }
+  .dash-classes-inner { padding: 28px 24px !important; }
+}
